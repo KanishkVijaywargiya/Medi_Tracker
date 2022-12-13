@@ -9,19 +9,26 @@ import SwiftUI
 
 struct Login: View {
     @StateObject var vm = OTPViewModel()
+    @State private var listOfCountry: Bool = false
+    @State private var countryCode: String = ""
+    @State private var countryFlag: String = ""
     
     /*
      TODO
-     1. Display list of country name & there respective flags in a full screen cover.
-     2. Full screen cover should open when clicked on code button & closing should also need to handle.
      3. search functionality should be there in full screen cover to search Country by it's name or code.
-     4. after selection of country, modal should closed.
-     5. selected country flag should come & shown in code button.
-     6. selected country code should replace hardcoded value in number field.
+     7. UI Responsiveness, adaptive to multiple size class
+     8. Functionality check.
+     9. need to have a default value i.e. indian flag & +91 code.
      -----------
      1. social logins: Google, Apple & email authentication we can integrate.
      2. ellipsis will help to open email auth screen.
      3. Terms & conditions, privacy policy needs to be added, either make a web page & display or use full screen.
+     ------------- COMPLETED ----------------
+     1. Display list of country name & there respective flags in a full screen cover.
+     2. Full screen cover should open when clicked on code button & closing should also need to handle.
+     4. after selection of country, modal should closed.
+     5. selected country flag should come & shown in code button.
+     6. selected country code should replace hardcoded value in number field.
      */
     
     var body: some View {
@@ -49,6 +56,9 @@ struct Login: View {
             } label: {}.labelsHidden()
         }
         .alert(vm.errorMsg, isPresented: $vm.showAlert) {}
+        .fullScreenCover(isPresented: $listOfCountry) {
+            ListOfCountries(countryCode: $vm.countryCode, countryFlag: $countryFlag)
+        }
         
         
         //        VStack {
@@ -111,14 +121,16 @@ extension Login {
         HStack {
             // code section
             //TODO: full screen modal
-            Button {} label: {
+            Button {self.listOfCountry.toggle()} label: {
                 HStack {
-                    Image(systemName: "flag")
+                    Text(vm.countryCode.isEmpty ? "🇮🇳" : countryFlag)
+                        .font(.system(size: 35))
                     Image(systemName: "arrowtriangle.down.fill")
                         .foregroundColor(.secondary)
                 }
             }
-            .padding()
+            .padding([.top, .bottom], 4)
+            .padding([.leading, .trailing], 4)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(Color.black.opacity(0.1), lineWidth: 1.9)
@@ -130,12 +142,13 @@ extension Login {
             
             // number section
             HStack {
-                Text("+91")
+                Text(vm.countryCode.isEmpty ? "+91" : "+\(vm.countryCode)")
                     .foregroundColor(.primary)
                     .font(.callout.bold())
                 TextField("Enter Mobile Number", text: $vm.number)
                     .foregroundColor(.primary)
                     .font(.callout.bold())
+                    .keyboardType(.numberPad)
             }
             .padding()
             .overlay(
@@ -154,6 +167,7 @@ extension Login {
             Text("Continue")
                 .foregroundColor(.white)
                 .fontWeight(.bold)
+                .frame(maxWidth: .infinity)
         }
         .padding()
         .frame(maxWidth: .infinity)
@@ -267,25 +281,25 @@ extension Login {
     
     //------------------------------------------------------------------------------------------
     
-    private var loginView: some View {
-        HStack(spacing: 10) {
-            countryCode
-            mobileNumber
-        }.padding(.vertical)
-    }
+//    private var loginView: some View {
+//        HStack(spacing: 10) {
+//            countryCode
+//            mobileNumber
+//        }.padding(.vertical)
+//    }
     
     // MARK: Code
-    private var countryCode: some View {
-        VStack(spacing: 8) {
-            TextField("+91", text: $vm.code)
-                .keyboardType(.numberPad)
-                .multilineTextAlignment(.center)
-            
-            Rectangle()
-                .fill(vm.code == "" ? .gray.opacity(0.35) : .blue)
-                .frame(height: 2)
-        }.frame(width: 40)
-    }
+//    private var countryCode: some View {
+//        VStack(spacing: 8) {
+//            TextField("+91", text: $vm.code)
+//                .keyboardType(.numberPad)
+//                .multilineTextAlignment(.center)
+//
+//            Rectangle()
+//                .fill(vm.code == "" ? .gray.opacity(0.35) : .blue)
+//                .frame(height: 2)
+//        }.frame(width: 40)
+//    }
     
     // MARK: Number
     private var mobileNumber: some View {
@@ -317,7 +331,7 @@ extension Login {
                         .opacity(vm.isLoading ? 1 : 0)
                 )
         }
-        .disabled(vm.code == "" || vm.number == "")
-        .opacity(vm.code == "" || vm.number == "" ? 0.4 : 1)
+        .disabled(vm.countryCode == "" || vm.number == "")
+        .opacity(vm.countryCode == "" || vm.number == "" ? 0.4 : 1)
     }
 }

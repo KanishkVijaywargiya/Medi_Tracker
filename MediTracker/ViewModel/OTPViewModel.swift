@@ -11,7 +11,7 @@ import Firebase
 class OTPViewModel: ObservableObject {
     // MARK: Login Data
     @Published var number: String = ""
-    @Published var code: String = ""
+    @Published var countryCode: String = ""
     
     @Published var otpText: String = ""
     @Published var otpFields: [String] = Array(repeating: "", count: 6)
@@ -34,7 +34,7 @@ class OTPViewModel: ObservableObject {
         do {
             isLoading = true
             let result = try await
-            PhoneAuthProvider.provider().verifyPhoneNumber("+\(code)\(number)", uiDelegate: nil)
+            PhoneAuthProvider.provider().verifyPhoneNumber("+\(countryCode)\(number)", uiDelegate: nil)
             DispatchQueue.main.async {
                 self.isLoading = false
                 self.verificationCode = result
