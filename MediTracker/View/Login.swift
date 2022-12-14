@@ -10,8 +10,8 @@ import SwiftUI
 struct Login: View {
     @StateObject var vm = OTPViewModel()
     @State private var listOfCountry: Bool = false
-    @State private var countryCode: String = ""
-    @State private var countryFlag: String = ""
+    @State private var countryCode: String = "91"
+    @State private var countryFlag: String = "🇮🇳"
     
     /*
      TODO
@@ -19,7 +19,8 @@ struct Login: View {
      7. UI Responsiveness, adaptive to multiple size class
      8. Functionality check.
      9. need to have a default value i.e. indian flag & +91 code.
-     -----------
+     10. localization.
+     ----------------------------------------------------------------------------
      1. social logins: Google, Apple & email authentication we can integrate.
      2. ellipsis will help to open email auth screen.
      3. Terms & conditions, privacy policy needs to be added, either make a web page & display or use full screen.
@@ -32,21 +33,21 @@ struct Login: View {
      */
     
     var body: some View {
-        VStack {
-            bgImg
-            
-            Spacer()
-                        
+        ZStack(alignment: .topLeading) {
             VStack {
-                title
-                loginSignUpText
-                countryCodeAndNum
-                continueButton
-                orSection
-                socialLogin
-                footerText
+                bgImg
+                VStack {
+                    title
+                    loginSignUpText
+                    countryCodeAndNum
+                    continueButton
+                    orSection
+                    socialLogin
+                    footerText
+                }
+                .padding(.horizontal)
             }
-            .padding([.leading, .trailing])
+            localization
         }
         .padding(.bottom, 15)
         .edgesIgnoringSafeArea(.all)
@@ -57,7 +58,7 @@ struct Login: View {
         }
         .alert(vm.errorMsg, isPresented: $vm.showAlert) {}
         .fullScreenCover(isPresented: $listOfCountry) {
-            ListOfCountries(countryCode: $vm.countryCode, countryFlag: $countryFlag)
+            ListOfCountries(countryCode: $countryCode, countryFlag: $countryFlag)
         }
         
         
@@ -123,7 +124,7 @@ extension Login {
             //TODO: full screen modal
             Button {self.listOfCountry.toggle()} label: {
                 HStack {
-                    Text(vm.countryCode.isEmpty ? "🇮🇳" : countryFlag)
+                    Text(countryFlag)
                         .font(.system(size: 35))
                     Image(systemName: "arrowtriangle.down.fill")
                         .foregroundColor(.secondary)
@@ -142,7 +143,7 @@ extension Login {
             
             // number section
             HStack {
-                Text(vm.countryCode.isEmpty ? "+91" : "+\(vm.countryCode)")
+                Text("+\(countryCode)")
                     .foregroundColor(.primary)
                     .font(.callout.bold())
                 TextField("Enter Mobile Number", text: $vm.number)
@@ -163,7 +164,7 @@ extension Login {
     }// MARK: code & number area
     
     private var continueButton: some View {
-        Button {Task{await vm.sendOTP()}} label: {
+        Button {Task{await vm.sendOTP(countryCode: countryCode)}} label: {
             Text("Continue")
                 .foregroundColor(.white)
                 .fontWeight(.bold)
@@ -279,6 +280,12 @@ extension Login {
         }
     }// MARK: Footer text
     
+    private var localization: some View {
+        GlassButton(iconName: "globe.central.south.asia.fill", iconSize: 20)
+            .padding(.leading, 8)
+            .padding(.top, 45)
+            .onTapGesture {}
+    }// MARK: button for localization
     //------------------------------------------------------------------------------------------
     
 //    private var loginView: some View {
@@ -315,7 +322,9 @@ extension Login {
     
     // MARK: Verify blue button
     private var verifyButton: some View {
-        Button {Task{await vm.sendOTP()}} label: {
+        Button {
+            //Task{await vm.sendOTP()}
+        } label: {
             Text("Login")
                 .fontWeight(.semibold)
                 .foregroundColor(.white)

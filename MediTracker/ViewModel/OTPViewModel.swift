@@ -29,7 +29,7 @@ class OTPViewModel: ObservableObject {
     @AppStorage("log_status") private var log_status = false
     
     // MARK: Sending OTP
-    func sendOTP() async {
+    func sendOTP(countryCode: String) async {
         if isLoading { return }
         do {
             isLoading = true
