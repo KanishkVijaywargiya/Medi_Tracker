@@ -16,7 +16,7 @@ struct MediTrackerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(networkMonitor)
+            ContentView().environmentObject(networkMonitor).persistentSystemOverlays(.hidden)
         }
     }
 }

@@ -66,7 +66,6 @@ struct Login: View {
         .fullScreenCover(isPresented: $listOfCountry) {
             ListOfCountries(countryCode: $countryCode, countryFlag: $countryFlag)
         }
-        .persistentSystemOverlays(.hidden)
         .environmentObject(networkMonitor)
     }
 }
