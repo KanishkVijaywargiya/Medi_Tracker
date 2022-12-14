@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import AwesomeToast
+import AwesomeNetwork
 
 struct Login: View {
+    @EnvironmentObject private var networkMonitor: NetworkConnection
     @StateObject var vm = OTPViewModel()
     @State private var listOfCountry: Bool = false
     @State private var countryCode: String = "91"
@@ -16,10 +19,8 @@ struct Login: View {
     /*
      TODO
      3. search functionality should be there in full screen cover to search Country by it's name or code.
-     7. UI Responsiveness, adaptive to multiple size class
-     8. Functionality check.
-     9. need to have a default value i.e. indian flag & +91 code.
      10. localization.
+     13. refractoring of codes
      ----------------------------------------------------------------------------
      1. social logins: Google, Apple & email authentication we can integrate.
      2. ellipsis will help to open email auth screen.
@@ -30,22 +31,37 @@ struct Login: View {
      4. after selection of country, modal should closed.
      5. selected country flag should come & shown in code button.
      6. selected country code should replace hardcoded value in number field.
+     7. UI Responsiveness, adaptive to multiple size class
+     8. Functionality check.
+     9. need to have a default value i.e. indian flag & +91 code.
+     11. Keyboard closing.
+     12. show alert when clicked without num.
      */
     
     var body: some View {
         ZStack(alignment: .topLeading) {
             VStack {
-                bgImg
-                VStack {
-                    title
-                    loginSignUpText
-                    countryCodeAndNum
-                    continueButton
-                    orSection
-                    socialLogin
-                    footerText
+                ScrollView {
+                    bgImg
+                    VStack {
+                        title
+                        
+                        MTLineText(title: "Log in or sign up", opacityVal: 0.3)
+                        
+                        countryCodeAndNum
+                        
+                        MTButton(action: {
+                            Task{await vm.sendOTP(countryCode: countryCode)}
+                        }, title: "Continue", hexCode: "#E6425E")
+                        
+                        MTLineText(title: "or", opacityVal: 0.2)
+                        
+                        socialLogin
+                        footerText
+                    }
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
+                .scrollDismissesKeyboard(.immediately)
             }
             localization
         }
@@ -56,10 +72,11 @@ struct Login: View {
                 Verification().environmentObject(vm)
             } label: {}.labelsHidden()
         }
-        .alert(vm.errorMsg, isPresented: $vm.showAlert) {}
+        .showToast(title: networkMonitor.connected ? vm.alertTitle : "Could not connect to the internet", isPresented: $vm.showAlert, color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), duration: 5, alignment: .top, toastType: .offsetToast, image: Image("a"))
         .fullScreenCover(isPresented: $listOfCountry) {
             ListOfCountries(countryCode: $countryCode, countryFlag: $countryFlag)
         }
+        .environmentObject(networkMonitor)
         
         
         //        VStack {
@@ -81,7 +98,7 @@ struct Login: View {
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        Login()
+        Login().environmentObject(NetworkConnection())
     }
 }
 
@@ -103,20 +120,6 @@ extension Login {
             .multilineTextAlignment(.center)
             .frame(width: UIScreen.main.bounds.width - 30)
     }// MARK: Title
-    
-    private var loginSignUpText: some View {
-        ZStack {
-            Rectangle()
-                .frame(height: 1)
-                .foregroundColor(.black.opacity(0.3))
-            
-            Text("Log in or sign up")
-                .font(.system(size: 18, weight: .semibold))
-                .foregroundColor(.secondary)
-                .padding()
-                .background(Color.white)
-        }
-    }// MARK: log in or sign up section
     
     private var countryCodeAndNum: some View {
         HStack {
@@ -163,84 +166,11 @@ extension Login {
         }
     }// MARK: code & number area
     
-    private var continueButton: some View {
-        Button {Task{await vm.sendOTP(countryCode: countryCode)}} label: {
-            Text("Continue")
-                .foregroundColor(.white)
-                .fontWeight(.bold)
-                .frame(maxWidth: .infinity)
-        }
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color(hex: "#E6425E"))
-        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-        .padding(.top, 10)
-    }// MARK: continue button
-    
-    private var orSection: some View {
-        ZStack {
-            Rectangle()
-                .frame(height: 1)
-                .foregroundColor(.gray.opacity(0.2))
-            
-            Text("or")
-                .font(.system(size: 18, weight: .semibold))
-                .foregroundColor(.secondary)
-                .padding()
-                .background(Color.white)
-        }
-    }// MARK: or section
-    
     private var socialLogin: some View {
         HStack(spacing: 60) {
-            Button {} label: {
-                Image("g")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 22, height: 22)
-            }
-            .padding()
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color.black.opacity(0.1), lineWidth: 1.9)
-                    .blendMode(.normal)
-                    .opacity(0.7)
-            )
-            .shadow(color: Color.black.opacity(0.1), radius: 2, y: 2)
-            .background(Color.white)
-            
-            // apple login button
-            Button {} label: {
-                Image("a")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 22, height: 22)
-            }
-            .padding()
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color.black.opacity(0.1), lineWidth: 1.9)
-                    .blendMode(.normal)
-                    .opacity(0.7)
-            )
-            .shadow(color: Color.black.opacity(0.1), radius: 2, y: 2)
-            .background(Color.white)
-            
-            // more login option button
-            Button {} label: {
-                Image(systemName: "ellipsis")
-                    .font(.title3.bold())
-            }
-            .padding([.top, .bottom], 8)
-            .padding()
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color.black.opacity(0.1), lineWidth: 1.9)
-                    .blendMode(.normal)
-                    .opacity(0.7)
-            )
-            .shadow(color: Color.black.opacity(0.1), radius: 2, y: 2)
-            .background(Color.white)
+            MTSocialLoginButton(action: {}, imageName: "g")
+            MTSocialLoginButton(action: {}, imageName: "apple.logo", imageCheck: true)
+            MTSocialLoginButton(action: {}, imageName: "ellipsis", imageCheck: true)
         }.padding(.bottom)
     }// MARK: social login
     
@@ -288,25 +218,25 @@ extension Login {
     }// MARK: button for localization
     //------------------------------------------------------------------------------------------
     
-//    private var loginView: some View {
-//        HStack(spacing: 10) {
-//            countryCode
-//            mobileNumber
-//        }.padding(.vertical)
-//    }
+    //    private var loginView: some View {
+    //        HStack(spacing: 10) {
+    //            countryCode
+    //            mobileNumber
+    //        }.padding(.vertical)
+    //    }
     
     // MARK: Code
-//    private var countryCode: some View {
-//        VStack(spacing: 8) {
-//            TextField("+91", text: $vm.code)
-//                .keyboardType(.numberPad)
-//                .multilineTextAlignment(.center)
-//
-//            Rectangle()
-//                .fill(vm.code == "" ? .gray.opacity(0.35) : .blue)
-//                .frame(height: 2)
-//        }.frame(width: 40)
-//    }
+    //    private var countryCode: some View {
+    //        VStack(spacing: 8) {
+    //            TextField("+91", text: $vm.code)
+    //                .keyboardType(.numberPad)
+    //                .multilineTextAlignment(.center)
+    //
+    //            Rectangle()
+    //                .fill(vm.code == "" ? .gray.opacity(0.35) : .blue)
+    //                .frame(height: 2)
+    //        }.frame(width: 40)
+    //    }
     
     // MARK: Number
     private var mobileNumber: some View {

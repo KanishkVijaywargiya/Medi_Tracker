@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04124F182949EC58002F57E3 /* AwesomeNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 04124F172949EC58002F57E3 /* AwesomeNetwork */; };
 		043E7E8B2948AD25005F4740 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E7E8A2948AD25005F4740 /* ColorExtensions.swift */; };
 		043E7E8D2948E353005F4740 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E7E8C2948E353005F4740 /* Country.swift */; };
 		043E7E902948E5E5005F4740 /* ListOfCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E7E8F2948E5E5005F4740 /* ListOfCountries.swift */; };
 		044AA224294890EC00EA04B4 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044AA223294890EC00EA04B4 /* RoundedCorners.swift */; };
 		045C1F042949A73F005F51F6 /* GlassButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C1F032949A73F005F51F6 /* GlassButton.swift */; };
 		0462035C2949A85700A487CD /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462035B2949A85700A487CD /* BlurView.swift */; };
+		04CECAC32949D87B00A6E6F5 /* MTLineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC22949D87B00A6E6F5 /* MTLineText.swift */; };
+		04CECAC52949D93F00A6E6F5 /* MTSocialLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */; };
+		04CECAC82949E2C800A6E6F5 /* AwesomeToast in Frameworks */ = {isa = PBXBuildFile; productRef = 04CECAC72949E2C800A6E6F5 /* AwesomeToast */; };
 		04D37BD82945F84700EEF926 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37BD72945F84700EEF926 /* Login.swift */; };
+		04D5A7F42949CA9E00700097 /* MTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5A7F32949CA9E00700097 /* MTButton.swift */; };
 		04D7F3F12945F192006C96E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04D7F3F02945F192006C96E7 /* GoogleService-Info.plist */; };
 		04D7F3F52945F2AF006C96E7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 04D7F3F42945F2AF006C96E7 /* FirebaseAuth */; };
 		04D7F3F72945F2AF006C96E7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 04D7F3F62945F2AF006C96E7 /* FirebaseFirestore */; };
@@ -33,7 +38,10 @@
 		044AA223294890EC00EA04B4 /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
 		045C1F032949A73F005F51F6 /* GlassButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassButton.swift; sourceTree = "<group>"; };
 		0462035B2949A85700A487CD /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		04CECAC22949D87B00A6E6F5 /* MTLineText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLineText.swift; sourceTree = "<group>"; };
+		04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTSocialLoginButton.swift; sourceTree = "<group>"; };
 		04D37BD72945F84700EEF926 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		04D5A7F32949CA9E00700097 /* MTButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTButton.swift; sourceTree = "<group>"; };
 		04D7F3F02945F192006C96E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04D7F3F22945F1CC006C96E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		04F7AC112945E19F00C6B479 /* MediTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04CECAC82949E2C800A6E6F5 /* AwesomeToast in Frameworks */,
+				04124F182949EC58002F57E3 /* AwesomeNetwork in Frameworks */,
 				04D7F3F52945F2AF006C96E7 /* FirebaseAuth in Frameworks */,
 				04D7F3F72945F2AF006C96E7 /* FirebaseFirestore in Frameworks */,
 				04D7F3F92945F2AF006C96E7 /* FirebaseStorage in Frameworks */,
@@ -81,6 +91,9 @@
 			children = (
 				043E7E8F2948E5E5005F4740 /* ListOfCountries.swift */,
 				045C1F032949A73F005F51F6 /* GlassButton.swift */,
+				04D5A7F32949CA9E00700097 /* MTButton.swift */,
+				04CECAC22949D87B00A6E6F5 /* MTLineText.swift */,
+				04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -183,6 +196,8 @@
 				04D7F3F42945F2AF006C96E7 /* FirebaseAuth */,
 				04D7F3F62945F2AF006C96E7 /* FirebaseFirestore */,
 				04D7F3F82945F2AF006C96E7 /* FirebaseStorage */,
+				04CECAC72949E2C800A6E6F5 /* AwesomeToast */,
+				04124F172949EC58002F57E3 /* AwesomeNetwork */,
 			);
 			productName = MediTracker;
 			productReference = 04F7AC112945E19F00C6B479 /* MediTracker.app */;
@@ -214,6 +229,8 @@
 			mainGroup = 04F7AC082945E19F00C6B479;
 			packageReferences = (
 				04D7F3F32945F2AF006C96E7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				04CECAC62949E2C800A6E6F5 /* XCRemoteSwiftPackageReference "AwesomeToastPackage" */,
+				04124F162949EC58002F57E3 /* XCRemoteSwiftPackageReference "AwesomeNetworkPackage" */,
 			);
 			productRefGroup = 04F7AC122945E19F00C6B479 /* Products */;
 			projectDirPath = "";
@@ -243,13 +260,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				04F7AC2A2945E40800C6B479 /* OTPViewModel.swift in Sources */,
+				04CECAC52949D93F00A6E6F5 /* MTSocialLoginButton.swift in Sources */,
 				04D37BD82945F84700EEF926 /* Login.swift in Sources */,
 				043E7E902948E5E5005F4740 /* ListOfCountries.swift in Sources */,
 				04F7AC272945E2A800C6B479 /* Verification.swift in Sources */,
 				0462035C2949A85700A487CD /* BlurView.swift in Sources */,
 				043E7E8D2948E353005F4740 /* Country.swift in Sources */,
 				04F7AC172945E1A000C6B479 /* ContentView.swift in Sources */,
+				04D5A7F42949CA9E00700097 /* MTButton.swift in Sources */,
 				044AA224294890EC00EA04B4 /* RoundedCorners.swift in Sources */,
+				04CECAC32949D87B00A6E6F5 /* MTLineText.swift in Sources */,
 				04F7AC152945E1A000C6B479 /* MediTrackerApp.swift in Sources */,
 				045C1F042949A73F005F51F6 /* GlassButton.swift in Sources */,
 				043E7E8B2948AD25005F4740 /* ColorExtensions.swift in Sources */,
@@ -472,6 +492,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		04124F162949EC58002F57E3 /* XCRemoteSwiftPackageReference "AwesomeNetworkPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/manasdevslopes/AwesomeNetworkPackage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		04CECAC62949E2C800A6E6F5 /* XCRemoteSwiftPackageReference "AwesomeToastPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/manasdevslopes/AwesomeToastPackage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		04D7F3F32945F2AF006C96E7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -483,6 +519,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		04124F172949EC58002F57E3 /* AwesomeNetwork */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04124F162949EC58002F57E3 /* XCRemoteSwiftPackageReference "AwesomeNetworkPackage" */;
+			productName = AwesomeNetwork;
+		};
+		04CECAC72949E2C800A6E6F5 /* AwesomeToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04CECAC62949E2C800A6E6F5 /* XCRemoteSwiftPackageReference "AwesomeToastPackage" */;
+			productName = AwesomeToast;
+		};
 		04D7F3F42945F2AF006C96E7 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 04D7F3F32945F2AF006C96E7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

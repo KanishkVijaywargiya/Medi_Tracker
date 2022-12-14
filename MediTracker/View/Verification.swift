@@ -41,7 +41,7 @@ struct Verification: View {
         .onChange(of: vm.otpFields) { newValue in
             otpCondition(value: newValue)
         }
-        .alert(vm.errorMsg, isPresented: $vm.showAlert) {}
+        //.alert(vm.errorMsg, isPresented: $vm.showAlert) {}
         
         //        VStack {
         //            otpField

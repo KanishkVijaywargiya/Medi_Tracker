@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import AwesomeNetwork
 
 class OTPViewModel: ObservableObject {
     // MARK: Login Data
@@ -18,7 +19,7 @@ class OTPViewModel: ObservableObject {
     
     // MARK: Error
     @Published var showAlert: Bool = false
-    @Published var errorMsg: String = ""
+    @Published var alertTitle: String = ""
     
     // MARK: OTP Credentials
     @Published var verificationCode: String = ""
@@ -30,28 +31,64 @@ class OTPViewModel: ObservableObject {
     
     // MARK: Sending OTP
     func sendOTP(countryCode: String) async {
-        if isLoading { return }
-        do {
-            isLoading = true
-            let result = try await
-            PhoneAuthProvider.provider().verifyPhoneNumber("+\(countryCode)\(number)", uiDelegate: nil)
-            DispatchQueue.main.async {
-                self.isLoading = false
-                self.verificationCode = result
-                self.navigationTag = "VERIFICATION"
+            if isLoading { return }
+            if number.isEmpty || number.count < 10 {
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.showAlert.toggle()
+                    self.alertTitle = "Please enter a valid phone number."
+                }
+            } else {
+                do {
+                    DispatchQueue.main.async {
+                        self.isLoading = true
+                    }
+                    let result = try await
+                    PhoneAuthProvider.provider().verifyPhoneNumber("+\(countryCode)\(number)", uiDelegate: nil)
+                    DispatchQueue.main.async {
+                        self.isLoading = false
+                        self.verificationCode = result
+                        self.navigationTag = "VERIFICATION"
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        self.isLoading = false
+                        self.showAlert.toggle()
+                        self.alertTitle = "Something went wrong"
+                        //"Could not connect to the internet"
+                    }
+                }
             }
-        } catch {
-            handleError(e: error.localizedDescription)
-        }
     }
+    //    func sendOTP(countryCode: String) async {
+    //        if isLoading { return }
+    //        if number.isEmpty {
+    //
+    //        } else {
+    //            do {
+    //                DispatchQueue.main.async {
+    //                    self.isLoading = true
+    //                }
+    //                    let result = try await
+    //                    PhoneAuthProvider.provider().verifyPhoneNumber("+\(countryCode)\(number)", uiDelegate: nil)
+    //                    DispatchQueue.main.async {
+    //                        self.isLoading = false
+    //                        self.verificationCode = result
+    //                        self.navigationTag = "VERIFICATION"
+    //                    }
+    //                } catch {
+    //                    handleError(e: error.localizedDescription)
+    //                }
+    //        }
+    //    }
     
-    func handleError(e: String) {
-        DispatchQueue.main.async {
-            self.isLoading = false
-            self.errorMsg = e
-            self.showAlert.toggle()
-        }
-    }
+    //    func handleError(e: String) {
+    //        DispatchQueue.main.async {
+//                self.isLoading = false
+//                self.errorMsg = e
+//                self.showAlert.toggle()
+    //        }
+    //    }
     
     // MARK: Verify OTP
     func verifyOTP() async {
@@ -66,7 +103,7 @@ class OTPViewModel: ObservableObject {
                 self.log_status = true
             }
         } catch {
-            handleError(e: error.localizedDescription)
+            //handleError(e: error.localizedDescription)
         }
     }
 }

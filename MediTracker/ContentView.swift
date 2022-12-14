@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import AwesomeNetwork
 
 struct ContentView: View {
     @AppStorage("log_status") private var log_status = false

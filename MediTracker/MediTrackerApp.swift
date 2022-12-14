@@ -7,14 +7,16 @@
 
 import SwiftUI
 import Firebase
+import AwesomeNetwork
 
 @main
 struct MediTrackerApp: App {
+    @StateObject private var networkMonitor = NetworkConnection()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(networkMonitor)
         }
     }
 }

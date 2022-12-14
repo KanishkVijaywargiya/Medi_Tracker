@@ -10,6 +10,24 @@
       }
     },
     {
+      "identity" : "awesomenetworkpackage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/manasdevslopes/AwesomeNetworkPackage.git",
+      "state" : {
+        "revision" : "3ca111aea083291069cf49f21cde0695661bd669",
+        "version" : "1.0.6"
+      }
+    },
+    {
+      "identity" : "awesometoastpackage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/manasdevslopes/AwesomeToastPackage.git",
+      "state" : {
+        "revision" : "ffc7f233e5351e36256a26ca80e00b5f48d95219",
+        "version" : "2.1.4"
+      }
+    },
+    {
       "identity" : "boringssl-swiftpm",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/boringssl-SwiftPM.git",
