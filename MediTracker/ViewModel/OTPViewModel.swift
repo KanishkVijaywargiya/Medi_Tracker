@@ -55,40 +55,10 @@ class OTPViewModel: ObservableObject {
                         self.isLoading = false
                         self.showAlert.toggle()
                         self.alertTitle = "Something went wrong"
-                        //"Could not connect to the internet"
                     }
                 }
             }
     }
-    //    func sendOTP(countryCode: String) async {
-    //        if isLoading { return }
-    //        if number.isEmpty {
-    //
-    //        } else {
-    //            do {
-    //                DispatchQueue.main.async {
-    //                    self.isLoading = true
-    //                }
-    //                    let result = try await
-    //                    PhoneAuthProvider.provider().verifyPhoneNumber("+\(countryCode)\(number)", uiDelegate: nil)
-    //                    DispatchQueue.main.async {
-    //                        self.isLoading = false
-    //                        self.verificationCode = result
-    //                        self.navigationTag = "VERIFICATION"
-    //                    }
-    //                } catch {
-    //                    handleError(e: error.localizedDescription)
-    //                }
-    //        }
-    //    }
-    
-    //    func handleError(e: String) {
-    //        DispatchQueue.main.async {
-//                self.isLoading = false
-//                self.errorMsg = e
-//                self.showAlert.toggle()
-    //        }
-    //    }
     
     // MARK: Verify OTP
     func verifyOTP() async {

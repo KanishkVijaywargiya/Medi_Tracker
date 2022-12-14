@@ -26,16 +26,7 @@ struct Login: View {
      2. ellipsis will help to open email auth screen.
      3. Terms & conditions, privacy policy needs to be added, either make a web page & display or use full screen.
      ------------- COMPLETED ----------------
-     1. Display list of country name & there respective flags in a full screen cover.
-     2. Full screen cover should open when clicked on code button & closing should also need to handle.
-     4. after selection of country, modal should closed.
-     5. selected country flag should come & shown in code button.
-     6. selected country code should replace hardcoded value in number field.
-     7. UI Responsiveness, adaptive to multiple size class
-     8. Functionality check.
-     9. need to have a default value i.e. indian flag & +91 code.
-     11. Keyboard closing.
-     12. show alert when clicked without num.
+     number added, country code working, added toast, network check, keyboard close, UI responsive
      */
     
     var body: some View {
@@ -50,18 +41,17 @@ struct Login: View {
                         
                         countryCodeAndNum
                         
-                        MTButton(action: {
-                            Task{await vm.sendOTP(countryCode: countryCode)}
-                        }, title: "Continue", hexCode: "#E6425E")
+                        continueButton
                         
                         MTLineText(title: "or", opacityVal: 0.2)
                         
                         socialLogin
-                        footerText
                     }
                     .padding(.horizontal)
                 }
                 .scrollDismissesKeyboard(.immediately)
+                
+                footerText.padding(.bottom, 20)
             }
             localization
         }
@@ -76,23 +66,8 @@ struct Login: View {
         .fullScreenCover(isPresented: $listOfCountry) {
             ListOfCountries(countryCode: $countryCode, countryFlag: $countryFlag)
         }
+        .persistentSystemOverlays(.hidden)
         .environmentObject(networkMonitor)
-        
-        
-        //        VStack {
-        //            loginView
-        //            verifyButton
-        //        }
-        //        .navigationTitle("Login")
-        //        .padding()
-        //        .frame(maxHeight: .infinity, alignment: .top)
-        //        .background {
-        //            NavigationLink(tag: "VERIFICATION", selection: $vm.navigationTag) {
-        //                Verification().environmentObject(vm)
-        //            } label: {}.labelsHidden()
-        //
-        //        }
-        //        .alert(vm.errorMsg, isPresented: $vm.showAlert) {}
     }
 }
 
@@ -166,6 +141,20 @@ extension Login {
         }
     }// MARK: code & number area
     
+    private var continueButton: some View {
+        ZStack(alignment: .center) {
+            MTButton(action: {
+                Task{await vm.sendOTP(countryCode: countryCode)}
+            }, title: vm.isLoading ? "" : "Continue", hexCode: "#E6425E")
+            
+            if vm.isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                        .padding()
+            }
+        }.padding(.top, 10)
+    }
+    
     private var socialLogin: some View {
         HStack(spacing: 60) {
             MTSocialLoginButton(action: {}, imageName: "g")
@@ -216,61 +205,4 @@ extension Login {
             .padding(.top, 45)
             .onTapGesture {}
     }// MARK: button for localization
-    //------------------------------------------------------------------------------------------
-    
-    //    private var loginView: some View {
-    //        HStack(spacing: 10) {
-    //            countryCode
-    //            mobileNumber
-    //        }.padding(.vertical)
-    //    }
-    
-    // MARK: Code
-    //    private var countryCode: some View {
-    //        VStack(spacing: 8) {
-    //            TextField("+91", text: $vm.code)
-    //                .keyboardType(.numberPad)
-    //                .multilineTextAlignment(.center)
-    //
-    //            Rectangle()
-    //                .fill(vm.code == "" ? .gray.opacity(0.35) : .blue)
-    //                .frame(height: 2)
-    //        }.frame(width: 40)
-    //    }
-    
-    // MARK: Number
-    private var mobileNumber: some View {
-        VStack(spacing: 8) {
-            TextField("8805552210", text: $vm.number)
-                .keyboardType(.numberPad)
-            
-            Rectangle()
-                .fill(vm.number == "" ? .gray.opacity(0.35) : .blue)
-                .frame(height: 2)
-        }
-    }
-    
-    // MARK: Verify blue button
-    private var verifyButton: some View {
-        Button {
-            //Task{await vm.sendOTP()}
-        } label: {
-            Text("Login")
-                .fontWeight(.semibold)
-                .foregroundColor(.white)
-                .padding(.vertical, 12)
-                .frame(maxWidth: .infinity)
-                .background {
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .fill(.blue)
-                        .opacity(vm.isLoading ? 0 : 1)
-                }
-                .overlay(
-                    ProgressView()
-                        .opacity(vm.isLoading ? 1 : 0)
-                )
-        }
-        .disabled(vm.countryCode == "" || vm.number == "")
-        .opacity(vm.countryCode == "" || vm.number == "" ? 0.4 : 1)
-    }
 }
