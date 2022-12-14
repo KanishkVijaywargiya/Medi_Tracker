@@ -147,9 +147,9 @@ extension Login {
             }, title: vm.isLoading ? "" : "Continue", hexCode: "#E6425E")
             
             if vm.isLoading {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                        .padding()
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                    .padding()
             }
         }.padding(.top, 10)
     }
