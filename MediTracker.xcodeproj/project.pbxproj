@@ -184,11 +184,11 @@
 		04F7AC232945E26300C6B479 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				04EE7067294BA67F00A64D10 /* AuthenticationView.swift */,
 				04F7AC262945E2A800C6B479 /* Verification.swift */,
 				04D37BD72945F84700EEF926 /* Login.swift */,
 				FDE5DD9E294B5129007C4D32 /* HomeView.swift */,
 				04EE705D294B891100A64D10 /* SplashScreen.swift */,
-				04EE7067294BA67F00A64D10 /* AuthenticationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

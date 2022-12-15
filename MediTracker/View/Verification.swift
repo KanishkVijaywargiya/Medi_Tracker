@@ -14,19 +14,18 @@ enum OTPField {
     case field4
     case field5
     case field6
-}// MARK: enum for otp text fields
+}// MARK: focus state enum for otp text fields
 
 struct Verification: View {
-    @EnvironmentObject var vm: OTPViewModel
     @Environment(\.dismiss) private var dismissMode
+    @EnvironmentObject var vm: OTPViewModel
     @FocusState var activeField: OTPField? // MARK: TextField FocusState
     
-    // MARK:
+    // MARK: timer variables to activate resend button
     @State private var timeRemaining = 5
     @State private var showTimer: Bool = true
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var count: Int = 0
-    
     
     // MARK: Mobile num with country code in title
     var mobileNum: String
@@ -37,18 +36,9 @@ struct Verification: View {
             title
             otpFields
             
-            if !checkStates() {
-                verifyOTPButton.padding(.top)
-            }
+            if !checkStates() { verifyOTPButton.padding(.top) }
             
-            if count == 2 {
-                Text("OTP limit exceeded, please try again after some time!")
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.all, 20)
-            } else {
-                resendButton
-            }
+            if count == 2 { limitOTPText } else { resendButton }
             otherLoginMethods
         }
         .padding()
@@ -109,6 +99,27 @@ extension Verification {
             }
         }
     }// MARK: OTP Fields
+    
+    private var limitOTPText: some View {
+        Text("OTP limit exceeded, please try again after some time!")
+            .foregroundColor(.secondary)
+            .multilineTextAlignment(.center)
+            .padding(.all, 20)
+    }
+    
+    private var verifyOTPButton: some View {
+        ZStack(alignment: .center) {
+            MTButton(action: {
+                Task{await vm.verifyOTP()}
+            }, title: vm.isLoading ? "" : "Verify OTP", hexCode: "#E6425E")
+            if vm.isLoading {
+                VStack {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                }.frame(height: 52)
+            }
+        }.padding(.top, 10)
+    }// MARK: Verify blue button
     
     private var resendButton: some View {
         Button {
@@ -173,7 +184,7 @@ extension Verification {
             if value[index].count == 1 && activeStateForIndex(index: index) == activeField {
                 activeField = activeStateForIndex(index: index + 1)
             }
-        }//moving to next field if user entered value to current field
+        }//moving to next field if current field is filled
         
         for index in 1...5 {
             if value[index].isEmpty && !value[index - 1].isEmpty {
@@ -200,42 +211,11 @@ extension Verification {
         }
     }
     
-    // MARK: used to disable the verify blue button
+    // MARK: used to disable the verify OTP Button
     private func checkStates() -> Bool {
         for index in 0..<6 {
             if vm.otpFields[index].isEmpty { return true }
         }
         return false
-    }
-    
-    // MARK: Verify blue button
-    private var verifyOTPButton: some View {
-        //    ZStack(alignment: .center) {
-        //      MTButton(action: {
-        //        Task{await vm.verifyOTP()}
-        //      }, title: vm.isLoading ? "" : "Verify OTP", hexCode: "#E6425E")
-        //      if vm.isLoading {
-        //        VStack {
-        //          ProgressView()
-        //            .progressViewStyle(CircularProgressViewStyle(tint: .white))
-        //        }.frame(height: 52)
-        //      }
-        //    }.padding(.top, 10)
-        
-        Button {Task{await vm.verifyOTP()}} label: {
-            Text("Verify")
-                .fontWeight(.semibold)
-                .foregroundColor(.white)
-                .padding(.vertical, 12)
-                .frame(maxWidth: .infinity)
-                .background {
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .fill(.blue)
-                        .opacity(vm.isLoading ? 0 : 1)
-                }
-                .overlay {
-                    ProgressView().opacity(vm.isLoading ? 1 : 0)
-                }
-        }
     }
 }
