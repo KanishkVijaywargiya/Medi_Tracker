@@ -136,6 +136,16 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
+		04EE7069294BB73900A64D10 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				04EE7067294BA67F00A64D10 /* AuthenticationView.swift */,
+				04F7AC262945E2A800C6B479 /* Verification.swift */,
+				04D37BD72945F84700EEF926 /* Login.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		04F7AC082945E19F00C6B479 = {
 			isa = PBXGroup;
 			children = (
@@ -184,9 +194,7 @@
 		04F7AC232945E26300C6B479 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				04EE7067294BA67F00A64D10 /* AuthenticationView.swift */,
-				04F7AC262945E2A800C6B479 /* Verification.swift */,
-				04D37BD72945F84700EEF926 /* Login.swift */,
+				04EE7069294BB73900A64D10 /* Authentication */,
 				FDE5DD9E294B5129007C4D32 /* HomeView.swift */,
 				04EE705D294B891100A64D10 /* SplashScreen.swift */,
 			);
@@ -237,7 +245,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					04F7AC102945E19F00C6B479 = {
 						CreatedOnToolsVersion = 14.1;
@@ -344,6 +352,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -402,6 +411,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -426,8 +436,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MediTracker/MediTracker.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"MediTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = YHZVJQ792Q;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -466,8 +479,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MediTracker/MediTracker.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"MediTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = YHZVJQ792Q;
 				ENABLE_HARDENED_RUNTIME = YES;
