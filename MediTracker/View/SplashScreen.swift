@@ -9,7 +9,18 @@ import SwiftUI
 
 struct SplashScreen: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack(alignment: .bottom) {
+            Image("splashimg")
+                .resizable()
+                .scaledToFill()
+            
+            LottieView(lottieFile: "HeartLottie")
+                .frame(width: 200, height: 200)
+            
+            Text("Medi Tracker")
+                .font(.title2.bold())
+                .foregroundColor(.primary)
+        }
     }
 }
 

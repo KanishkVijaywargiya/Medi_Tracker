@@ -24,6 +24,10 @@
 		04D7F3F72945F2AF006C96E7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 04D7F3F62945F2AF006C96E7 /* FirebaseFirestore */; };
 		04D7F3F92945F2AF006C96E7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 04D7F3F82945F2AF006C96E7 /* FirebaseStorage */; };
 		04EE705E294B891100A64D10 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE705D294B891100A64D10 /* SplashScreen.swift */; };
+		04EE7061294B95D900A64D10 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 04EE7060294B95D900A64D10 /* Lottie */; };
+		04EE7063294B961900A64D10 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE7062294B961900A64D10 /* LottieView.swift */; };
+		04EE7065294B964600A64D10 /* HeartLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 04EE7064294B964600A64D10 /* HeartLottie.json */; };
+		04EE7068294BA67F00A64D10 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE7067294BA67F00A64D10 /* AuthenticationView.swift */; };
 		04F7AC152945E1A000C6B479 /* MediTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7AC142945E1A000C6B479 /* MediTrackerApp.swift */; };
 		04F7AC172945E1A000C6B479 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7AC162945E1A000C6B479 /* ContentView.swift */; };
 		04F7AC192945E1A400C6B479 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F7AC182945E1A400C6B479 /* Assets.xcassets */; };
@@ -47,6 +51,9 @@
 		04D7F3F02945F192006C96E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04D7F3F22945F1CC006C96E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		04EE705D294B891100A64D10 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		04EE7062294B961900A64D10 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		04EE7064294B964600A64D10 /* HeartLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HeartLottie.json; sourceTree = "<group>"; };
+		04EE7067294BA67F00A64D10 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		04F7AC112945E19F00C6B479 /* MediTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F7AC142945E1A000C6B479 /* MediTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediTrackerApp.swift; sourceTree = "<group>"; };
 		04F7AC162945E1A000C6B479 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +75,7 @@
 				04D7F3F52945F2AF006C96E7 /* FirebaseAuth in Frameworks */,
 				04D7F3F72945F2AF006C96E7 /* FirebaseFirestore in Frameworks */,
 				04D7F3F92945F2AF006C96E7 /* FirebaseStorage in Frameworks */,
+				04EE7061294B95D900A64D10 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +115,7 @@
 			children = (
 				044AA222294890D800EA04B4 /* Shapes */,
 				0462035B2949A85700A487CD /* BlurView.swift */,
+				04EE7062294B961900A64D10 /* LottieView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -117,6 +126,14 @@
 				044AA223294890EC00EA04B4 /* RoundedCorners.swift */,
 			);
 			path = Shapes;
+			sourceTree = "<group>";
+		};
+		04EE7066294BA53300A64D10 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				04EE7064294B964600A64D10 /* HeartLottie.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		04F7AC082945E19F00C6B479 = {
@@ -139,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				04D7F3F22945F1CC006C96E7 /* Info.plist */,
+				04EE7066294BA53300A64D10 /* Lottie */,
 				044AA221294890CF00EA04B4 /* Utils */,
 				043E7E892948AD00005F4740 /* Extensions */,
 				043E7E8E2948E5C9005F4740 /* Item */,
@@ -170,6 +188,7 @@
 				04D37BD72945F84700EEF926 /* Login.swift */,
 				FDE5DD9E294B5129007C4D32 /* HomeView.swift */,
 				04EE705D294B891100A64D10 /* SplashScreen.swift */,
+				04EE7067294BA67F00A64D10 /* AuthenticationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -204,6 +223,7 @@
 				04D7F3F82945F2AF006C96E7 /* FirebaseStorage */,
 				04CECAC72949E2C800A6E6F5 /* AwesomeToast */,
 				04124F172949EC58002F57E3 /* AwesomeNetwork */,
+				04EE7060294B95D900A64D10 /* Lottie */,
 			);
 			productName = MediTracker;
 			productReference = 04F7AC112945E19F00C6B479 /* MediTracker.app */;
@@ -237,6 +257,7 @@
 				04D7F3F32945F2AF006C96E7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				04CECAC62949E2C800A6E6F5 /* XCRemoteSwiftPackageReference "AwesomeToastPackage" */,
 				04124F162949EC58002F57E3 /* XCRemoteSwiftPackageReference "AwesomeNetworkPackage" */,
+				04EE705F294B95D800A64D10 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 04F7AC122945E19F00C6B479 /* Products */;
 			projectDirPath = "";
@@ -253,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04F7AC1D2945E1A400C6B479 /* Preview Assets.xcassets in Resources */,
+				04EE7065294B964600A64D10 /* HeartLottie.json in Resources */,
 				04F7AC192945E1A400C6B479 /* Assets.xcassets in Resources */,
 				04D7F3F12945F192006C96E7 /* GoogleService-Info.plist in Resources */,
 			);
@@ -266,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04F7AC2A2945E40800C6B479 /* OTPViewModel.swift in Sources */,
+				04EE7063294B961900A64D10 /* LottieView.swift in Sources */,
 				04CECAC52949D93F00A6E6F5 /* MTSocialLoginButton.swift in Sources */,
 				04D37BD82945F84700EEF926 /* Login.swift in Sources */,
 				FDE5DD9F294B5129007C4D32 /* HomeView.swift in Sources */,
@@ -278,6 +301,7 @@
 				04D5A7F42949CA9E00700097 /* MTButton.swift in Sources */,
 				044AA224294890EC00EA04B4 /* RoundedCorners.swift in Sources */,
 				04CECAC32949D87B00A6E6F5 /* MTLineText.swift in Sources */,
+				04EE7068294BA67F00A64D10 /* AuthenticationView.swift in Sources */,
 				04F7AC152945E1A000C6B479 /* MediTrackerApp.swift in Sources */,
 				045C1F042949A73F005F51F6 /* GlassButton.swift in Sources */,
 				043E7E8B2948AD25005F4740 /* ColorExtensions.swift in Sources */,
@@ -524,6 +548,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		04EE705F294B95D800A64D10 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -551,6 +583,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 04D7F3F32945F2AF006C96E7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		04EE7060294B95D900A64D10 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04EE705F294B95D800A64D10 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

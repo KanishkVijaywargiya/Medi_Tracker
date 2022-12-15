@@ -6,17 +6,26 @@
 //
 
 import SwiftUI
-import Firebase
 import AwesomeNetwork
 
 struct ContentView: View {
-    @AppStorage("log_status") private var log_status = false
+    @State private var splashView: Bool = true
+    
     var body: some View {
-        NavigationView {
-            if log_status {
-                HomeView().navigationTitle("Home")
+        VStack {
+            if splashView {
+                SplashScreen()
             } else {
-                Login()
+                NavigationView {
+                    AuthenticationView()
+                }
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                withAnimation(.easeInOut) {
+                    self.splashView = false
+                }
             }
         }
     }
