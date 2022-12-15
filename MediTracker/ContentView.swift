@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             if log_status {
-                Text("Home").navigationTitle("Home")
+                HomeView().navigationTitle("Home")
             } else {
                 Login()
             }

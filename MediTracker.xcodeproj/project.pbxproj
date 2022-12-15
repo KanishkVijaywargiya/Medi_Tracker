@@ -23,12 +23,14 @@
 		04D7F3F52945F2AF006C96E7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 04D7F3F42945F2AF006C96E7 /* FirebaseAuth */; };
 		04D7F3F72945F2AF006C96E7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 04D7F3F62945F2AF006C96E7 /* FirebaseFirestore */; };
 		04D7F3F92945F2AF006C96E7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 04D7F3F82945F2AF006C96E7 /* FirebaseStorage */; };
+		04EE705E294B891100A64D10 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE705D294B891100A64D10 /* SplashScreen.swift */; };
 		04F7AC152945E1A000C6B479 /* MediTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7AC142945E1A000C6B479 /* MediTrackerApp.swift */; };
 		04F7AC172945E1A000C6B479 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7AC162945E1A000C6B479 /* ContentView.swift */; };
 		04F7AC192945E1A400C6B479 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F7AC182945E1A400C6B479 /* Assets.xcassets */; };
 		04F7AC1D2945E1A400C6B479 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F7AC1C2945E1A400C6B479 /* Preview Assets.xcassets */; };
 		04F7AC272945E2A800C6B479 /* Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7AC262945E2A800C6B479 /* Verification.swift */; };
 		04F7AC2A2945E40800C6B479 /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7AC292945E40800C6B479 /* OTPViewModel.swift */; };
+		FDE5DD9F294B5129007C4D32 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE5DD9E294B5129007C4D32 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,7 @@
 		04D5A7F32949CA9E00700097 /* MTButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTButton.swift; sourceTree = "<group>"; };
 		04D7F3F02945F192006C96E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04D7F3F22945F1CC006C96E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		04EE705D294B891100A64D10 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		04F7AC112945E19F00C6B479 /* MediTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F7AC142945E1A000C6B479 /* MediTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediTrackerApp.swift; sourceTree = "<group>"; };
 		04F7AC162945E1A000C6B479 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 		04F7AC1C2945E1A400C6B479 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		04F7AC262945E2A800C6B479 /* Verification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verification.swift; sourceTree = "<group>"; };
 		04F7AC292945E40800C6B479 /* OTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
+		FDE5DD9E294B5129007C4D32 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,8 @@
 			children = (
 				04F7AC262945E2A800C6B479 /* Verification.swift */,
 				04D37BD72945F84700EEF926 /* Login.swift */,
+				FDE5DD9E294B5129007C4D32 /* HomeView.swift */,
+				04EE705D294B891100A64D10 /* SplashScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -262,10 +268,12 @@
 				04F7AC2A2945E40800C6B479 /* OTPViewModel.swift in Sources */,
 				04CECAC52949D93F00A6E6F5 /* MTSocialLoginButton.swift in Sources */,
 				04D37BD82945F84700EEF926 /* Login.swift in Sources */,
+				FDE5DD9F294B5129007C4D32 /* HomeView.swift in Sources */,
 				043E7E902948E5E5005F4740 /* ListOfCountries.swift in Sources */,
 				04F7AC272945E2A800C6B479 /* Verification.swift in Sources */,
 				0462035C2949A85700A487CD /* BlurView.swift in Sources */,
 				043E7E8D2948E353005F4740 /* Country.swift in Sources */,
+				04EE705E294B891100A64D10 /* SplashScreen.swift in Sources */,
 				04F7AC172945E1A000C6B479 /* ContentView.swift in Sources */,
 				04D5A7F42949CA9E00700097 /* MTButton.swift in Sources */,
 				044AA224294890EC00EA04B4 /* RoundedCorners.swift in Sources */,

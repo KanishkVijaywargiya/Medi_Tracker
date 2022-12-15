@@ -21,6 +21,7 @@ struct MTButton: View {
         }
         .padding()
         .frame(maxWidth: .infinity)
+        .frame(height: 52)
         .background(Color(hex: hexCode))
         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
     }

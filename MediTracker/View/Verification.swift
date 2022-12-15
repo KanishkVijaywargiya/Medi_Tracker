@@ -18,21 +18,37 @@ enum OTPField {
 
 struct Verification: View {
     @EnvironmentObject var vm: OTPViewModel
+    @Environment(\.dismiss) private var dismissMode
     @FocusState var activeField: OTPField? // MARK: TextField FocusState
     
-    /* TODO
-     1. auto verification without any button click.
-     2. resend functionality should work & gets activate only after 6-8 sec. of 1st OTP with red border.
-     3. try "other login methods" button should navigate back to login screen.
-     4. alert should be added when verification is a success / error.
-     5. add a back button to navigate back to login screen.
-     */
+    // MARK:
+    @State private var timeRemaining = 5
+    @State private var showTimer: Bool = true
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var count: Int = 0
+    
+    
+    // MARK: Mobile num with country code in title
+    var mobileNum: String
+    var countryCode: String
     
     var body: some View {
         VStack {
             title
             otpFields
-            resendButton
+            
+            if !checkStates() {
+                verifyOTPButton.padding(.top)
+            }
+            
+            if count == 2 {
+                Text("OTP limit exceeded, please try again after some time!")
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.all, 20)
+            } else {
+                resendButton
+            }
             otherLoginMethods
         }
         .padding()
@@ -41,26 +57,26 @@ struct Verification: View {
         .onChange(of: vm.otpFields) { newValue in
             otpCondition(value: newValue)
         }
-        //.alert(vm.errorMsg, isPresented: $vm.showAlert) {}
-        
-        //        VStack {
-        //            otpField
-        //            verifyButton
-        //            resendOTPButton
-        //        }
-        //        .padding()
-        //        .frame(maxHeight: .infinity, alignment: .top)
-        //        .navigationTitle("Verification")
-        //        .onChange(of: vm.otpFields) { newValue in
-        //            otpCondition(value: newValue)
-        //        }
-        //        .alert(vm.errorMsg, isPresented: $vm.showAlert) {}
+        .onReceive(timer) { _ in
+            if timeRemaining > 1 {
+                timeRemaining -= 1
+            } else if timeRemaining == 1 {
+                showTimer = false
+            }
+        }
+        .onChange(of: vm.otpText) { newValue in
+            print(newValue)
+            if newValue.count == 6 {
+                Task{await vm.verifyOTP()}
+            }
+        }
+        .showToast(title: vm.verificationAlertTitle, isPresented: $vm.verificationAlert, color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), duration: 5, alignment: .top, toastType: .offsetToast, image: Image("a"))
     }
 }
 
 struct Verification_Previews: PreviewProvider {
     static var previews: some View {
-        Verification().environmentObject(OTPViewModel())
+        Verification(mobileNum: "9123235319", countryCode: "91").environmentObject(OTPViewModel())
     }
 }
 
@@ -68,7 +84,7 @@ extension Verification {
     private var title: some View {
         VStack {
             Text("We have sent a verification code to")
-            Text("+91-9123235319")
+            Text("+\(countryCode)-\(mobileNum)").bold()
         }.padding(.bottom, 40)
     }// MARK: title with user phone number
     
@@ -95,17 +111,30 @@ extension Verification {
     }// MARK: OTP Fields
     
     private var resendButton: some View {
-        Button {} label: {
-            Text("Resend")
-                .foregroundColor(.primary)
-                .fontWeight(.bold)
+        Button {
+            Task{await vm.sendOTP(countryCode: countryCode)}
+            self.timeRemaining = 5
+            self.showTimer = true
+            withAnimation(.easeIn) {
+                self.count += 1
+            }
+        } label: {
+            HStack {
+                Text("Resend SMS")
+                    .foregroundColor(showTimer ? .primary : Color(hex: "#E6425E"))
+                if showTimer {
+                    Text("in \(timeRemaining)")
+                        .foregroundColor(.primary)
+                }
+            }
         }
         .padding()
         .frame(maxWidth: .infinity)
+        .disabled(showTimer)
         .background(Color.white)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.black.opacity(0.3), lineWidth: 1)
+                .stroke(showTimer ? Color.black.opacity(0.3) : Color(hex: "#E6425E"), lineWidth: 1)
                 .blendMode(.normal)
                 .opacity(0.7)
                 .frame(height: 40)
@@ -115,7 +144,7 @@ extension Verification {
     
     private var otherLoginMethods: some View {
         VStack {
-            Button {} label: {
+            Button {self.dismissMode()} label: {
                 Text("Try other login methods")
                     .font(.footnote.bold())
                     .foregroundColor(Color(hex: "#E6425E"))
@@ -180,7 +209,19 @@ extension Verification {
     }
     
     // MARK: Verify blue button
-    private var verifyButton: some View {
+    private var verifyOTPButton: some View {
+        //    ZStack(alignment: .center) {
+        //      MTButton(action: {
+        //        Task{await vm.verifyOTP()}
+        //      }, title: vm.isLoading ? "" : "Verify OTP", hexCode: "#E6425E")
+        //      if vm.isLoading {
+        //        VStack {
+        //          ProgressView()
+        //            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+        //        }.frame(height: 52)
+        //      }
+        //    }.padding(.top, 10)
+        
         Button {Task{await vm.verifyOTP()}} label: {
             Text("Verify")
                 .fontWeight(.semibold)
@@ -196,30 +237,5 @@ extension Verification {
                     ProgressView().opacity(vm.isLoading ? 1 : 0)
                 }
         }
-        .disabled(checkStates())
-        .opacity(checkStates() ? 0.4 : 1)
-        .padding(.vertical)
     }
-    
-    //--------------------------------------------------------------------------------------
-    
-    // MARK: Custom OTP TextField
-    private var otpField: some View {
-        HStack(spacing: 14) {
-            ForEach(0..<6, id: \.self) { item in
-                VStack(spacing: 8) {
-                    TextField("", text: $vm.otpFields[item])
-                        .keyboardType(.numberPad)
-                        .textContentType(.oneTimeCode)
-                        .multilineTextAlignment(.center)
-                        .focused($activeField, equals: activeStateForIndex(index: item))
-                    
-                    Rectangle()
-                        .fill(activeField == activeStateForIndex(index: item) ? .blue : .gray.opacity(0.3))
-                        .frame(height: 4)
-                }.frame(width: 40)
-            }
-        }
-    }
-    
 }

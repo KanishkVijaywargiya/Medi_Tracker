@@ -59,7 +59,7 @@ struct Login: View {
         .edgesIgnoringSafeArea(.all)
         .background {
             NavigationLink(tag: "VERIFICATION", selection: $vm.navigationTag) {
-                Verification().environmentObject(vm)
+                Verification(mobileNum: vm.number, countryCode: countryCode).environmentObject(vm)
             } label: {}.labelsHidden()
         }
         .showToast(title: networkMonitor.connected ? vm.alertTitle : "Could not connect to the internet", isPresented: $vm.showAlert, color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), duration: 5, alignment: .top, toastType: .offsetToast, image: Image("a"))
@@ -92,7 +92,7 @@ extension Login {
             .frame(maxWidth: .infinity)
             .foregroundColor(.primary)
             .multilineTextAlignment(.center)
-            .frame(width: UIScreen.main.bounds.width - 30)
+            .padding(.top)
     }// MARK: Title
     
     private var countryCodeAndNum: some View {
@@ -126,7 +126,7 @@ extension Login {
                 TextField("Enter Mobile Number", text: $vm.number)
                     .foregroundColor(.primary)
                     .font(.callout.bold())
-                    .keyboardType(.numberPad)
+                    .keyboardType(.phonePad)
             }
             .padding()
             .overlay(
@@ -147,9 +147,10 @@ extension Login {
             }, title: vm.isLoading ? "" : "Continue", hexCode: "#E6425E")
             
             if vm.isLoading {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                    .padding()
+                VStack {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                }.frame(height: 52)
             }
         }.padding(.top, 10)
     }
