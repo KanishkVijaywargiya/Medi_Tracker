@@ -16,6 +16,12 @@ struct Login: View {
     @State private var countryCode: String = "91"
     @State private var countryFlag: String = "🇮🇳"
     
+    // MARK: used for localization sheet
+    @State private var showLanguageSheet: Bool = false
+    
+    // MARK: app storage for localization
+    @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language
+    
     /*
      TODO
      3. search functionality should be there in full screen cover to search Country by it's name or code.
@@ -37,13 +43,13 @@ struct Login: View {
                     VStack {
                         title
                         
-                        MTLineText(title: "Log in or sign up", opacityVal: 0.3)
+                        MTLineText(title: "Log in or sign up".localized(language_choosen), opacityVal: 0.3)
                         
                         countryCodeAndNum
                         
                         continueButton
                         
-                        MTLineText(title: "or", opacityVal: 0.2)
+                        MTLineText(title: "or".localized(language_choosen), opacityVal: 0.2)
                         
                         socialLogin
                     }
@@ -65,6 +71,13 @@ struct Login: View {
         .showToast(title: networkMonitor.connected ? vm.alertTitle : "Could not connect to the internet", isPresented: $vm.showAlert, color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), duration: 5, alignment: .top, toastType: .offsetToast, image: Image("a"))
         .fullScreenCover(isPresented: $listOfCountry) {
             ListOfCountries(countryCode: $countryCode, countryFlag: $countryFlag)
+        }
+        .sheet(isPresented: $showLanguageSheet) {
+            LanguageSheet()
+             .presentationDetents([.medium, .large])
+//                    .presentationDragIndicator(.hidden)
+                   // .presentationDetents([.height(300)])
+//                   .presentationDetents([.fraction(0.3)])
         }
         .environmentObject(networkMonitor)
     }
@@ -123,7 +136,7 @@ extension Login {
                 Text("+\(countryCode)")
                     .foregroundColor(.primary)
                     .font(.callout.bold())
-                TextField("Enter Mobile Number", text: $vm.number)
+                TextField(LocalizedStringKey("Enter Mobile Number".localized(language_choosen)), text: $vm.number)
                     .foregroundColor(.primary)
                     .font(.callout.bold())
                     .keyboardType(.phonePad)
@@ -144,7 +157,7 @@ extension Login {
         ZStack(alignment: .center) {
             MTButton(action: {
                 Task{await vm.sendOTP(countryCode: countryCode)}
-            }, title: vm.isLoading ? "" : "Continue", hexCode: "#E6425E")
+            }, title: vm.isLoading ? "" : "Continue".localized(language_choosen), hexCode: "#E6425E")
             
             if vm.isLoading {
                 VStack {
@@ -165,28 +178,28 @@ extension Login {
     
     private var footerText: some View {
         VStack {
-            Text("By continuing, you agree to our")
+            Text("By continuing, you agree to our".localized(language_choosen))
                 .font(.footnote)
                 .fontWeight(.bold)
                 .foregroundColor(Color(.systemGray))
                 .padding(.bottom, 1)
             
             HStack(spacing: 15) {
-                Text("Terms of Service")
+                Text("Terms of Service".localized(language_choosen))
                     .overlay {
                         Rectangle()
                             .foregroundColor(.black.opacity(0.1))
                             .frame(height: 2)
                             .padding(.top)
                     }
-                Text("Privacy Policy")
+                Text("Privacy Policy".localized(language_choosen))
                     .overlay {
                         Rectangle()
                             .foregroundColor(.black.opacity(0.1))
                             .frame(height: 2)
                             .padding(.top)
                     }
-                Text("Content Policies")
+                Text("Content Policies".localized(language_choosen))
                     .overlay {
                         Rectangle()
                             .foregroundColor(.black.opacity(0.1))
@@ -200,9 +213,10 @@ extension Login {
     }// MARK: Footer text
     
     private var localization: some View {
-        GlassButton(iconName: "globe.central.south.asia.fill", iconSize: 20)
+        GlassButton(iconName: LocalizationService.shared.langText, iconSize: 20, action: {
+            self.showLanguageSheet.toggle()
+        })
             .padding(.leading, 8)
             .padding(.top, 45)
-            .onTapGesture {}
     }// MARK: button for localization
 }

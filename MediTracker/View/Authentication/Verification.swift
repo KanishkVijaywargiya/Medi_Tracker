@@ -31,6 +31,8 @@ struct Verification: View {
     var mobileNum: String
     var countryCode: String
     
+    @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language
+    
     var body: some View {
         VStack {
             title
@@ -43,7 +45,7 @@ struct Verification: View {
         }
         .padding()
         .frame(maxHeight: .infinity, alignment: .top)
-        .navigationTitle("Verification")
+        .navigationTitle("Verification".localized(language_choosen))
         .onChange(of: vm.otpFields) { newValue in
             otpCondition(value: newValue)
         }
@@ -73,7 +75,7 @@ struct Verification_Previews: PreviewProvider {
 extension Verification {
     private var title: some View {
         VStack {
-            Text("We have sent a verification code to")
+            Text("We have sent a verification code to".localized(language_choosen))
             Text("+\(countryCode)-\(mobileNum)").bold()
         }.padding(.bottom, 40)
     }// MARK: title with user phone number

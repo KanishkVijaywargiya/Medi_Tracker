@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  MediTracker
+
+  Created by Kanishk Vijaywargiya on 19/12/22.
+  
+*/
+
+// MARK: Login page
+"Log in or sign up" = "लॉग इन या साइन अप";
+"Enter Mobile Number" = "मोबाइल नंबर दर्ज करें";
+"Continue" = "जारी रखें";
+"or" = "या";
+"By continuing, you agree to our" = "जारी रखकर, आप हमारे से सहमत हैं";
+"Terms of Services" = "सेवाओं की शर्तें";
+"Privacy Policy" = "गोपनीयता नीति";
+"Content Policies" = "सामग्री नीतियां";
+
+// MARK: Verification page
+"Verification" = "सत्यापन";
+"We have sent a verification code to" = "हमने सत्यापन कोड भेज दिया है";
+
+
+"home" = "घर";

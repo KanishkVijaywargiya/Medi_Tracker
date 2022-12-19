@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  MediTracker
+
+  Created by Kanishk Vijaywargiya on 19/12/22.
+  
+*/
+
+// MARK: Login page
+"Log in or sign up" = "Log in or sign up";
+"Enter Mobile Number" = "Enter Mobile Number";
+"Continue" = "Continue";
+"or" = "or";
+"By continuing, you agree to our" = "By continuing, you agree to our";
+"Terms of Services" = "Terms of Services";
+"Privacy Policy" = "Privacy Policy";
+"Content Policies" = "Content Policies";
+
+// MARK: Verification page
+"Verification" = "Verification";
+"We have sent a verification code to" = "We have sent a verification code to";
+
