@@ -25,14 +25,12 @@ struct Login: View {
     /*
      TODO
      3. search functionality should be there in full screen cover to search Country by it's name or code.
-     10. localization.
-     13. refractoring of codes
      ----------------------------------------------------------------------------
      1. social logins: Google, Apple & email authentication we can integrate.
      2. ellipsis will help to open email auth screen.
      3. Terms & conditions, privacy policy needs to be added, either make a web page & display or use full screen.
      ------------- COMPLETED ----------------
-     number added, country code working, added toast, network check, keyboard close, UI responsive
+     number added, country code working, added toast, network check, keyboard close, UI responsive, localization
      */
     
     var body: some View {
@@ -71,14 +69,10 @@ struct Login: View {
         .showToast(title: networkMonitor.connected ? vm.alertTitle : "Could not connect to the internet", isPresented: $vm.showAlert, color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), duration: 5, alignment: .top, toastType: .offsetToast, image: Image("a"))
         .fullScreenCover(isPresented: $listOfCountry) {
             ListOfCountries(countryCode: $countryCode, countryFlag: $countryFlag)
-        }
+        }//country code with country flag
         .sheet(isPresented: $showLanguageSheet) {
-            LanguageSheet()
-             .presentationDetents([.medium, .large])
-//                    .presentationDragIndicator(.hidden)
-                   // .presentationDetents([.height(300)])
-//                   .presentationDetents([.fraction(0.3)])
-        }
+            LanguageSheet().presentationDetents([.medium])
+        }//for lang. select
         .environmentObject(networkMonitor)
     }
 }
@@ -216,7 +210,7 @@ extension Login {
         GlassButton(iconName: LocalizationService.shared.langText, iconSize: 20, action: {
             self.showLanguageSheet.toggle()
         })
-            .padding(.leading, 8)
-            .padding(.top, 45)
+            .padding(.leading, 12)
+            .padding(.top, 50)
     }// MARK: button for localization
 }

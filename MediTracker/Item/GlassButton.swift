@@ -17,24 +17,28 @@ struct GlassButton: View {
     var body: some View {
         if language_choosen == .english_us {
             Image(systemName: "character.bubble")
+                .font(.title2.bold())
+                .foregroundColor(Color(hex: "#E6425E"))
+            
                 .overlay {
                     Image(systemName: "character.bubble.fill.ja")
+                        .font(.title2.bold())
                         .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
                         .symbolRenderingMode(.palette)
                         .foregroundStyle(
                             Color.white,
-                            Color.orange
+                            Color(hex: "#E6425E")
                         )
-                        //.background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 40))
-                        //.shadow(color: .black.opacity(0.3), radius: 20, x: 0, y: 0)
-                        .offset(x: 13, y: 5)
+                        .offset(x: 17, y: 5)
                 }
                 .foregroundColor(Color.orange)
                 .onTapGesture(perform: action)
         } else {
-            HStack {
-                Image(systemName: "globe").foregroundColor(.orange)
-                Text(iconName).foregroundColor(.orange).bold()
+            HStack(alignment: .center) {
+                Image(systemName: "globe")
+                    .font(.title2.bold())
+                    .foregroundColor(Color(hex: "#E6425E"))
+                Text(iconName).foregroundColor(Color(hex: "#E6425E")).bold()
             }.onTapGesture(perform: action)
         }
     }
@@ -42,6 +46,6 @@ struct GlassButton: View {
 
 struct GlassButton_Previews: PreviewProvider {
     static var previews: some View {
-        GlassButton(action: {})
+        GlassButton(action: {}).previewLayout(.sizeThatFits)
     }
 }

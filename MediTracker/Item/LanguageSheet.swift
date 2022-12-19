@@ -12,31 +12,20 @@ struct LanguageSheet: View {
     @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language
     
     var body: some View {
-        VStack {
-            Button {
-                LocalizationService.shared.language = .hindi_ind
-                self.dismissMode()
-            } label: {
-                HStack {
-                    Text("Hindi")
-                    if language_choosen == .hindi_ind {
-                        Image(systemName: "checkmark.seal")
-                    }
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Select Language")
+                .font(.title2.bold())
+                .padding(.vertical)
+            
+            ForEach(languageSelection, id: \.checkLangName) { item in
+                LanguageCard(isClicked: item.checkLangName == language_choosen, item: item) {
+                    LocalizationService.shared.language = item.checkLangName
+                    self.dismissMode()
                 }
             }
             
-            Button {
-                LocalizationService.shared.language = .english_us
-                self.dismissMode()
-            } label: {
-                HStack {
-                    Text("English")
-                    if language_choosen == .english_us {
-                        Image(systemName: "checkmark.seal")
-                    }
-                }
-            }
-        }
+            Spacer()
+        }.padding(.horizontal)
     }
 }
 
