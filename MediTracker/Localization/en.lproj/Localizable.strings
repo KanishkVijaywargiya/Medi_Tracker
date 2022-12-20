@@ -1,22 +1,36 @@
 /* 
-  Localizable.strings
-  MediTracker
-
-  Created by Kanishk Vijaywargiya on 19/12/22.
-  
-*/
+ Localizable.strings
+ MediTracker
+ 
+ Created by Kanishk Vijaywargiya on 19/12/22.
+ 
+ */
 
 // MARK: Login page
-"Log in or sign up" = "Log in or sign up";
-"Enter Mobile Number" = "Enter Mobile Number";
-"Continue" = "Continue";
-"or" = "or";
-"By continuing, you agree to our" = "By continuing, you agree to our";
-"Terms of Services" = "Terms of Services";
-"Privacy Policy" = "Privacy Policy";
-"Content Policies" = "Content Policies";
+"LOGIN_SIGNUP" = "Log in or sign up";
+"Enter_MOB_NUM" = "Enter Mobile Number";
+"CONTINUE" = "Continue";
+"OR" = "or";
+"CONTINUING_AGREE" = "By continuing, you agree to our";
+"TERMS_SERVICES" = "Terms of Services";
+"PRIVACY_POLICY" = "Privacy Policy";
+"CONTENT_POLICIES" = "Content Policies";
+"MED_TRACKER_APP" = "India's #1 Medical Record Tracker app";
+
+
+// MARK: Language page
+"SELECT_LANG" = "Select Language";
+
+
+// MARK: List of countries
+"COUNTRIES_LIST" = "List of Countries";
+"SEARCH" = "Search by country name or country code...";
+
 
 // MARK: Verification page
-"Verification" = "Verification";
-"We have sent a verification code to" = "We have sent a verification code to";
-
+"VERIFICATION" = "Verification";
+"VERIFICATION_CODE" = "We have sent a verification code to";
+"OTP_LIMIT" = "OTP limit exceeded, please try again after some time!";
+"OTP_VERIFY" = "Verify OTP";
+"SMS_RESEND" = "Resend SMS";
+"OTHER_LOGIN" = "Try other login methods";

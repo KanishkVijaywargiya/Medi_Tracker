@@ -30,13 +30,13 @@ struct Login: View {
                     VStack {
                         title
                         
-                        MTLineText(title: "Log in or sign up".localized(language_choosen), opacityVal: 0.3)
+                        MTLineText(title: "LOGIN_SIGNUP".localized(language_choosen), opacityVal: 0.3)
                         
                         countryCodeAndNum
                         
                         continueButton
                         
-                        MTLineText(title: "or".localized(language_choosen), opacityVal: 0.2)
+                        MTLineText(title: "OR".localized(language_choosen), opacityVal: 0.2)
                         
                         socialLogin
                     }
@@ -83,7 +83,7 @@ extension Login {
     }// MARK: BG Img
     
     private var title: some View {
-        Text("India's #1 Medical Record Tracker app")
+        Text("MED_TRACKER_APP".localized(language_choosen))
             .font(.system(size: 22, weight: .bold))
             .frame(maxWidth: .infinity)
             .foregroundColor(.primary)
@@ -119,7 +119,7 @@ extension Login {
                 Text(countryCode)
                     .foregroundColor(.primary)
                     .font(.callout.bold())
-                TextField(LocalizedStringKey("Enter Mobile Number".localized(language_choosen)), text: $vm.number)
+                TextField(LocalizedStringKey("Enter_MOB_NUM".localized(language_choosen)), text: $vm.number)
                     .foregroundColor(.primary)
                     .font(.callout.bold())
                     .keyboardType(.phonePad)
@@ -140,7 +140,7 @@ extension Login {
         ZStack(alignment: .center) {
             MTButton(action: {
                 Task{await vm.sendOTP(countryCode: countryCode)}
-            }, title: vm.isLoading ? "" : "Continue".localized(language_choosen), hexCode: "#E6425E")
+            }, title: vm.isLoading ? "" : "CONTINUE".localized(language_choosen), hexCode: "#E6425E")
             
             if vm.isLoading {
                 VStack {
@@ -161,28 +161,28 @@ extension Login {
     
     private var footerText: some View {
         VStack {
-            Text("By continuing, you agree to our".localized(language_choosen))
+            Text("CONTINUING_AGREE".localized(language_choosen))
                 .font(.footnote)
                 .fontWeight(.bold)
                 .foregroundColor(Color(.systemGray))
                 .padding(.bottom, 1)
             
             HStack(spacing: 15) {
-                Text("Terms of Service".localized(language_choosen))
+                Text("TERMS_SERVICES".localized(language_choosen))
                     .overlay {
                         Rectangle()
                             .foregroundColor(.black.opacity(0.1))
                             .frame(height: 2)
                             .padding(.top)
                     }
-                Text("Privacy Policy".localized(language_choosen))
+                Text("PRIVACY_POLICY".localized(language_choosen))
                     .overlay {
                         Rectangle()
                             .foregroundColor(.black.opacity(0.1))
                             .frame(height: 2)
                             .padding(.top)
                     }
-                Text("Content Policies".localized(language_choosen))
+                Text("CONTENT_POLICIES".localized(language_choosen))
                     .overlay {
                         Rectangle()
                             .foregroundColor(.black.opacity(0.1))

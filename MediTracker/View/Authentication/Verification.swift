@@ -46,7 +46,7 @@ struct Verification: View {
         }
         .padding()
         .frame(maxHeight: .infinity, alignment: .top)
-        .navigationTitle("Verification".localized(language_choosen))
+        .navigationTitle("VERIFICATION".localized(language_choosen))
         .onChange(of: vm.otpFields) { newValue in
             otpCondition(value: newValue)
         }
@@ -76,7 +76,7 @@ struct Verification_Previews: PreviewProvider {
 extension Verification {
     private var title: some View {
         VStack {
-            Text("We have sent a verification code to".localized(language_choosen))
+            Text("VERIFICATION_CODE".localized(language_choosen))
             Text("\(countryCode)-\(mobileNum)").bold()
         }.padding(.bottom, 40)
     }// MARK: title with user phone number
@@ -104,7 +104,7 @@ extension Verification {
     }// MARK: OTP Fields
     
     private var limitOTPText: some View {
-        Text("OTP limit exceeded, please try again after some time!")
+        Text("OTP_LIMIT".localized(language_choosen))
             .foregroundColor(.secondary)
             .multilineTextAlignment(.center)
             .padding(.all, 20)
@@ -114,7 +114,7 @@ extension Verification {
         ZStack(alignment: .center) {
             MTButton(action: {
                 Task{await vm.verifyOTP()}
-            }, title: vm.isLoading ? "" : "Verify OTP", hexCode: "#E6425E")
+            }, title: vm.isLoading ? "" : "OTP_VERIFY".localized(language_choosen), hexCode: "#E6425E")
             if vm.isLoading {
                 VStack {
                     ProgressView()
@@ -134,7 +134,7 @@ extension Verification {
             }
         } label: {
             HStack {
-                Text("Resend SMS")
+                Text("SMS_RESEND".localized(language_choosen))
                     .foregroundColor(showTimer ? .primary : Color(hex: "#E6425E"))
                 if showTimer {
                     Text("in \(timeRemaining)")
@@ -159,7 +159,7 @@ extension Verification {
     private var otherLoginMethods: some View {
         VStack {
             Button {self.dismissMode()} label: {
-                Text("Try other login methods")
+                Text("OTHER_LOGIN".localized(language_choosen))
                     .font(.footnote.bold())
                     .foregroundColor(Color(hex: "#E6425E"))
             }

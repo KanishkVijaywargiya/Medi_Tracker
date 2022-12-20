@@ -7,18 +7,32 @@
 */
 
 // MARK: Login page
-"Log in or sign up" = "लॉग इन या साइन अप";
-"Enter Mobile Number" = "मोबाइल नंबर दर्ज करें";
-"Continue" = "जारी रखें";
-"or" = "या";
-"By continuing, you agree to our" = "जारी रखकर, आप हमारे से सहमत हैं";
-"Terms of Services" = "सेवाओं की शर्तें";
-"Privacy Policy" = "गोपनीयता नीति";
-"Content Policies" = "सामग्री नीतियां";
+"LOGIN_SIGNUP" = "लॉग इन या साइन अप";
+"Enter_MOB_NUM" = "मोबाइल नंबर दर्ज करें";
+"CONTINUE" = "जारी रखें";
+"OR" = "या";
+"CONTINUING_AGREE" = "जारी रखकर, आप हमारे से सहमत हैं";
+"TERMS_SERVICES" = "सेवाओं की शर्तें";
+"PRIVACY_POLICY" = "गोपनीयता नीति";
+"CONTENT_POLICIES" = "सामग्री नीतियां";
+"MED_TRACKER_APP" = "भारत का #1 मेडिकल रिकॉर्ड ट्रैकर ऐप";
+
+
+// MARK: Language page
+"SELECT_LANG" = "भाषा का चयन करें";
+
+
+// MARK: List of countries
+"COUNTRIES_LIST" = "देशों की सूची";
+"SEARCH" = "देश के नाम अथवा कंट्री कोड से खोजें...";
+
 
 // MARK: Verification page
-"Verification" = "सत्यापन";
-"We have sent a verification code to" = "हमने सत्यापन कोड भेज दिया है";
+"VERIFICATION" = "सत्यापन";
+"VERIFICATION_CODE" = "हमने सत्यापन कोड भेज दिया है";
+"OTP_LIMIT" = "ओटीपी सीमा पार हो गई है, कृपया कुछ समय बाद पुन: प्रयास करें!";
+"OTP_VERIFY" = "ओटीपी सत्यापित करें";
+"SMS_RESEND" = "एसएमएस दोबारा भेजें";
+"OTHER_LOGIN" = "अन्य लॉगिन विधियों का प्रयास करें";
 
 
-"home" = "घर";

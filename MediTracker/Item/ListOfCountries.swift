@@ -15,6 +15,9 @@ struct ListOfCountries: View {
     @StateObject private var vm = ListOfCountriesViewModel()
     @State private var searchText: String = ""
     
+    // MARK: app storage for localization
+    @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
@@ -35,7 +38,8 @@ struct ListOfCountries: View {
                         }
                 }
             }// closing button for full sheet
-        }.searchable(text: $searchText)
+            .searchable(text: $searchText, prompt: "SEARCH".localized(language_choosen))
+        }
     }
 }
 
@@ -47,7 +51,7 @@ struct ListOfCountries_Previews: PreviewProvider {
 
 extension ListOfCountries {
     private var title: some View {
-        Text("List of Countries")
+        Text("COUNTRIES_LIST".localized(language_choosen))
             .foregroundColor(.primary)
             .font(.title.bold())
             .padding(.leading)

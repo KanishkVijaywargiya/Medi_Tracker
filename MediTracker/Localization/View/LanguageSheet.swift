@@ -9,11 +9,13 @@ import SwiftUI
 
 struct LanguageSheet: View {
     @Environment(\.dismiss) private var dismissMode
+    
+    // MARK: app storage for localization
     @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Select Language")
+            Text("SELECT_LANG".localized(language_choosen))
                 .font(.title2.bold())
                 .padding(.vertical)
             
