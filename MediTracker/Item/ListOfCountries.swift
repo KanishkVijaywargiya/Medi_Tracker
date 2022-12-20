@@ -45,7 +45,7 @@ struct ListOfCountries: View {
         return current.localizedString(forRegionCode: countryCode)
     }
     
-    func flag(country:String) -> String {
+    func flag(country: String) -> String {
         let base : UInt32 = 127397
         var flag = ""
         for v in country.unicodeScalars {

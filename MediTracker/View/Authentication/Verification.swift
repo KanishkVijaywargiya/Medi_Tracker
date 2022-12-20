@@ -22,7 +22,7 @@ struct Verification: View {
     @FocusState var activeField: OTPField? // MARK: TextField FocusState
     
     // MARK: timer variables to activate resend button
-    @State private var timeRemaining = 5
+    @State private var timeRemaining = 20
     @State private var showTimer: Bool = true
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var count: Int = 0
@@ -31,6 +31,7 @@ struct Verification: View {
     var mobileNum: String
     var countryCode: String
     
+    // MARK: Localization
     @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language
     
     var body: some View {
@@ -126,7 +127,7 @@ extension Verification {
     private var resendButton: some View {
         Button {
             Task{await vm.sendOTP(countryCode: countryCode)}
-            self.timeRemaining = 5
+            self.timeRemaining = 20
             self.showTimer = true
             withAnimation(.easeIn) {
                 self.count += 1

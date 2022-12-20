@@ -101,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				043E7E8C2948E353005F4740 /* Country.swift */,
-				04DD544C2950DDDD00372343 /* LanguageSelection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -109,9 +108,10 @@
 		041F64A62950823A00B2DD1D /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				044BB5E829508F0F00B48B79 /* LocalizationService.swift */,
-				044BB5E629508BF500B48B79 /* Strings+Localisation.swift */,
-				044BB5E429508AC900B48B79 /* Language.swift */,
+				046ED31229519D820067A5A1 /* Item */,
+				046ED30F29519D050067A5A1 /* Model */,
+				046ED31029519D0C0067A5A1 /* View */,
+				046ED31129519D110067A5A1 /* Services */,
 				041F64AB295082B300B2DD1D /* Localizable.strings */,
 			);
 			path = Localization;
@@ -129,12 +129,9 @@
 			isa = PBXGroup;
 			children = (
 				043E7E8F2948E5E5005F4740 /* ListOfCountries.swift */,
-				045C1F032949A73F005F51F6 /* GlassButton.swift */,
 				04D5A7F32949CA9E00700097 /* MTButton.swift */,
 				04CECAC22949D87B00A6E6F5 /* MTLineText.swift */,
 				04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */,
-				04DD544A2950CDA900372343 /* LanguageSheet.swift */,
-				04DD544E2950DFC600372343 /* LanguageCard.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -154,6 +151,41 @@
 				044AA223294890EC00EA04B4 /* RoundedCorners.swift */,
 			);
 			path = Shapes;
+			sourceTree = "<group>";
+		};
+		046ED30F29519D050067A5A1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				044BB5E429508AC900B48B79 /* Language.swift */,
+				04DD544C2950DDDD00372343 /* LanguageSelection.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		046ED31029519D0C0067A5A1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04DD544A2950CDA900372343 /* LanguageSheet.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		046ED31129519D110067A5A1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				044BB5E829508F0F00B48B79 /* LocalizationService.swift */,
+				044BB5E629508BF500B48B79 /* Strings+Localisation.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		046ED31229519D820067A5A1 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				045C1F032949A73F005F51F6 /* GlassButton.swift */,
+				04DD544E2950DFC600372343 /* LanguageCard.swift */,
+			);
+			path = Item;
 			sourceTree = "<group>";
 		};
 		04EE7066294BA53300A64D10 /* Lottie */ = {
