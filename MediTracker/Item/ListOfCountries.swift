@@ -12,6 +12,9 @@ struct ListOfCountries: View {
     @Binding var countryCode: String
     @Binding var countryFlag: String
     
+    @StateObject private var vm = ListOfCountriesViewModel()
+    @State private var searchText: String = ""
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -23,35 +26,20 @@ struct ListOfCountries: View {
                     .font(.title.bold())
             }.padding(.leading)
             
-            List(Country.instace.countryDictionary.sorted(by: <), id: \.key) { key, value in
-                HStack {
-                    Text("\(self.flag(country: key))")
-                    Text("\(self.countryName(countryCode: key) ?? key)")
-                    Spacer()
-                    Text("+\(value)").foregroundColor(.secondary)
-                }
-                .background(Color.white)
-                .onTapGesture {
-                    self.countryCode = value
-                    self.countryFlag = self.flag(country: key)
-                    self.dismissMode()
-                }
+            List(vm.countryArray, id: \.id) { item in
+                CountryCard(flag: item.flag, countryName: item.countryName, countryCode: item.countryCode)
+                    .background(Color.white)
+                    .onTapGesture {
+                        self.countryCode = item.countryCode
+                        self.countryFlag = item.flag
+                        self.dismissMode()
+                    }
             }.listStyle(PlainListStyle())
         }
-    }
-    
-    func countryName(countryCode: String) -> String? {
-        let current = Locale(identifier: "en_US")
-        return current.localizedString(forRegionCode: countryCode)
-    }
-    
-    func flag(country: String) -> String {
-        let base : UInt32 = 127397
-        var flag = ""
-        for v in country.unicodeScalars {
-            flag.unicodeScalars.append(UnicodeScalar(base + v.value)!)
+        .searchable(text: $searchText)
+        .onAppear {
+            vm.getCountryName()
         }
-        return flag
     }
 }
 

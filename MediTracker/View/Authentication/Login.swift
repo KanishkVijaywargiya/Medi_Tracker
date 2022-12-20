@@ -13,7 +13,7 @@ struct Login: View {
     @EnvironmentObject private var networkMonitor: NetworkConnection
     @StateObject var vm = OTPViewModel()
     @State private var listOfCountry: Bool = false
-    @State private var countryCode: String = "91"
+    @State private var countryCode: String = "+91"
     @State private var countryFlag: String = "🇮🇳"
     
     // MARK: used for localization sheet
@@ -127,7 +127,7 @@ extension Login {
             
             // number section
             HStack {
-                Text("+\(countryCode)")
+                Text(countryCode)
                     .foregroundColor(.primary)
                     .font(.callout.bold())
                 TextField(LocalizedStringKey("Enter Mobile Number".localized(language_choosen)), text: $vm.number)

@@ -77,7 +77,7 @@ extension Verification {
     private var title: some View {
         VStack {
             Text("We have sent a verification code to".localized(language_choosen))
-            Text("+\(countryCode)-\(mobileNum)").bold()
+            Text("\(countryCode)-\(mobileNum)").bold()
         }.padding(.bottom, 40)
     }// MARK: title with user phone number
     
