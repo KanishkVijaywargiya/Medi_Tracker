@@ -30,6 +30,9 @@ class OTPViewModel: ObservableObject {
     
     @AppStorage("log_status") private var log_status = false
     
+    // MARK: app storage for localization
+    @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language
+    
     // MARK: Sending OTP
     func sendOTP(countryCode: String) async {
         if isLoading { return }
@@ -37,7 +40,7 @@ class OTPViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.isLoading = false
                 self.showAlert.toggle()
-                self.alertTitle = "Please enter a valid phone number."
+                self.alertTitle = "VALID_NUM".localized(self.language_choosen)
             }
         } else {
             do {
@@ -55,7 +58,7 @@ class OTPViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.isLoading = false
                     self.showAlert.toggle()
-                    self.alertTitle = "Something went wrong"
+                    self.alertTitle = "SOMETHING_WRONG".localized(self.language_choosen)
                 }
             }
         }
@@ -79,7 +82,7 @@ class OTPViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.isLoading = false
                 self.verificationAlert.toggle()
-                self.verificationAlertTitle = "Something went wrong"
+                self.verificationAlertTitle = "SOMETHING_WRONG".localized(self.language_choosen)
             }
         }
     }

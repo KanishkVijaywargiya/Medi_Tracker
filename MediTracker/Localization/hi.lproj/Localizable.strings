@@ -36,3 +36,7 @@
 "OTHER_LOGIN" = "अन्य लॉगिन विधियों का प्रयास करें";
 
 
+// MARK: Toast notification
+"NO_CONNECTION" = "इंटरनेट से कनेक्ट नहीं हो सका";
+"VALID_NUM" = "कृपया मान्य फोन नंबर दर्ज करें।";
+"SOMETHING_WRONG" = "कुछ गलत हो गया";

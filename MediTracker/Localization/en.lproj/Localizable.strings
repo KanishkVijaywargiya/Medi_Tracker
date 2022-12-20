@@ -34,3 +34,9 @@
 "OTP_VERIFY" = "Verify OTP";
 "SMS_RESEND" = "Resend SMS";
 "OTHER_LOGIN" = "Try other login methods";
+
+
+// MARK: Toast notification
+"NO_CONNECTION" = "Could not connect to the internet";
+"VALID_NUM" = "Please enter a valid phone number.";
+"SOMETHING_WRONG" = "Something went wrong";

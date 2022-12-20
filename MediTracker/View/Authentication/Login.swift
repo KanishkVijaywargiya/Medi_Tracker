@@ -55,7 +55,7 @@ struct Login: View {
                 Verification(mobileNum: vm.number, countryCode: countryCode).environmentObject(vm)
             } label: {}.labelsHidden()
         }
-        .showToast(title: networkMonitor.connected ? vm.alertTitle : "Could not connect to the internet", isPresented: $vm.showAlert, color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), duration: 5, alignment: .top, toastType: .offsetToast, image: Image("a"))
+        .showToast(title: networkMonitor.connected ? vm.alertTitle : "NO_CONNECTION".localized(language_choosen), isPresented: $vm.showAlert, color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), duration: 5, alignment: .top, toastType: .offsetToast, image: Image("a"))
         .fullScreenCover(isPresented: $listOfCountry) {
             ListOfCountries(countryCode: $countryCode, countryFlag: $countryFlag)
         }//country code with country flag
