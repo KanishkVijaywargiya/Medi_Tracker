@@ -19,6 +19,7 @@
 		045C1F042949A73F005F51F6 /* GlassButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C1F032949A73F005F51F6 /* GlassButton.swift */; };
 		0462035C2949A85700A487CD /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462035B2949A85700A487CD /* BlurView.swift */; };
 		04632E822951BFF900FAF966 /* CountryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04632E812951BFF900FAF966 /* CountryCard.swift */; };
+		04632E842951C8A900FAF966 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04632E832951C8A900FAF966 /* CountryModel.swift */; };
 		046ED3142951AFA00067A5A1 /* ListOfCountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046ED3132951AFA00067A5A1 /* ListOfCountriesViewModel.swift */; };
 		04CECAC32949D87B00A6E6F5 /* MTLineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC22949D87B00A6E6F5 /* MTLineText.swift */; };
 		04CECAC52949D93F00A6E6F5 /* MTSocialLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */; };
@@ -59,6 +60,7 @@
 		045C1F032949A73F005F51F6 /* GlassButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassButton.swift; sourceTree = "<group>"; };
 		0462035B2949A85700A487CD /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		04632E812951BFF900FAF966 /* CountryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCard.swift; sourceTree = "<group>"; };
+		04632E832951C8A900FAF966 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		046ED3132951AFA00067A5A1 /* ListOfCountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfCountriesViewModel.swift; sourceTree = "<group>"; };
 		04CECAC22949D87B00A6E6F5 /* MTLineText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLineText.swift; sourceTree = "<group>"; };
 		04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTSocialLoginButton.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				043E7E8C2948E353005F4740 /* Country.swift */,
+				04632E832951C8A900FAF966 /* CountryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				044BB5E729508BF500B48B79 /* Strings+Localisation.swift in Sources */,
 				04D5A7F42949CA9E00700097 /* MTButton.swift in Sources */,
 				044AA224294890EC00EA04B4 /* RoundedCorners.swift in Sources */,
+				04632E842951C8A900FAF966 /* CountryModel.swift in Sources */,
 				04CECAC32949D87B00A6E6F5 /* MTLineText.swift in Sources */,
 				04EE7068294BA67F00A64D10 /* AuthenticationView.swift in Sources */,
 				04F7AC152945E1A000C6B479 /* MediTrackerApp.swift in Sources */,

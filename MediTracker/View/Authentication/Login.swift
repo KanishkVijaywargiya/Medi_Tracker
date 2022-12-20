@@ -22,17 +22,6 @@ struct Login: View {
     // MARK: app storage for localization
     @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language
     
-    /*
-     TODO
-     3. search functionality should be there in full screen cover to search Country by it's name or code.
-     ----------------------------------------------------------------------------
-     1. social logins: Google, Apple & email authentication we can integrate.
-     2. ellipsis will help to open email auth screen.
-     3. Terms & conditions, privacy policy needs to be added, either make a web page & display or use full screen.
-     ------------- COMPLETED ----------------
-     number added, country code working, added toast, network check, keyboard close, UI responsive, localization
-     */
-    
     var body: some View {
         ZStack(alignment: .topLeading) {
             VStack {

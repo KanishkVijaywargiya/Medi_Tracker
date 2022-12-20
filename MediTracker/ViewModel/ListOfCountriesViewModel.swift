@@ -7,29 +7,34 @@
 
 import SwiftUI
 
-struct CountryModel: Identifiable {
-    var id = UUID()
-    var flag: String
-    var countryName: String
-    var countryCode: String
-}
-
 class ListOfCountriesViewModel: ObservableObject {
     @Published var countryArray: [CountryModel] = []
     
-    func getCountryName() {
+    init() {
+        getCountryName()
+    }
+    
+    func getCountryName(text: String = "") {
         var flagIcon: String = ""
         var name: String = ""
         var code: String = ""
         var items: [CountryModel] = []
+        
         for (key, value) in Country.instace.countryDictionary.sorted(by: <) {
             flagIcon = flag(country: key)
             name = countryName(countryCode: key) ?? key
             code = "+\(value)"
             items.append(CountryModel(flag: flagIcon, countryName: name, countryCode: code))
         }
+        
         DispatchQueue.main.async {
-            self.countryArray = items
+            if text.isEmpty {
+                self.countryArray = items
+            } else {
+                self.countryArray = items.filter { $0.countryName.localizedCaseInsensitiveContains(text.lowercased()) ||
+                    $0.countryCode.localizedCaseInsensitiveContains(text.lowercased())
+                }
+            }
         }
     }
     
