@@ -9,7 +9,7 @@ import SwiftUI
 
 class LocalizationService {
     static let shared = LocalizationService() // MARK: singleton class
-    @AppStorage("language_choosen") private var language_choosen: String = ""
+    @AppStorage("language_choosen") private var language_choosen: String = "en"
     
     private init() {}
     

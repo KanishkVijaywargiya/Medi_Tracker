@@ -86,4 +86,13 @@ class OTPViewModel: ObservableObject {
             }
         }
     }
+    
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            log_status = false
+        } catch {
+            
+        }
+    }
 }

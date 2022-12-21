@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 /*
  TODO:
@@ -20,6 +21,8 @@ import SwiftUI
 struct HomeView: View {
     // MARK: used for localization sheet
     @State private var showLanguageSheet: Bool = false
+    
+   @StateObject var vm = OTPViewModel()
     
     var body: some View {
         ZStack (alignment: .topLeading) {
@@ -48,6 +51,9 @@ struct HomeView: View {
                     .clipShape(Circle())
                     .overlay { Circle().stroke(Color.black.opacity(0.3), lineWidth: 2) }
                     .shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 4)
+                    .onTapGesture {
+                        vm.signOut()
+                    }
             }
             Spacer()
         }

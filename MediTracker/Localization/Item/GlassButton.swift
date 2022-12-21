@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GlassButton: View {
-    var iconName: String = K.SFSymbols.chevBack
+    var iconName: String
     var action: () -> ()
     
     @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language
@@ -24,7 +24,7 @@ struct GlassButton: View {
 
 struct GlassButton_Previews: PreviewProvider {
     static var previews: some View {
-        GlassButton(action: {}).previewLayout(.sizeThatFits)
+        GlassButton(iconName: "", action: {}).previewLayout(.sizeThatFits)
     }
 }
 
