@@ -168,27 +168,11 @@ extension Login {
                 .padding(.bottom, 1)
             
             HStack(spacing: 15) {
-                Text(K.LocalizedKey.TERMS_SERVICES.localized(language_choosen))
-                    .overlay {
-                        Rectangle()
-                            .foregroundColor(.black.opacity(0.1))
-                            .frame(height: 2)
-                            .padding(.top)
-                    }
-                Text(K.LocalizedKey.PRIVACY_POLICY.localized(language_choosen))
-                    .overlay {
-                        Rectangle()
-                            .foregroundColor(.black.opacity(0.1))
-                            .frame(height: 2)
-                            .padding(.top)
-                    }
-                Text(K.LocalizedKey.CONTENT_POLICIES.localized(language_choosen))
-                    .overlay {
-                        Rectangle()
-                            .foregroundColor(.black.opacity(0.1))
-                            .frame(height: 2)
-                            .padding(.top)
-                    }
+                FooterText(text: K.LocalizedKey.TERMS_SERVICES.localized(language_choosen), action: {})
+                
+                FooterText(text: K.LocalizedKey.PRIVACY_POLICY.localized(language_choosen), action: {})
+                
+                FooterText(text: K.LocalizedKey.CONTENT_POLICIES.localized(language_choosen), action: {})
             }
             .font(.system(size: 12, weight: .semibold))
             .foregroundColor(.secondary)

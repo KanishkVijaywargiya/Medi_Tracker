@@ -34,6 +34,7 @@
 		04DD544B2950CDA900372343 /* LanguageSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD544A2950CDA900372343 /* LanguageSheet.swift */; };
 		04DD544D2950DDDD00372343 /* LanguageSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD544C2950DDDD00372343 /* LanguageSelection.swift */; };
 		04DD544F2950DFC600372343 /* LanguageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD544E2950DFC600372343 /* LanguageCard.swift */; };
+		04E274E0295348D900707A46 /* FooterText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E274DF295348D900707A46 /* FooterText.swift */; };
 		04EE705E294B891100A64D10 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE705D294B891100A64D10 /* SplashScreen.swift */; };
 		04EE7061294B95D900A64D10 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 04EE7060294B95D900A64D10 /* Lottie */; };
 		04EE7063294B961900A64D10 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE7062294B961900A64D10 /* LottieView.swift */; };
@@ -73,6 +74,7 @@
 		04DD544A2950CDA900372343 /* LanguageSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSheet.swift; sourceTree = "<group>"; };
 		04DD544C2950DDDD00372343 /* LanguageSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelection.swift; sourceTree = "<group>"; };
 		04DD544E2950DFC600372343 /* LanguageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCard.swift; sourceTree = "<group>"; };
+		04E274DF295348D900707A46 /* FooterText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterText.swift; sourceTree = "<group>"; };
 		04EE705D294B891100A64D10 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		04EE7062294B961900A64D10 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		04EE7064294B964600A64D10 /* HeartLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HeartLottie.json; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				04CECAC22949D87B00A6E6F5 /* MTLineText.swift */,
 				04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */,
 				04632E812951BFF900FAF966 /* CountryCard.swift */,
+				04E274DF295348D900707A46 /* FooterText.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				04632E842951C8A900FAF966 /* CountryModel.swift in Sources */,
 				04CECAC32949D87B00A6E6F5 /* MTLineText.swift in Sources */,
 				04EE7068294BA67F00A64D10 /* AuthenticationView.swift in Sources */,
+				04E274E0295348D900707A46 /* FooterText.swift in Sources */,
 				04F7AC152945E1A000C6B479 /* MediTrackerApp.swift in Sources */,
 				045C1F042949A73F005F51F6 /* GlassButton.swift in Sources */,
 				04632E822951BFF900FAF966 /* CountryCard.swift in Sources */,
@@ -534,8 +538,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MediTracker/MediTracker.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -561,8 +564,9 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = blacenova.MediTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blacenovas.MediTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -577,8 +581,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MediTracker/MediTracker.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -604,8 +607,9 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = blacenova.MediTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blacenovas.MediTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;

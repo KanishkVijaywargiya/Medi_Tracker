@@ -18,8 +18,43 @@ import SwiftUI
 
 
 struct HomeView: View {
+    // MARK: used for localization sheet
+    @State private var showLanguageSheet: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack (alignment: .topLeading) {
+            Color.white.opacity(0.1).ignoresSafeArea()
+            // MARK: Header Section
+            HStack (alignment: .center) {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Good Morning,")
+                        .font(.title2.bold())
+                        .foregroundColor(.secondary)
+                    Text("John Carter").font(.title3.bold())
+                }// user name
+                
+                Spacer()
+                
+                GlassButton(
+                    iconName: LocalizationService.shared.langText,
+                    action: { self.showLanguageSheet.toggle() }
+                )
+                .padding()
+                
+                Image(systemName: "person.fill")
+                    .font(.system(size: 32, weight: .bold))
+                    .padding(.all, 6)
+                    .background(Color.white)
+                    .clipShape(Circle())
+                    .overlay { Circle().stroke(Color.black.opacity(0.3), lineWidth: 2) }
+                    .shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 4)
+            }
+            Spacer()
+        }
+        .padding()
+        .sheet(isPresented: $showLanguageSheet) {
+            LanguageSheet().presentationDetents([.medium])
+        }//for lang. select
     }
 }
 
