@@ -135,7 +135,6 @@
 		043E7E8E2948E5C9005F4740 /* Item */ = {
 			isa = PBXGroup;
 			children = (
-				043E7E8F2948E5E5005F4740 /* ListOfCountries.swift */,
 				04D5A7F32949CA9E00700097 /* MTButton.swift */,
 				04CECAC22949D87B00A6E6F5 /* MTLineText.swift */,
 				04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */,
@@ -211,6 +210,7 @@
 				04EE7067294BA67F00A64D10 /* AuthenticationView.swift */,
 				04F7AC262945E2A800C6B479 /* Verification.swift */,
 				04D37BD72945F84700EEF926 /* Login.swift */,
+				043E7E8F2948E5E5005F4740 /* ListOfCountries.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
