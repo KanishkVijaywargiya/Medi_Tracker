@@ -22,42 +22,139 @@ struct HomeView: View {
     // MARK: used for localization sheet
     @State private var showLanguageSheet: Bool = false
     
-   @StateObject var vm = OTPViewModel()
+    @StateObject var vm = OTPViewModel()
     
     var body: some View {
         ZStack (alignment: .topLeading) {
             Color.white.opacity(0.1).ignoresSafeArea()
-            // MARK: Header Section
-            HStack (alignment: .center) {
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("Good Morning,")
-                        .font(.title2.bold())
-                        .foregroundColor(.secondary)
-                    Text("John Carter").font(.title3.bold())
-                }// user name
-                
-                Spacer()
-                
-                GlassButton(
-                    iconName: LocalizationService.shared.langText,
-                    action: { self.showLanguageSheet.toggle() }
-                )
-                .padding()
-                
-                Image(systemName: "person.fill")
-                    .font(.system(size: 32, weight: .bold))
-                    .padding(.all, 6)
-                    .background(Color.white)
-                    .clipShape(Circle())
-                    .overlay { Circle().stroke(Color.black.opacity(0.3), lineWidth: 2) }
-                    .shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 4)
-                    .onTapGesture {
-                        vm.signOut()
+            
+            VStack (alignment: .leading, spacing: 40) {
+                // MARK: Header Section
+                HStack (alignment: .center) {
+                    // title & user text
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Good Morning,")
+                            .font(.title2.bold())
+                            .foregroundColor(.secondary)
+                        Text("John Carter").font(.title3.bold())
                     }
+                    
+                    Spacer()
+                    
+                    // localization icon
+                    GlassButton(
+                        iconName: LocalizationService.shared.langText,
+                        action: { self.showLanguageSheet.toggle() }
+                    )
+                    .padding()
+                    
+                    // profile icon
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 32, weight: .bold))
+                        .padding(.all, 6)
+                        .background(Color.white)
+                        .clipShape(Circle())
+                        .overlay { Circle().stroke(Color.black.opacity(0.3), lineWidth: 2) }
+                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                    
+                        .onTapGesture {
+                            vm.signOut()
+                        }
+                }
+                
+                
+                // MARK: Appointment Card
+                HStack (alignment: .center, spacing: 20) {
+                    // left section
+                    VStack (alignment: .center, spacing: 8) {
+                        Text("Tue").font(.body).foregroundColor(.secondary)
+                        Rectangle()
+                            .frame(width: 20, height: 1)
+                            .foregroundColor(.black.opacity(0.2))
+                        Text("21").font(.title3.bold()).foregroundColor(.secondary)
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                    
+                    // right section
+                    VStack (alignment: .leading, spacing: 10) {
+                        Text("Your appointments")
+                            .font(.title2.bold())
+                            .foregroundColor(.white)
+                        Text("10:00 am - 11:00 am")
+                            .font(.footnote)
+                            .foregroundColor(.white)
+                        
+                        VStack (alignment: .leading, spacing: 2) {
+                            Text("Dr. Lawrence Leiter")
+                                .font(.body.bold())
+                                .foregroundColor(.white)
+                            Text("General Surgeon")
+                                .font(.caption.bold())
+                                .foregroundColor(.white)
+                        }
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(30)
+                .background(Color(K.BrandColors.pink))
+                .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                .shadow(color: Color.pink.opacity(0.3), radius: 10, x: 0, y: 10)
+                
+                
+                // MARK: Medication Card
+                VStack (alignment: .leading, spacing: 10) {
+                    Text("Medication")
+                        .foregroundColor(.primary)
+                        .font(.title)
+                        .fontWeight(.semibold)
+                    
+                    // medication cards
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack (spacing: 20) {
+                            ForEach(0..<5) { _ in
+                                VStack (alignment: .center, spacing: 10) {
+                                    Image(systemName: "pill.fill")
+                                        .font(.title.bold())
+                                        .foregroundColor(Color(K.BrandColors.pink))
+                                    
+                                    Text("Vitamin C")
+                                        .foregroundColor(.secondary)
+                                        .fontWeight(.medium)
+                                }
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(12)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                        .stroke(Color(K.BrandColors.pink), lineWidth: 1)
+                                }
+                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                            }
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                    }
+                }
+                
+                
+                // MARK: Daily activity Card
+                VStack (alignment: .leading, spacing: 10) {
+                    Text("Daily Activity")
+                        .foregroundColor(.primary)
+                        .font(.title)
+                        .fontWeight(.semibold)
+                    
+                    // activity cards
+                    
+                }
             }
+            .padding()
             Spacer()
         }
-        .padding()
+//        .padding()
         .sheet(isPresented: $showLanguageSheet) {
             LanguageSheet().presentationDetents([.medium])
         }//for lang. select
