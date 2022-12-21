@@ -14,8 +14,8 @@ struct LanguageCard: View {
     
     var body: some View {
             HStack {
-                Image(systemName: self.isClicked ? "largecircle.fill.circle" : "circle")
-                    .foregroundColor(Color(hex: isClicked ? "#E6425E" : "#000"))
+                Image(systemName: self.isClicked ? K.SFSymbols.larFillCircle : K.SFSymbols.circle)
+                    .foregroundColor(Color(isClicked ? K.BrandColors.pink : K.BrandColors.black))
                 Text(item.langName)
                 Spacer()
             }

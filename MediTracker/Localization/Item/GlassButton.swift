@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GlassButton: View {
-    var iconName: String = "chevron.backward"
+    var iconName: String = K.SFSymbols.chevBack
     var action: () -> ()
     
     @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language
@@ -30,18 +30,18 @@ struct GlassButton_Previews: PreviewProvider {
 
 extension GlassButton {
     private var languageSymbol: some View {
-        Image(systemName: "character.bubble")
+        Image(systemName: K.SFSymbols.characBubble)
             .font(.title2.bold())
-            .foregroundColor(Color(hex: "#E6425E"))
+            .foregroundColor(Color(K.BrandColors.pink))
         
             .overlay {
-                Image(systemName: "character.bubble.fill.ja")
+                Image(systemName: K.SFSymbols.characBubbleFill)
                     .font(.title2.bold())
                     .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(
                         Color.white,
-                        Color(hex: "#E6425E")
+                        Color(K.BrandColors.pink)
                     )
                     .offset(x: 17, y: 5)
             }
@@ -51,10 +51,10 @@ extension GlassButton {
     
     private var globeWithLangText: some View {
         HStack(alignment: .center) {
-            Image(systemName: "globe")
+            Image(systemName: K.SFSymbols.globe)
                 .font(.title2.bold())
-                .foregroundColor(Color(hex: "#E6425E"))
-            Text(iconName).foregroundColor(Color(hex: "#E6425E")).bold()
+                .foregroundColor(Color(K.BrandColors.pink))
+            Text(iconName).foregroundColor(Color(K.BrandColors.pink)).bold()
         }.onTapGesture(perform: action)
     }
 }

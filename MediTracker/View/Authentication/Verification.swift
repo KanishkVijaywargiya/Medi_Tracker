@@ -46,7 +46,7 @@ struct Verification: View {
         }
         .padding()
         .frame(maxHeight: .infinity, alignment: .top)
-        .navigationTitle("VERIFICATION".localized(language_choosen))
+        .navigationTitle(K.NavigationTag.verification.localized(language_choosen))
         .onChange(of: vm.otpFields) { newValue in
             otpCondition(value: newValue)
         }
@@ -63,7 +63,7 @@ struct Verification: View {
                 Task{await vm.verifyOTP()}
             }
         }
-        .showToast(title: vm.verificationAlertTitle, isPresented: $vm.verificationAlert, color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), duration: 5, alignment: .top, toastType: .offsetToast, image: Image("a"))
+        .showToast(title: vm.verificationAlertTitle, isPresented: $vm.verificationAlert, color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), duration: 5, alignment: .top, toastType: .offsetToast, image: Image(K.AppImg.appLogo))
     }
 }
 
@@ -76,7 +76,7 @@ struct Verification_Previews: PreviewProvider {
 extension Verification {
     private var title: some View {
         VStack {
-            Text("VERIFICATION_CODE".localized(language_choosen))
+            Text(K.LocalizedKey.VERIFICATION_CODE.localized(language_choosen))
             Text("\(countryCode)-\(mobileNum)").bold()
         }.padding(.bottom, 40)
     }// MARK: title with user phone number
@@ -93,7 +93,7 @@ extension Verification {
                         .overlay(
                             RoundedRectangle(cornerRadius: 12)
                                 .stroke(
-                                    activeField == activeStateForIndex(index: item) ? Color(hex: "#E6425E") : Color.black.opacity(0.1), lineWidth: 1.9)
+                                    activeField == activeStateForIndex(index: item) ? Color(K.BrandColors.pink) : Color.black.opacity(0.1), lineWidth: 1.9)
                                 .blendMode(.normal)
                                 .opacity(0.7)
                                 .frame(height: 40)
@@ -104,7 +104,7 @@ extension Verification {
     }// MARK: OTP Fields
     
     private var limitOTPText: some View {
-        Text("OTP_LIMIT".localized(language_choosen))
+        Text(K.LocalizedKey.OTP_LIMIT.localized(language_choosen))
             .foregroundColor(.secondary)
             .multilineTextAlignment(.center)
             .padding(.all, 20)
@@ -114,7 +114,7 @@ extension Verification {
         ZStack(alignment: .center) {
             MTButton(action: {
                 Task{await vm.verifyOTP()}
-            }, title: vm.isLoading ? "" : "OTP_VERIFY".localized(language_choosen), hexCode: "#E6425E")
+            }, title: vm.isLoading ? "" : K.LocalizedKey.OTP_VERIFY.localized(language_choosen), hexCode: K.BrandColors.pink)
             if vm.isLoading {
                 VStack {
                     ProgressView()
@@ -134,21 +134,21 @@ extension Verification {
             }
         } label: {
             HStack {
-                Text("SMS_RESEND".localized(language_choosen))
-                    .foregroundColor(showTimer ? .primary : Color(hex: "#E6425E"))
+                Text(K.LocalizedKey.SMS_RESEND.localized(language_choosen))
+                    .foregroundColor(showTimer ? .primary : Color(K.BrandColors.pink))
                 if showTimer {
                     Text("in \(timeRemaining)")
                         .foregroundColor(.primary)
                 }
             }
+            .frame(maxWidth: .infinity)
+            .background(Color.white)
         }
         .padding()
-        .frame(maxWidth: .infinity)
         .disabled(showTimer)
-        .background(Color.white)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(showTimer ? Color.black.opacity(0.3) : Color(hex: "#E6425E"), lineWidth: 1)
+                .stroke(showTimer ? Color.black.opacity(0.3) : Color(K.BrandColors.pink), lineWidth: 1)
                 .blendMode(.normal)
                 .opacity(0.7)
                 .frame(height: 40)
@@ -159,9 +159,9 @@ extension Verification {
     private var otherLoginMethods: some View {
         VStack {
             Button {self.dismissMode()} label: {
-                Text("OTHER_LOGIN".localized(language_choosen))
+                Text(K.LocalizedKey.OTHER_LOGIN.localized(language_choosen))
                     .font(.footnote.bold())
-                    .foregroundColor(Color(hex: "#E6425E"))
+                    .foregroundColor(Color(K.BrandColors.pink))
             }
         }
     }// MARK: Other login method text

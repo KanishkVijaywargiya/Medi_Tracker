@@ -22,13 +22,13 @@ struct MTButton: View {
         .padding()
         .frame(maxWidth: .infinity)
         .frame(height: 52)
-        .background(Color(hex: hexCode))
+        .background(Color(hexCode))
         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
     }
 }
 
 struct MTButton_Previews: PreviewProvider {
     static var previews: some View {
-        MTButton(action: {}, title: "Continue", hexCode: "#E6425E")
+        MTButton(action: {}, title: "Continue", hexCode: K.BrandColors.pink)
     }
 }

@@ -30,13 +30,13 @@ struct Login: View {
                     VStack {
                         title
                         
-                        MTLineText(title: "LOGIN_SIGNUP".localized(language_choosen), opacityVal: 0.3)
+                        MTLineText(title: K.LocalizedKey.LOGIN_SIGNUP.localized(language_choosen), opacityVal: 0.3)
                         
                         countryCodeAndNum
                         
                         continueButton
                         
-                        MTLineText(title: "OR".localized(language_choosen), opacityVal: 0.2)
+                        MTLineText(title: K.LocalizedKey.OR.localized(language_choosen), opacityVal: 0.2)
                         
                         socialLogin
                     }
@@ -51,11 +51,11 @@ struct Login: View {
         .padding(.bottom, 15)
         .edgesIgnoringSafeArea(.all)
         .background {
-            NavigationLink(tag: "VERIFICATION", selection: $vm.navigationTag) {
+            NavigationLink(tag: K.NavigationTag.verification, selection: $vm.navigationTag) {
                 Verification(mobileNum: vm.number, countryCode: countryCode).environmentObject(vm)
             } label: {}.labelsHidden()
         }
-        .showToast(title: networkMonitor.connected ? vm.alertTitle : "NO_CONNECTION".localized(language_choosen), isPresented: $vm.showAlert, color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), duration: 5, alignment: .top, toastType: .offsetToast, image: Image("a"))
+        .showToast(title: networkMonitor.connected ? vm.alertTitle : K.LocalizedKey.NO_CONNECTION.localized(language_choosen), isPresented: $vm.showAlert, color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), duration: 5, alignment: .top, toastType: .offsetToast, image: Image(K.AppImg.appLogo))
         .fullScreenCover(isPresented: $listOfCountry) {
             ListOfCountries(countryCode: $countryCode, countryFlag: $countryFlag)
         }//country code with country flag
@@ -74,7 +74,7 @@ struct Login_Previews: PreviewProvider {
 
 extension Login {
     private var bgImg: some View {
-        Image("bglogin")
+        Image(K.AppImg.bgLoginImg)
             .resizable()
             .cornerRadius(60, corners: [.bottomLeft, .bottomRight])
             .frame(height: 340)
@@ -83,7 +83,7 @@ extension Login {
     }// MARK: BG Img
     
     private var title: some View {
-        Text("MED_TRACKER_APP".localized(language_choosen))
+        Text(K.LocalizedKey.MED_TRACKER_APP.localized(language_choosen))
             .font(.system(size: 22, weight: .bold))
             .frame(maxWidth: .infinity)
             .foregroundColor(.primary)
@@ -99,7 +99,7 @@ extension Login {
                 HStack {
                     Text(countryFlag)
                         .font(.system(size: 35))
-                    Image(systemName: "arrowtriangle.down.fill")
+                    Image(systemName: K.SFSymbols.arrowTriangleDownFill)
                         .foregroundColor(.secondary)
                 }
             }
@@ -119,7 +119,7 @@ extension Login {
                 Text(countryCode)
                     .foregroundColor(.primary)
                     .font(.callout.bold())
-                TextField(LocalizedStringKey("Enter_MOB_NUM".localized(language_choosen)), text: $vm.number)
+                TextField(LocalizedStringKey(K.LocalizedKey.Enter_MOB_NUM.localized(language_choosen)), text: $vm.number)
                     .foregroundColor(.primary)
                     .font(.callout.bold())
                     .keyboardType(.phonePad)
@@ -140,7 +140,7 @@ extension Login {
         ZStack(alignment: .center) {
             MTButton(action: {
                 Task{await vm.sendOTP(countryCode: countryCode)}
-            }, title: vm.isLoading ? "" : "CONTINUE".localized(language_choosen), hexCode: "#E6425E")
+            }, title: vm.isLoading ? "" : K.LocalizedKey.CONTINUE.localized(language_choosen), hexCode: K.BrandColors.pink)
             
             if vm.isLoading {
                 VStack {
@@ -153,36 +153,36 @@ extension Login {
     
     private var socialLogin: some View {
         HStack(spacing: 60) {
-            MTSocialLoginButton(action: {}, imageName: "g")
-            MTSocialLoginButton(action: {}, imageName: "apple.logo", imageCheck: true)
-            MTSocialLoginButton(action: {}, imageName: "ellipsis", imageCheck: true)
+            MTSocialLoginButton(action: {}, imageName: K.AppImg.googleLogin)
+            MTSocialLoginButton(action: {}, imageName: K.SFSymbols.appleLogin, imageCheck: true)
+            MTSocialLoginButton(action: {}, imageName: K.SFSymbols.ellipsis, imageCheck: true)
         }.padding(.bottom)
     }// MARK: social login
     
     private var footerText: some View {
         VStack {
-            Text("CONTINUING_AGREE".localized(language_choosen))
+            Text(K.LocalizedKey.CONTINUING_AGREE.localized(language_choosen))
                 .font(.footnote)
                 .fontWeight(.bold)
                 .foregroundColor(Color(.systemGray))
                 .padding(.bottom, 1)
             
             HStack(spacing: 15) {
-                Text("TERMS_SERVICES".localized(language_choosen))
+                Text(K.LocalizedKey.TERMS_SERVICES.localized(language_choosen))
                     .overlay {
                         Rectangle()
                             .foregroundColor(.black.opacity(0.1))
                             .frame(height: 2)
                             .padding(.top)
                     }
-                Text("PRIVACY_POLICY".localized(language_choosen))
+                Text(K.LocalizedKey.PRIVACY_POLICY.localized(language_choosen))
                     .overlay {
                         Rectangle()
                             .foregroundColor(.black.opacity(0.1))
                             .frame(height: 2)
                             .padding(.top)
                     }
-                Text("CONTENT_POLICIES".localized(language_choosen))
+                Text(K.LocalizedKey.CONTENT_POLICIES.localized(language_choosen))
                     .overlay {
                         Rectangle()
                             .foregroundColor(.black.opacity(0.1))

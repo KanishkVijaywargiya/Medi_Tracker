@@ -41,6 +41,6 @@ struct MTSocialLoginButton: View {
 
 struct MTSocialLoginButton_Previews: PreviewProvider {
     static var previews: some View {
-        MTSocialLoginButton(action: {}, imageName: "apple.logo", imageCheck: true)
+        MTSocialLoginButton(action: {}, imageName: K.SFSymbols.appleLogin, imageCheck: true)
     }
 }

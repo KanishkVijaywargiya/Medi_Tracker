@@ -10,14 +10,14 @@ import SwiftUI
 struct SplashScreen: View {
     var body: some View {
         ZStack(alignment: .bottom) {
-            Image("splashimg")
+            Image(K.AppImg.splashimg)
                 .resizable()
                 .scaledToFill()
             
-            LottieView(lottieFile: "HeartLottie")
+            LottieView(lottieFile: K.AppImg.lottieFile)
                 .frame(width: 200, height: 200)
             
-            Text("Medi Tracker")
+            Text(K.AppImg.appTitle)
                 .font(.title2.bold())
                 .foregroundColor(.primary)
         }

@@ -40,7 +40,7 @@ class OTPViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.isLoading = false
                 self.showAlert.toggle()
-                self.alertTitle = "VALID_NUM".localized(self.language_choosen)
+                self.alertTitle = K.LocalizedKey.VALID_NUM.localized(self.language_choosen)
             }
         } else {
             do {
@@ -52,13 +52,13 @@ class OTPViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.isLoading = false
                     self.verificationCode = result
-                    self.navigationTag = "VERIFICATION"
+                    self.navigationTag = K.LocalizedKey.VERIFICATION
                 }
             } catch {
                 DispatchQueue.main.async {
                     self.isLoading = false
                     self.showAlert.toggle()
-                    self.alertTitle = "SOMETHING_WRONG".localized(self.language_choosen)
+                    self.alertTitle = K.LocalizedKey.SOMETHING_WRONG.localized(self.language_choosen)
                 }
             }
         }
@@ -82,7 +82,7 @@ class OTPViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.isLoading = false
                 self.verificationAlert.toggle()
-                self.verificationAlertTitle = "SOMETHING_WRONG".localized(self.language_choosen)
+                self.verificationAlertTitle = K.LocalizedKey.SOMETHING_WRONG.localized(self.language_choosen)
             }
         }
     }

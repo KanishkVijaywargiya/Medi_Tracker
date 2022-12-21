@@ -29,7 +29,7 @@ struct ListOfCountries: View {
             })
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Image(systemName: "chevron.down")
+                    Image(systemName: K.SFSymbols.chevronDown)
                         .padding(.trailing)
                         .onTapGesture {
                             withAnimation(.easeOut) {
@@ -38,7 +38,7 @@ struct ListOfCountries: View {
                         }
                 }
             }// closing button for full sheet
-            .searchable(text: $searchText, prompt: "SEARCH".localized(language_choosen))
+            .searchable(text: $searchText, prompt: K.LocalizedKey.SEARCH.localized(language_choosen))
         }
     }
 }
@@ -51,7 +51,7 @@ struct ListOfCountries_Previews: PreviewProvider {
 
 extension ListOfCountries {
     private var title: some View {
-        Text("COUNTRIES_LIST".localized(language_choosen))
+        Text(K.LocalizedKey.COUNTRIES_LIST.localized(language_choosen))
             .foregroundColor(.primary)
             .font(.title.bold())
             .padding(.leading)

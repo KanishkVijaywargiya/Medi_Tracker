@@ -15,7 +15,7 @@ struct LanguageSheet: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("SELECT_LANG".localized(language_choosen))
+            Text(K.LocalizedKey.SELECT_LANG.localized(language_choosen))
                 .font(.title2.bold())
                 .padding(.vertical)
             
