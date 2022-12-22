@@ -11,6 +11,25 @@ struct K {
     struct BrandColors {
         static let pink = "AppPrimary"
         static let black = "Black"
+        
+        // MARK: Other color shades
+        static let pastelBlue = "PastelBlue"
+        static let pastelBlue2 = "PastelBlue2"
+        static let pastelBlue3 = "PastelBlue3"
+        static let pastelBlue4 = "PastelBlue4"
+        
+        static let pastelGreen = "PastelGreen"
+        static let pastelGreen2 = "PastelGreen2"
+        static let pastelGreen3 = "PastelGreen3"
+        
+        static let pastelOrange = "PastelOrange"
+        
+        static let pastelPink = "pastelPink"
+        static let pastelPink2 = "PastelPink2"
+        
+        static let pastelPurple = "PastelPurple"
+        
+        static let pastelYellow = "PastelYellow"
     }
     
     struct SFSymbols {
