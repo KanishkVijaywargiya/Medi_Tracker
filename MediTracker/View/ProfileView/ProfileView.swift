@@ -123,7 +123,7 @@ struct ProfileView: View {
                     
                     // MARK: If you like this app, please share & rate
                 }
-            }
+            }.scrollDismissesKeyboard(.immediately)
             
             closeButton
         }
