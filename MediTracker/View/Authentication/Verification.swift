@@ -60,7 +60,7 @@ struct Verification: View {
         .onChange(of: vm.otpText) { newValue in
             print(newValue)
             if newValue.count == 6 {
-                Task{await vm.verifyOTP()}
+                Task{await vm.verifyOTP(countryCode: countryCode)}
             }
         }
         .showToast(title: vm.verificationAlertTitle, isPresented: $vm.verificationAlert, color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), duration: 5, alignment: .top, toastType: .offsetToast, image: Image(K.AppImg.appLogo))
@@ -113,7 +113,7 @@ extension Verification {
     private var verifyOTPButton: some View {
         ZStack(alignment: .center) {
             MTButton(action: {
-                Task{await vm.verifyOTP()}
+                Task{await vm.verifyOTP(countryCode: countryCode)}
             }, title: vm.isLoading ? "" : K.LocalizedKey.OTP_VERIFY.localized(language_choosen), hexCode: K.BrandColors.pink)
             if vm.isLoading {
                 VStack {

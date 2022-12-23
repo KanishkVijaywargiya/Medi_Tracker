@@ -28,10 +28,14 @@ class OTPViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var navigationTag: String?
     
+    // MARK: app storage for login status
     @AppStorage("log_status") private var log_status = false
     
     // MARK: app storage for localization
     @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language
+    
+    // MARK: app storage for mobile number
+    @AppStorage("mobile_num") private var mobile_num = ""
     
     // MARK: Sending OTP
     func sendOTP(countryCode: String) async {
@@ -65,7 +69,7 @@ class OTPViewModel: ObservableObject {
     }
     
     // MARK: Verify OTP
-    func verifyOTP() async {
+    func verifyOTP(countryCode: String) async {
         do {
             DispatchQueue.main.async {
                 self.isLoading = true
@@ -77,6 +81,7 @@ class OTPViewModel: ObservableObject {
             DispatchQueue.main.async {[self] in
                 self.isLoading = false
                 self.log_status = true
+                self.mobile_num = "\(countryCode)-\(number)"
             }
         } catch {
             DispatchQueue.main.async {
@@ -91,6 +96,7 @@ class OTPViewModel: ObservableObject {
         do {
             try Auth.auth().signOut()
             log_status = false
+            self.mobile_num = ""
         } catch {
             
         }
