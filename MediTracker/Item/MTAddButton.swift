@@ -23,7 +23,7 @@ struct MTAddButton: View {
         .cornerRadius(22)
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .fill(Color.black.opacity(0.1))
+                .fill(Color.gray.opacity(0.1))
         }
     }
 }

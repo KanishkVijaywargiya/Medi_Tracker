@@ -300,7 +300,7 @@ extension ProfileView {
         }
         .padding(.top, 20)
         .onTapGesture { vm.signOut() }
-    }
+    }// sign out section
     
     private var closeButton: some View {
         MTGlassButton(iconName: "square.and.arrow.up.fill", iconSize: 14)
