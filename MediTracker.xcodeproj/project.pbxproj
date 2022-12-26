@@ -44,6 +44,7 @@
 		04D7F3F52945F2AF006C96E7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 04D7F3F42945F2AF006C96E7 /* FirebaseAuth */; };
 		04D7F3F72945F2AF006C96E7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 04D7F3F62945F2AF006C96E7 /* FirebaseFirestore */; };
 		04D7F3F92945F2AF006C96E7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 04D7F3F82945F2AF006C96E7 /* FirebaseStorage */; };
+		04DC382B295A0011005F0710 /* CameraType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC382A295A0011005F0710 /* CameraType.swift */; };
 		04DD544B2950CDA900372343 /* LanguageSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD544A2950CDA900372343 /* LanguageSheet.swift */; };
 		04DD544D2950DDDD00372343 /* LanguageSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD544C2950DDDD00372343 /* LanguageSelection.swift */; };
 		04DD544F2950DFC600372343 /* LanguageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD544E2950DFC600372343 /* LanguageCard.swift */; };
@@ -100,6 +101,7 @@
 		04D5A7F32949CA9E00700097 /* MTButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTButton.swift; sourceTree = "<group>"; };
 		04D65C992955E538009DFD71 /* MTActivityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTActivityCard.swift; sourceTree = "<group>"; };
 		04D7F3F22945F1CC006C96E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		04DC382A295A0011005F0710 /* CameraType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraType.swift; sourceTree = "<group>"; };
 		04DD544A2950CDA900372343 /* LanguageSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSheet.swift; sourceTree = "<group>"; };
 		04DD544C2950DDDD00372343 /* LanguageSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelection.swift; sourceTree = "<group>"; };
 		04DD544E2950DFC600372343 /* LanguageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCard.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			children = (
 				048FC5A2295602580016F566 /* ProfileImageStorage.swift */,
 				048FC5A4295602A30016F566 /* ImagePicker.swift */,
+				04DC382A295A0011005F0710 /* CameraType.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -290,6 +293,17 @@
 				04E8CBAA2955E88B00A4FD5C /* ProfileView.swift */,
 				048FC5A829560B460016F566 /* ProfileButton.swift */,
 				048FC5AA29560E730016F566 /* ProfileImage.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04A336692959FE060070D745 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04EE7067294BA67F00A64D10 /* AuthenticationView.swift */,
+				04F7AC262945E2A800C6B479 /* Verification.swift */,
+				04D37BD72945F84700EEF926 /* Login.swift */,
+				043E7E8F2948E5E5005F4740 /* ListOfCountries.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -315,10 +329,8 @@
 		04EE7069294BB73900A64D10 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				04EE7067294BA67F00A64D10 /* AuthenticationView.swift */,
-				04F7AC262945E2A800C6B479 /* Verification.swift */,
-				04D37BD72945F84700EEF926 /* Login.swift */,
-				043E7E8F2948E5E5005F4740 /* ListOfCountries.swift */,
+				04A336692959FE060070D745 /* View */,
+				04F7AC282945E3EC00C6B479 /* ViewModel */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -349,8 +361,7 @@
 				043E7E892948AD00005F4740 /* Extensions */,
 				043E7E8E2948E5C9005F4740 /* Item */,
 				04122D312948606900B3760B /* Model */,
-				04F7AC232945E26300C6B479 /* View */,
-				04F7AC282945E3EC00C6B479 /* ViewModel */,
+				04F7AC232945E26300C6B479 /* Core */,
 				04F7AC142945E1A000C6B479 /* MediTrackerApp.swift */,
 				04F7AC162945E1A000C6B479 /* ContentView.swift */,
 				04F7AC182945E1A400C6B479 /* Assets.xcassets */,
@@ -369,7 +380,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		04F7AC232945E26300C6B479 /* View */ = {
+		04F7AC232945E26300C6B479 /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				04EE7069294BB73900A64D10 /* Authentication */,
@@ -378,7 +389,7 @@
 				04EE705D294B891100A64D10 /* SplashScreen.swift */,
 				04A336642959E0EF0070D745 /* UserIntroScreen.swift */,
 			);
-			path = View;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		04F7AC282945E3EC00C6B479 /* ViewModel */ = {
@@ -486,6 +497,7 @@
 				044BB5E929508F0F00B48B79 /* LocalizationService.swift in Sources */,
 				04EE7063294B961900A64D10 /* LottieView.swift in Sources */,
 				048FC5A72956073A0016F566 /* MTGlassButton.swift in Sources */,
+				04DC382B295A0011005F0710 /* CameraType.swift in Sources */,
 				04CECAC52949D93F00A6E6F5 /* MTSocialLoginButton.swift in Sources */,
 				04D37BD82945F84700EEF926 /* Login.swift in Sources */,
 				FDE5DD9F294B5129007C4D32 /* HomeView.swift in Sources */,

@@ -8,12 +8,12 @@
 import SwiftUI
 import Combine
 
-enum CameraType {
-    case camera, photoLibrary
-}
+//enum CameraType {
+//    case camera, photoLibrary
+//}
 
 struct ProfileView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismissMode
     @StateObject private var vm = OTPViewModel()
     @StateObject private var profileVM = ProfileViewModel()
     
@@ -78,7 +78,6 @@ struct ProfileView: View {
             
             closeButton
         }
-        
         .ignoresSafeArea()
         .sheet(isPresented: $openCameraRoll, content: {
             if cameraType == .camera {
@@ -183,7 +182,7 @@ extension ProfileView {
                     Text("Weight")
                     Spacer()
                     TextField("Enter your weight", value: $weight, format: .number)
-                    //TextField("Enter your weight", text: $weight)
+                        .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
                         .keyboardType(.decimalPad)
                         .onReceive(Just(weight)) { _ in limitText(textLimit)}
@@ -195,7 +194,7 @@ extension ProfileView {
                     Text("Height")
                     Spacer()
                     TextField("Enter your height", value: $height, format: .number)
-//                    TextField("Enter your height", text: $height, format: .number)
+                        .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
                         .keyboardType(.decimalPad)
                         .onReceive(Just(height)) { _ in limitText(textLimit)}
@@ -314,7 +313,7 @@ extension ProfileView {
                     guard let image = imageSelected as UIImage? else { return }
                     store(image: image, forKey: "ProfileImage", withStorageType: .userDefaults)
                 }
-                presentationMode.wrappedValue.dismiss()
+                self.dismissMode()
             }
     }
     
