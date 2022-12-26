@@ -57,7 +57,7 @@ struct HomeView: View {
             
         }
         .fullScreenCover(isPresented: $showProfileView, content: {
-            ProfileView(saveName: $name, imageSelected: $profileImage)
+            ProfileView(imageSelected: $profileImage, userame: $name)
                 .animation(Animation.spring(), value: name)
         })
         .sheet(isPresented: $showLanguageSheet) {

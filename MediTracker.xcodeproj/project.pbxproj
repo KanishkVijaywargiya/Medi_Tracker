@@ -10,6 +10,7 @@
 		0401CEC42955DAFF00A8B543 /* MTAppointmentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0401CEC32955DAFE00A8B543 /* MTAppointmentCard.swift */; };
 		04124F182949EC58002F57E3 /* AwesomeNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 04124F172949EC58002F57E3 /* AwesomeNetwork */; };
 		041F64A9295082B300B2DD1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 041F64AB295082B300B2DD1D /* Localizable.strings */; };
+		0429B7EB2958676600475E5F /* DemoProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429B7EA2958676600475E5F /* DemoProfile.swift */; };
 		043E7E8B2948AD25005F4740 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E7E8A2948AD25005F4740 /* ColorExtensions.swift */; };
 		043E7E8D2948E353005F4740 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E7E8C2948E353005F4740 /* Country.swift */; };
 		043E7E902948E5E5005F4740 /* ListOfCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E7E8F2948E5E5005F4740 /* ListOfCountries.swift */; };
@@ -63,6 +64,7 @@
 		0401CEC32955DAFE00A8B543 /* MTAppointmentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTAppointmentCard.swift; sourceTree = "<group>"; };
 		041F64AA295082B300B2DD1D /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		041F64AC295082E300B2DD1D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0429B7EA2958676600475E5F /* DemoProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoProfile.swift; sourceTree = "<group>"; };
 		043E7E8A2948AD25005F4740 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		043E7E8C2948E353005F4740 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		043E7E8F2948E5E5005F4740 /* ListOfCountries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfCountries.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				046A9A892955B753003CE426 /* HomeView */,
 				04E8CBA92955E86E00A4FD5C /* ProfileView */,
 				04EE705D294B891100A64D10 /* SplashScreen.swift */,
+				0429B7EA2958676600475E5F /* DemoProfile.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 			files = (
 				04DD544F2950DFC600372343 /* LanguageCard.swift in Sources */,
 				04DD544D2950DDDD00372343 /* LanguageSelection.swift in Sources */,
+				0429B7EB2958676600475E5F /* DemoProfile.swift in Sources */,
 				046ED3142951AFA00067A5A1 /* ListOfCountriesViewModel.swift in Sources */,
 				04F7AC2A2945E40800C6B479 /* OTPViewModel.swift in Sources */,
 				044BB5E929508F0F00B48B79 /* LocalizationService.swift in Sources */,

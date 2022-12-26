@@ -15,19 +15,31 @@ enum CameraType {
 struct ProfileView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    // MARK: For Username
-    @AppStorage("name") private var name = ""
-    @State private var openActionSheet = false
-    @Binding var saveName: String
-    let textLimit = 20
-    
     // MARK: For image picker
+    @State private var openActionSheet = false
     @State private var openCameraRoll = false
     @State private var cameraType: CameraType = .photoLibrary
     @Binding var imageSelected: UIImage
     
-    // MARK: app storage for mobile number
-    @AppStorage("mobile_num") private var mobile_num = ""
+    
+    // MARK: Personal infos
+    @Binding var userame: String
+    @AppStorage("mobile_num") private var mobile_num = "" // MARK: app storage for mobile number
+    @State private var dob = Date()
+    private let textLimit = 20
+    
+    // MARK: Medical infos
+    @State private var weight: String = ""
+    @State private var height: String = ""
+    
+    @State private var genderSelection = 0
+    var gender = ["Male", "Female", "Other"]
+    
+    @State private var bloodTypeSelection = 0
+    var bloodType = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"]
+    
+    @State private var wheelChairSelection: Bool = false
+    @State private var organDonarSelection: Bool = false
     
     var body: some View {
         ZStack (alignment: .topTrailing) {
@@ -36,97 +48,22 @@ struct ProfileView: View {
             ScrollView(showsIndicators: false) {
                 VStack (alignment: .leading) {
                     // MARK: Username & User pic section
-                    VStack (alignment: .center, spacing: 10) {
-                        profileImage
-                        textField
-                    }
-                    .padding()
-                    .padding(.top, 50)
-                    
+                    userImgSection
                     
                     // MARK: User detail section
-                    VStack (alignment: .leading) {
-                        Group {
-                            HStack (alignment: .center) {
-                                Text("Contact Number")
-                                Spacer()
-                                Text(mobile_num)
-                            }
-                            
-                            divider
-                            
-                            HStack (alignment: .center) {
-                                Text("Date of Birth")
-                                Spacer()
-                                Text("01/01/1999")
-                            }
-                            
-                            divider
-                            
-                            HStack (alignment: .center) {
-                                Text("Weight")
-                                Spacer()
-                                Text("70Kg")
-                            }
-                            
-                            divider
-                            
-                            HStack (alignment: .center) {
-                                Text("Height")
-                                Spacer()
-                                Text("170cm")
-                            }
-                            
-                            divider
-                        }
-                        
-                        Group {
-                            HStack (alignment: .center) {
-                                Text("Gender")
-                                Spacer()
-                                Text("Male")
-                            }
-                            
-                            divider
-                            
-                            HStack (alignment: .center) {
-                                Text("Blood Type")
-                                Spacer()
-                                Text("B+")
-                            }
-                            
-                            divider
-                            
-                            HStack (alignment: .center) {
-                                Text("Wheel chair")
-                                Spacer()
-                                Text("No")
-                            }
-                            
-                            divider
-                            
-                            HStack (alignment: .center) {
-                                Text("Organ Donar")
-                                Spacer()
-                                Text("No")
-                            }
-                        }
+                    userInfoSection
+                    
+                    VStack (alignment: .leading, spacing: 20) {
+                        Text("My Allergies")
                     }
-                    .padding()
-                    .background(Color.gray.opacity(0.1))
-                    .cornerRadius(16)
-                    .padding(.horizontal)
-                    
-                    
-                    // MARK: User allergies section
-                    
-                    
-                    // MARK: If you like this app, please share & rate
+                    .padding(.top, 20)
                 }
+                
             }.scrollDismissesKeyboard(.immediately)
             
             closeButton
         }
+        
         .ignoresSafeArea()
         .sheet(isPresented: $openCameraRoll, content: {
             if cameraType == .camera {
@@ -157,19 +94,40 @@ struct ProfileView: View {
     }
     
     func limitText(_ upper: Int) {
-        if saveName.count > upper {
-            saveName = String(saveName.prefix(upper))
+        if userame.count > upper {
+            userame = String(userame.prefix(upper))
         }
     }// limit the text for textField
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(saveName: .constant(""), imageSelected: .constant(UIImage()))
+        ProfileView(imageSelected: .constant(UIImage()), userame: .constant(""))
     }
 }
 
 extension ProfileView {
+    private var userImgSection: some View {
+        VStack (alignment: .center, spacing: 10) {
+            profileImage
+            textField
+        }
+        .padding()
+        .padding(.top, 50)
+    }
+    
+    private var userInfoSection: some View {
+        VStack (alignment: .leading) {
+            personalInfo
+            
+            medicalInfo
+        }
+        .padding()
+        .background(Color.gray.opacity(0.1))
+        .cornerRadius(16)
+        .padding(.horizontal)
+    }
+    
     private var profileImage: some View {
         Button(action: {self.openActionSheet.toggle()}) {
             ZStack {
@@ -180,13 +138,93 @@ extension ProfileView {
     }
     
     private var textField: some View {
-        TextField("Enter your name", text: $saveName)
+        TextField("Enter your name", text: $userame)
             .foregroundColor(.black.opacity(0.7))
             .padding()
             .overlay {
                 RoundedRectangle(cornerRadius: 16).stroke(Color.black.opacity(0.3), lineWidth: 1)
             }
-            .onReceive(Just(saveName)) { _ in limitText(textLimit)}
+            .onReceive(Just(userame)) { _ in limitText(textLimit)}
+    }
+    
+    private var personalInfo: some View {
+        VStack {
+            HStack {
+                Text("Contact Number")
+                Spacer()
+                Text(mobile_num)
+            }// mobile num
+            divider
+            DatePicker("Date of Birth", selection: $dob, displayedComponents: .date)
+            divider
+        }.tint(Color(K.BrandColors.pink))
+    }
+    
+    private var medicalInfo: some View {
+        VStack {
+            Group {
+                HStack {
+                    Text("Weight")
+                    Spacer()
+                    TextField("Enter your weight", text: $weight)
+                        .multilineTextAlignment(.trailing)
+                        .keyboardType(.numberPad)
+                        .onReceive(Just(weight)) { _ in limitText(textLimit)}
+                    Text("Kg").foregroundColor(.secondary)
+                }// weight
+                divider
+
+                HStack {
+                    Text("Height")
+                    Spacer()
+                    TextField("Enter your height", text: $height)
+                        .multilineTextAlignment(.trailing)
+                        .keyboardType(.decimalPad)
+                        .onReceive(Just(height)) { _ in limitText(textLimit)}
+                    Text("cm").foregroundColor(.secondary)
+                }// height
+                divider
+
+                HStack {
+                    Text("Gender")
+                    Spacer()
+                    Picker("Gender", selection: $genderSelection) {
+                        ForEach(0..<gender.count, id: \.self) {
+                            Text(self.gender[$0]).tag($0)
+                        }
+                    }// gender
+                }
+                divider
+
+                HStack {
+                    Text("Blood Type")
+                    Spacer()
+                    Picker("Blood Type", selection: $bloodTypeSelection) {
+                        ForEach(0..<bloodType.count, id: \.self) {
+                            Text(self.bloodType[$0]).tag($0)
+                        }
+                    }// blood type
+                }
+                divider
+            }
+            Group {
+                HStack (spacing: 20) {
+                    Toggle("Wheel chair", isOn: $wheelChairSelection)
+                    Text(wheelChairSelection ? "Yes" : "No")
+                        .foregroundColor(.secondary)
+                        .animation(.easeIn, value: wheelChairSelection)
+                }// wheel chair
+                divider
+                
+                HStack (spacing: 20) {
+                    Toggle("Organ Donar", isOn: $organDonarSelection)
+                    Text(organDonarSelection ? "Yes" : "No")
+                        .foregroundColor(.secondary)
+                        .animation(.easeIn, value: organDonarSelection)
+                }// organ donar
+            }
+        }
+        .tint(Color(K.BrandColors.pink))
     }
     
     private var closeButton: some View {
@@ -203,6 +241,6 @@ extension ProfileView {
     }
     
     private var divider: some View {
-        Divider().background(Color.black).blendMode(.overlay)
+        Divider().background(Color.black.blendMode(.lighten))
     }
 }
