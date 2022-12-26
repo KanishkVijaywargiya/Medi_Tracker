@@ -37,6 +37,7 @@ class OTPViewModel: ObservableObject {
     // MARK: app storage for mobile number
     @AppStorage("mobile_num") private var mobile_num = ""
     
+    
     // MARK: Sending OTP
     func sendOTP(countryCode: String) async {
         if isLoading { return }
@@ -92,11 +93,13 @@ class OTPViewModel: ObservableObject {
         }
     }
     
+    // MARK: Sign Out
     func signOut() {
         do {
             try Auth.auth().signOut()
             log_status = false
             self.mobile_num = ""
+            UserDefaults.standard.UserIntroScreenShown = false
         } catch {
             
         }

@@ -14,7 +14,11 @@ struct AuthenticationView: View {
     var body: some View {
         VStack {
             if log_status {
-                HomeView()
+                if UserDefaults.standard.UserIntroScreenShown {
+                    HomeView()
+                } else {
+                    UserIntroScreen()
+                }
             } else {
                 Login()
             }

@@ -15,6 +15,7 @@ enum CameraType {
 struct ProfileView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var vm = OTPViewModel()
+    @StateObject private var profileVM = ProfileViewModel()
     
     // MARK: For image picker
     @State private var openActionSheet = false
@@ -30,8 +31,8 @@ struct ProfileView: View {
     private let textLimit = 20
     
     // MARK: Medical infos
-    @State private var weight: String = ""
-    @State private var height: String = ""
+    @State private var weight: Double = 0.0
+    @State private var height: Double = 0.0
     
     @State private var genderSelection = 0
     var gender = ["Male", "Female", "Other"]
@@ -181,9 +182,10 @@ extension ProfileView {
                 HStack {
                     Text("Weight")
                     Spacer()
-                    TextField("Enter your weight", text: $weight)
+                    TextField("Enter your weight", value: $weight, format: .number)
+                    //TextField("Enter your weight", text: $weight)
                         .multilineTextAlignment(.trailing)
-                        .keyboardType(.numberPad)
+                        .keyboardType(.decimalPad)
                         .onReceive(Just(weight)) { _ in limitText(textLimit)}
                     Text("Kg").foregroundColor(.secondary)
                 }// weight
@@ -192,7 +194,8 @@ extension ProfileView {
                 HStack {
                     Text("Height")
                     Spacer()
-                    TextField("Enter your height", text: $height)
+                    TextField("Enter your height", value: $height, format: .number)
+//                    TextField("Enter your height", text: $height, format: .number)
                         .multilineTextAlignment(.trailing)
                         .keyboardType(.decimalPad)
                         .onReceive(Just(height)) { _ in limitText(textLimit)}

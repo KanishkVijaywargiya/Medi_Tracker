@@ -27,9 +27,6 @@ struct HomeView: View {
     @AppStorage("name") var name = ""
     @State private var profileImage: UIImage = retrieveImage(forKey: "ProfileImage", inStorageType: .userDefaults)
     
-    @StateObject var vm = OTPViewModel()
-    
-    
     var body: some View {
         ZStack (alignment: .topLeading) {
             Color.white.opacity(0.1).ignoresSafeArea()
@@ -52,9 +49,6 @@ struct HomeView: View {
                     dailyActivityCard
                 }
             }
-            
-            Spacer()
-            
         }
         .fullScreenCover(isPresented: $showProfileView, content: {
             ProfileView(imageSelected: $profileImage, userame: $name)

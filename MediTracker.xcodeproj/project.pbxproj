@@ -31,6 +31,10 @@
 		048FC5AB29560E730016F566 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FC5AA29560E730016F566 /* ProfileImage.swift */; };
 		04A3365A2959AD200070D745 /* MTGeneralButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A336592959AD200070D745 /* MTGeneralButton.swift */; };
 		04A3365C2959AF920070D745 /* MTAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3365B2959AF920070D745 /* MTAddButton.swift */; };
+		04A3365F2959C91C0070D745 /* ProfileContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04A3365D2959C91C0070D745 /* ProfileContainer.xcdatamodeld */; };
+		04A336632959CBA00070D745 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A336622959CBA00070D745 /* ProfileViewModel.swift */; };
+		04A336652959E0EF0070D745 /* UserIntroScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A336642959E0EF0070D745 /* UserIntroScreen.swift */; };
+		04A336672959F2450070D745 /* UserDefault+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A336662959F2450070D745 /* UserDefault+extension.swift */; };
 		04CECAC32949D87B00A6E6F5 /* MTLineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC22949D87B00A6E6F5 /* MTLineText.swift */; };
 		04CECAC52949D93F00A6E6F5 /* MTSocialLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */; };
 		04CECAC82949E2C800A6E6F5 /* AwesomeToast in Frameworks */ = {isa = PBXBuildFile; productRef = 04CECAC72949E2C800A6E6F5 /* AwesomeToast */; };
@@ -86,6 +90,10 @@
 		048FC5AA29560E730016F566 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		04A336592959AD200070D745 /* MTGeneralButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTGeneralButton.swift; sourceTree = "<group>"; };
 		04A3365B2959AF920070D745 /* MTAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTAddButton.swift; sourceTree = "<group>"; };
+		04A3365E2959C91C0070D745 /* ProfileContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProfileContainer.xcdatamodel; sourceTree = "<group>"; };
+		04A336622959CBA00070D745 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		04A336642959E0EF0070D745 /* UserIntroScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIntroScreen.swift; sourceTree = "<group>"; };
+		04A336662959F2450070D745 /* UserDefault+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+extension.swift"; sourceTree = "<group>"; };
 		04CECAC22949D87B00A6E6F5 /* MTLineText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLineText.swift; sourceTree = "<group>"; };
 		04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTSocialLoginButton.swift; sourceTree = "<group>"; };
 		04D37BD72945F84700EEF926 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -136,6 +144,7 @@
 			children = (
 				043E7E8C2948E353005F4740 /* Country.swift */,
 				04632E832951C8A900FAF966 /* CountryModel.swift */,
+				04A3365D2959C91C0070D745 /* ProfileContainer.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -156,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				043E7E8A2948AD25005F4740 /* ColorExtensions.swift */,
+				04A336662959F2450070D745 /* UserDefault+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -200,19 +210,19 @@
 		046A9A892955B753003CE426 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
+				046A9A8A2955B773003CE426 /* View */,
 				046A9A8B2955B778003CE426 /* ViewModel */,
-				046A9A8A2955B773003CE426 /* Views */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
 		};
-		046A9A8A2955B773003CE426 /* Views */ = {
+		046A9A8A2955B773003CE426 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				FDE5DD9E294B5129007C4D32 /* HomeView.swift */,
 				046A9A8C2955B7B2003CE426 /* UserSectionView.swift */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
 		046A9A8B2955B778003CE426 /* ViewModel */ = {
@@ -266,12 +276,29 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		04E8CBA92955E86E00A4FD5C /* ProfileView */ = {
+		04A336602959CB690070D745 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				04A336622959CBA00070D745 /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		04A336612959CB700070D745 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				04E8CBAA2955E88B00A4FD5C /* ProfileView.swift */,
 				048FC5A829560B460016F566 /* ProfileButton.swift */,
 				048FC5AA29560E730016F566 /* ProfileImage.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04E8CBA92955E86E00A4FD5C /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				04A336612959CB700070D745 /* View */,
+				04A336602959CB690070D745 /* ViewModel */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -349,6 +376,7 @@
 				046A9A892955B753003CE426 /* HomeView */,
 				04E8CBA92955E86E00A4FD5C /* ProfileView */,
 				04EE705D294B891100A64D10 /* SplashScreen.swift */,
+				04A336642959E0EF0070D745 /* UserIntroScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -469,6 +497,7 @@
 				0462035C2949A85700A487CD /* BlurView.swift in Sources */,
 				048FC5AB29560E730016F566 /* ProfileImage.swift in Sources */,
 				0401CEC42955DAFF00A8B543 /* MTAppointmentCard.swift in Sources */,
+				04A3365F2959C91C0070D745 /* ProfileContainer.xcdatamodeld in Sources */,
 				043E7E8D2948E353005F4740 /* Country.swift in Sources */,
 				04EE705E294B891100A64D10 /* SplashScreen.swift in Sources */,
 				04F7AC172945E1A000C6B479 /* ContentView.swift in Sources */,
@@ -477,7 +506,9 @@
 				04A3365A2959AD200070D745 /* MTGeneralButton.swift in Sources */,
 				048FC5A5295602A30016F566 /* ImagePicker.swift in Sources */,
 				048FC5A929560B460016F566 /* ProfileButton.swift in Sources */,
+				04A336632959CBA00070D745 /* ProfileViewModel.swift in Sources */,
 				04D5A7F42949CA9E00700097 /* MTButton.swift in Sources */,
+				04A336672959F2450070D745 /* UserDefault+extension.swift in Sources */,
 				044AA224294890EC00EA04B4 /* RoundedCorners.swift in Sources */,
 				046A9A8D2955B7B2003CE426 /* UserSectionView.swift in Sources */,
 				04632E842951C8A900FAF966 /* CountryModel.swift in Sources */,
@@ -491,6 +522,7 @@
 				04632E822951BFF900FAF966 /* CountryCard.swift in Sources */,
 				04D65C9A2955E538009DFD71 /* MTActivityCard.swift in Sources */,
 				043E7E8B2948AD25005F4740 /* ColorExtensions.swift in Sources */,
+				04A336652959E0EF0070D745 /* UserIntroScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,6 +832,19 @@
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		04A3365D2959C91C0070D745 /* ProfileContainer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				04A3365E2959C91C0070D745 /* ProfileContainer.xcdatamodel */,
+			);
+			currentVersion = 04A3365E2959C91C0070D745 /* ProfileContainer.xcdatamodel */;
+			path = ProfileContainer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 04F7AC092945E19F00C6B479 /* Project object */;
 }
