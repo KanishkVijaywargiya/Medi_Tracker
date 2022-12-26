@@ -53,11 +53,19 @@ struct ProfileView: View {
                     // MARK: User detail section
                     userInfoSection
                     
+                    // MARK: Allergies section
                     VStack (alignment: .leading, spacing: 20) {
-                        Text("My Allergies")
+                        // allergy title & add section
+                        allergyTitle
+                        
+                        // alergy card section
+                        allergyCard
                     }
-                    .padding(.top, 20)
-                }
+                    
+                    // MARK: Share & rate our app section
+                    footerSection
+                    
+                }.padding(.bottom, 40)
                 
             }.scrollDismissesKeyboard(.immediately)
             
@@ -114,7 +122,27 @@ extension ProfileView {
         }
         .padding()
         .padding(.top, 50)
-    }
+    }// top section
+    
+    private var profileImage: some View {
+        Button(action: {self.openActionSheet.toggle()}) {
+            ZStack {
+                ProfileImage(imageSelected: $imageSelected)
+            }
+        }
+        .padding(.bottom)
+    }// top section
+    
+    private var textField: some View {
+        TextField("Enter your name", text: $userame)
+            .foregroundColor(.black.opacity(0.7))
+            .padding()
+            .overlay {
+                RoundedRectangle(cornerRadius: 16).stroke(Color.black.opacity(0.3), lineWidth: 1)
+            }
+            .onReceive(Just(userame)) { _ in limitText(textLimit)}
+    }// top section
+    
     
     private var userInfoSection: some View {
         VStack (alignment: .leading) {
@@ -126,39 +154,20 @@ extension ProfileView {
         .background(Color.gray.opacity(0.1))
         .cornerRadius(16)
         .padding(.horizontal)
-    }
-    
-    private var profileImage: some View {
-        Button(action: {self.openActionSheet.toggle()}) {
-            ZStack {
-                ProfileImage(imageSelected: $imageSelected)
-            }
-        }
-        .padding(.bottom)
-    }
-    
-    private var textField: some View {
-        TextField("Enter your name", text: $userame)
-            .foregroundColor(.black.opacity(0.7))
-            .padding()
-            .overlay {
-                RoundedRectangle(cornerRadius: 16).stroke(Color.black.opacity(0.3), lineWidth: 1)
-            }
-            .onReceive(Just(userame)) { _ in limitText(textLimit)}
-    }
+    }// mid section
     
     private var personalInfo: some View {
         VStack {
             HStack {
                 Text("Contact Number")
                 Spacer()
-                Text(mobile_num)
+                Text(mobile_num).foregroundColor(.secondary)
             }// mobile num
             divider
             DatePicker("Date of Birth", selection: $dob, displayedComponents: .date)
             divider
         }.tint(Color(K.BrandColors.pink))
-    }
+    }// mid section
     
     private var medicalInfo: some View {
         VStack {
@@ -173,7 +182,7 @@ extension ProfileView {
                     Text("Kg").foregroundColor(.secondary)
                 }// weight
                 divider
-
+                
                 HStack {
                     Text("Height")
                     Spacer()
@@ -184,7 +193,7 @@ extension ProfileView {
                     Text("cm").foregroundColor(.secondary)
                 }// height
                 divider
-
+                
                 HStack {
                     Text("Gender")
                     Spacer()
@@ -195,7 +204,7 @@ extension ProfileView {
                     }// gender
                 }
                 divider
-
+                
                 HStack {
                     Text("Blood Type")
                     Spacer()
@@ -225,7 +234,54 @@ extension ProfileView {
             }
         }
         .tint(Color(K.BrandColors.pink))
-    }
+    }// mid section
+    
+    private var allergyTitle: some View {
+        HStack (alignment: .center) {
+            Text("My Allergies").font(.title.bold()).foregroundColor(.primary)
+            Spacer()
+            MTAddButton(title: "Add", iconName: "plus", action: {})
+        }
+        .padding()
+        .padding(.top, 20)
+    }// allergy section
+    
+    private var allergyCard: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack (spacing: 20) {
+                ForEach(0..<5) { _ in
+                    MTMedicationCard(iconName: "allergens.fill", medicineName: "Aspirin", selection: false)
+                }
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+        }
+    }// allergy section
+    
+    
+    private var footerSection: some View {
+        VStack (alignment: .center, spacing: 20) {
+            Text("Spread the word")
+                .font(.headline)
+                .padding(.top)
+            Text("We love hearing from our users, enjoying our app, please rate us on the AppStore")
+                .padding(.horizontal, 16)
+                .font(.footnote)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+            
+            footerButton
+        }
+    }// footer section
+    
+    private var footerButton: some View {
+        HStack (spacing: 30) {
+            MTGeneralButton(title: "Share", action: {})
+            
+            MTGeneralButton(title: "Rate", action: {})
+        }
+    }// footer section
+    
     
     private var closeButton: some View {
         MTGlassButton(iconName: "square.and.arrow.up.fill", iconSize: 14)

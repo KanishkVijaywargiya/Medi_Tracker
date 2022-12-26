@@ -10,6 +10,7 @@ import SwiftUI
 struct MTMedicationCard: View {
     var iconName: String
     var medicineName: String
+    var selection: Bool = false
     
     var body: some View {
         VStack (alignment: .center, spacing: 10) {
@@ -22,11 +23,12 @@ struct MTMedicationCard: View {
                 .fontWeight(.medium)
         }
         .padding()
+        .frame(width: 120)
         .background(Color.white)
         .cornerRadius(12)
         .overlay {
             RoundedRectangle(cornerRadius: 12, style: .continuous)
-                .stroke(Color(K.BrandColors.pink), lineWidth: 1)
+                .stroke(selection ? Color(K.BrandColors.pink) : .white, lineWidth: 1)
         }
         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
     }

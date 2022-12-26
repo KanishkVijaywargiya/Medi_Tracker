@@ -10,7 +10,6 @@
 		0401CEC42955DAFF00A8B543 /* MTAppointmentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0401CEC32955DAFE00A8B543 /* MTAppointmentCard.swift */; };
 		04124F182949EC58002F57E3 /* AwesomeNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 04124F172949EC58002F57E3 /* AwesomeNetwork */; };
 		041F64A9295082B300B2DD1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 041F64AB295082B300B2DD1D /* Localizable.strings */; };
-		0429B7EB2958676600475E5F /* DemoProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429B7EA2958676600475E5F /* DemoProfile.swift */; };
 		043E7E8B2948AD25005F4740 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E7E8A2948AD25005F4740 /* ColorExtensions.swift */; };
 		043E7E8D2948E353005F4740 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E7E8C2948E353005F4740 /* Country.swift */; };
 		043E7E902948E5E5005F4740 /* ListOfCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E7E8F2948E5E5005F4740 /* ListOfCountries.swift */; };
@@ -30,6 +29,8 @@
 		048FC5A72956073A0016F566 /* MTGlassButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FC5A62956073A0016F566 /* MTGlassButton.swift */; };
 		048FC5A929560B460016F566 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FC5A829560B460016F566 /* ProfileButton.swift */; };
 		048FC5AB29560E730016F566 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FC5AA29560E730016F566 /* ProfileImage.swift */; };
+		04A3365A2959AD200070D745 /* MTGeneralButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A336592959AD200070D745 /* MTGeneralButton.swift */; };
+		04A3365C2959AF920070D745 /* MTAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3365B2959AF920070D745 /* MTAddButton.swift */; };
 		04CECAC32949D87B00A6E6F5 /* MTLineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC22949D87B00A6E6F5 /* MTLineText.swift */; };
 		04CECAC52949D93F00A6E6F5 /* MTSocialLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */; };
 		04CECAC82949E2C800A6E6F5 /* AwesomeToast in Frameworks */ = {isa = PBXBuildFile; productRef = 04CECAC72949E2C800A6E6F5 /* AwesomeToast */; };
@@ -64,7 +65,6 @@
 		0401CEC32955DAFE00A8B543 /* MTAppointmentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTAppointmentCard.swift; sourceTree = "<group>"; };
 		041F64AA295082B300B2DD1D /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		041F64AC295082E300B2DD1D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		0429B7EA2958676600475E5F /* DemoProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoProfile.swift; sourceTree = "<group>"; };
 		043E7E8A2948AD25005F4740 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		043E7E8C2948E353005F4740 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		043E7E8F2948E5E5005F4740 /* ListOfCountries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfCountries.swift; sourceTree = "<group>"; };
@@ -84,6 +84,8 @@
 		048FC5A62956073A0016F566 /* MTGlassButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTGlassButton.swift; sourceTree = "<group>"; };
 		048FC5A829560B460016F566 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
 		048FC5AA29560E730016F566 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
+		04A336592959AD200070D745 /* MTGeneralButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTGeneralButton.swift; sourceTree = "<group>"; };
+		04A3365B2959AF920070D745 /* MTAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTAddButton.swift; sourceTree = "<group>"; };
 		04CECAC22949D87B00A6E6F5 /* MTLineText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLineText.swift; sourceTree = "<group>"; };
 		04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTSocialLoginButton.swift; sourceTree = "<group>"; };
 		04D37BD72945F84700EEF926 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -170,6 +172,8 @@
 				04F4CAE72955E2F300C6715A /* MTMedicationCard.swift */,
 				04D65C992955E538009DFD71 /* MTActivityCard.swift */,
 				048FC5A62956073A0016F566 /* MTGlassButton.swift */,
+				04A336592959AD200070D745 /* MTGeneralButton.swift */,
+				04A3365B2959AF920070D745 /* MTAddButton.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -345,7 +349,6 @@
 				046A9A892955B753003CE426 /* HomeView */,
 				04E8CBA92955E86E00A4FD5C /* ProfileView */,
 				04EE705D294B891100A64D10 /* SplashScreen.swift */,
-				0429B7EA2958676600475E5F /* DemoProfile.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -449,9 +452,9 @@
 			files = (
 				04DD544F2950DFC600372343 /* LanguageCard.swift in Sources */,
 				04DD544D2950DDDD00372343 /* LanguageSelection.swift in Sources */,
-				0429B7EB2958676600475E5F /* DemoProfile.swift in Sources */,
 				046ED3142951AFA00067A5A1 /* ListOfCountriesViewModel.swift in Sources */,
 				04F7AC2A2945E40800C6B479 /* OTPViewModel.swift in Sources */,
+				04A3365C2959AF920070D745 /* MTAddButton.swift in Sources */,
 				044BB5E929508F0F00B48B79 /* LocalizationService.swift in Sources */,
 				04EE7063294B961900A64D10 /* LottieView.swift in Sources */,
 				048FC5A72956073A0016F566 /* MTGlassButton.swift in Sources */,
@@ -471,6 +474,7 @@
 				04F7AC172945E1A000C6B479 /* ContentView.swift in Sources */,
 				04DD544B2950CDA900372343 /* LanguageSheet.swift in Sources */,
 				044BB5E729508BF500B48B79 /* Strings+Localisation.swift in Sources */,
+				04A3365A2959AD200070D745 /* MTGeneralButton.swift in Sources */,
 				048FC5A5295602A30016F566 /* ImagePicker.swift in Sources */,
 				048FC5A929560B460016F566 /* ProfileButton.swift in Sources */,
 				04D5A7F42949CA9E00700097 /* MTButton.swift in Sources */,

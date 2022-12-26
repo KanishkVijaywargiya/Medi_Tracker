@@ -117,7 +117,7 @@ extension HomeView {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack (spacing: 20) {
                     ForEach(0..<5) { _ in
-                        MTMedicationCard(iconName: "pill.fill", medicineName: "Vitamin C")
+                        MTMedicationCard(iconName: "pill.fill", medicineName: "Vitamin C", selection: true)
                     }
                 }
                 .padding()
