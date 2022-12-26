@@ -24,7 +24,7 @@ struct ProfileImage: View {
         } else {
             Image(uiImage: imageSelected)
                 .resizable()
-                .frame(width: 210, height: 250)
+                .frame(width: 250, height: 250)
                 .scaledToFill()
                 .background(Color.white)
                 .cornerRadius(16)

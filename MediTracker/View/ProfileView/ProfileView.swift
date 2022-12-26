@@ -14,6 +14,7 @@ enum CameraType {
 
 struct ProfileView: View {
     @Environment(\.presentationMode) var presentationMode
+    @StateObject private var vm = OTPViewModel()
     
     // MARK: For image picker
     @State private var openActionSheet = false
@@ -41,12 +42,15 @@ struct ProfileView: View {
     @State private var wheelChairSelection: Bool = false
     @State private var organDonarSelection: Bool = false
     
+    let appReleaseVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    let buildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+    
     var body: some View {
         ZStack (alignment: .topTrailing) {
             Color.white
             
             ScrollView(showsIndicators: false) {
-                VStack (alignment: .leading) {
+                VStack (alignment: .center) {
                     // MARK: Username & User pic section
                     userImgSection
                     
@@ -64,6 +68,8 @@ struct ProfileView: View {
                     
                     // MARK: Share & rate our app section
                     footerSection
+                    
+                    signout
                     
                 }.padding(.bottom, 40)
                 
@@ -282,6 +288,19 @@ extension ProfileView {
         }
     }// footer section
     
+    
+    private var signout: some View {
+        VStack (alignment: .center, spacing: 4) {
+            Text("Sign Out")
+                .font(.headline).foregroundColor(.primary)
+            Text("Version: \(appReleaseVersion ?? "") (\(buildVersion ?? ""))")
+            .font(.system(size: 16))
+            .foregroundColor(.secondary)
+            .multilineTextAlignment(.center)
+        }
+        .padding(.top, 20)
+        .onTapGesture { vm.signOut() }
+    }
     
     private var closeButton: some View {
         MTGlassButton(iconName: "square.and.arrow.up.fill", iconSize: 14)
