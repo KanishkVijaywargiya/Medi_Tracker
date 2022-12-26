@@ -294,9 +294,9 @@ extension ProfileView {
             Text("Sign Out")
                 .font(.headline).foregroundColor(.primary)
             Text("Version: \(appReleaseVersion ?? "") (\(buildVersion ?? ""))")
-            .font(.system(size: 16))
-            .foregroundColor(.secondary)
-            .multilineTextAlignment(.center)
+                .font(.system(size: 16))
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
         }
         .padding(.top, 20)
         .onTapGesture { vm.signOut() }
