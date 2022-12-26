@@ -8,10 +8,6 @@
 import SwiftUI
 import Combine
 
-//enum CameraType {
-//    case camera, photoLibrary
-//}
-
 struct ProfileView: View {
     @Environment(\.dismiss) var dismissMode
     @StateObject private var vm = OTPViewModel()
