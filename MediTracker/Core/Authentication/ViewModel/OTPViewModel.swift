@@ -42,14 +42,16 @@ class OTPViewModel: ObservableObject {
     func sendOTP(countryCode: String) async {
         if isLoading { return }
         if number.isEmpty || number.count < 10 {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async {[weak self] in
+                guard let self = self else { return }
                 self.isLoading = false
                 self.showAlert.toggle()
                 self.alertTitle = K.LocalizedKey.VALID_NUM.localized(self.language_choosen)
             }
         } else {
             do {
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {[weak self] in
+                    guard let self = self else { return }
                     self.isLoading = true
                 }
                 let result = try await
@@ -60,7 +62,8 @@ class OTPViewModel: ObservableObject {
                     self.navigationTag = K.LocalizedKey.VERIFICATION
                 }
             } catch {
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {[weak self] in
+                    guard let self = self else { return }
                     self.isLoading = false
                     self.showAlert.toggle()
                     self.alertTitle = K.LocalizedKey.SOMETHING_WRONG.localized(self.language_choosen)
@@ -79,13 +82,15 @@ class OTPViewModel: ObservableObject {
             
             let _ = try await Auth.auth().signIn(with: credential)
             
-            DispatchQueue.main.async {[self] in
+            DispatchQueue.main.async {[weak self] in
+                guard let self = self else { return }
                 self.isLoading = false
                 self.log_status = true
-                self.mobile_num = "\(countryCode)-\(number)"
+                self.mobile_num = "\(countryCode)-\(self.number)"
             }
         } catch {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.isLoading = false
                 self.verificationAlert.toggle()
                 self.verificationAlertTitle = K.LocalizedKey.SOMETHING_WRONG.localized(self.language_choosen)

@@ -19,6 +19,8 @@ import Firebase
 
 
 struct HomeView: View {
+    @State private var showIntro: Bool = false
+    
     // MARK: used for localization sheet
     @State private var showLanguageSheet: Bool = false
     
@@ -57,6 +59,16 @@ struct HomeView: View {
         .sheet(isPresented: $showLanguageSheet) {
             LanguageSheet().presentationDetents([.medium])
         }//for lang. select
+        .onAppear {
+            DispatchQueue.main.async {
+                if UserDefaults.standard.UserIntroScreenShown {
+                    self.showIntro = false
+                } else {
+                    self.showIntro = true
+                }
+            }
+        }//for one time user intro screen
+        .fullScreenCover(isPresented: $showIntro) { UserIntroScreen() }//user intro screen
     }
 }
 

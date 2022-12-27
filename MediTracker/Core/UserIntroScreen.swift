@@ -9,34 +9,33 @@ import SwiftUI
 import Combine
 
 struct UserIntroScreen: View {
-    // MARK: open home screen
-    @State private var showHome: Bool = false
+    @Environment(\.dismiss) private var dismissMode
     
     // MARK: can be used for core data
     @StateObject private var profileVM = ProfileViewModel()
-
+    
     // MARK: For image picker
     @State private var openActionSheet = false
     @State private var openCameraRoll = false
     @State private var cameraType: CameraType = .photoLibrary
     @State private var imageSelected = UIImage()
-
+    
     // MARK: Personal infos
     @State var userame: String = ""
     @AppStorage("mobile_num") private var mobile_num = "" // MARK: app storage for mobile number
     @State private var dob = Date()
     private let textLimit = 20
-
+    
     // MARK: Medical infos
     @State private var weight: Double = 0.0
     @State private var height: Double = 0.0
-
+    
     @State private var genderSelection = 0
     var gender = ["Male", "Female", "Other"]
-
+    
     @State private var bloodTypeSelection = 0
     var bloodType = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"]
-
+    
     @State private var wheelChairSelection: Bool = false
     @State private var organDonarSelection: Bool = false
     
@@ -48,16 +47,14 @@ struct UserIntroScreen: View {
                 VStack (alignment: .center) {
                     // MARK: Username & User pic section
                     userImgSection
-
+                    
                     // MARK: User detail section
                     userInfoSection
-                                        
-                    MTButton(action: {
-                        self.showHome = true
-                        UserDefaults.standard.UserIntroScreenShown = true
-                    }, title: "Save", hexCode: K.BrandColors.pink)
-                    .padding()
                     
+                    MTButton(action: {
+                        UserDefaults.standard.UserIntroScreenShown = true
+                        self.dismissMode()
+                    }, title: "Save", hexCode: K.BrandColors.pink).padding()
                 }.padding(.bottom, 40)
             }.scrollDismissesKeyboard(.immediately)
         }
@@ -88,9 +85,6 @@ struct UserIntroScreen: View {
         } message: {
             Text("What do you want to open?")
         }// options for camera or photo library
-        .fullScreenCover(isPresented: $showHome) {
-            HomeView()
-        }// home screen
     }
     
     func limitText(_ upper: Int) {
@@ -115,7 +109,7 @@ extension UserIntroScreen {
         .padding()
         .padding(.top, 50)
     }// top section
-
+    
     private var profileImage: some View {
         Button(action: {self.openActionSheet.toggle()}) {
             ZStack {
@@ -124,7 +118,7 @@ extension UserIntroScreen {
         }
         .padding(.bottom)
     }// top section
-
+    
     private var textField: some View {
         TextField("Enter your name", text: $userame)
             .foregroundColor(.black.opacity(0.7))
@@ -134,11 +128,11 @@ extension UserIntroScreen {
             }
             .onReceive(Just(userame)) { _ in limitText(textLimit)}
     }// top section
-
+    
     private var userInfoSection: some View {
         VStack (alignment: .leading) {
             personalInfo
-
+            
             medicalInfo
         }
         .padding()
@@ -146,7 +140,7 @@ extension UserIntroScreen {
         .cornerRadius(16)
         .padding(.horizontal)
     }// mid section
-
+    
     private var personalInfo: some View {
         VStack {
             HStack {
@@ -159,7 +153,7 @@ extension UserIntroScreen {
             divider
         }.tint(Color(K.BrandColors.pink))
     }// mid section
-
+    
     private var medicalInfo: some View {
         VStack {
             Group {
@@ -174,7 +168,7 @@ extension UserIntroScreen {
                     Text("Kg").foregroundColor(.secondary)
                 }// weight
                 divider
-
+                
                 HStack {
                     Text("Height")
                     Spacer()
@@ -186,7 +180,7 @@ extension UserIntroScreen {
                     Text("cm").foregroundColor(.secondary)
                 }// height
                 divider
-
+                
                 HStack {
                     Text("Gender")
                     Spacer()
@@ -197,7 +191,7 @@ extension UserIntroScreen {
                     }// gender
                 }
                 divider
-
+                
                 HStack {
                     Text("Blood Type")
                     Spacer()
@@ -217,7 +211,7 @@ extension UserIntroScreen {
                         .animation(.easeIn, value: wheelChairSelection)
                 }// wheel chair
                 divider
-
+                
                 HStack (spacing: 20) {
                     Toggle("Organ Donar", isOn: $organDonarSelection)
                     Text(organDonarSelection ? "Yes" : "No")
@@ -228,20 +222,20 @@ extension UserIntroScreen {
         }
         .tint(Color(K.BrandColors.pink))
     }// mid section
-
+    
     private var divider: some View {
         Divider().background(Color.black.blendMode(.lighten))
     }
-
+    
     private var closeButton: some View {
         MTGlassButton(iconName: "square.and.arrow.up.fill", iconSize: 14)
             .padding(.trailing, 8)
             .padding(.top, 45)
-//            .onTapGesture {
-//                DispatchQueue.global(qos: .background).async {
-//                    guard let image = imageSelected as UIImage? else { return }
-//                    store(image: image, forKey: "ProfileImage", withStorageType: .userDefaults)
-//                }
-//            }
+        //            .onTapGesture {
+        //                DispatchQueue.global(qos: .background).async {
+        //                    guard let image = imageSelected as UIImage? else { return }
+        //                    store(image: image, forKey: "ProfileImage", withStorageType: .userDefaults)
+        //                }
+        //            }
     }
 }
