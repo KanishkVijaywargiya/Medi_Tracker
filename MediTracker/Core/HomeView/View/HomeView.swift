@@ -19,6 +19,7 @@ import Firebase
 
 
 struct HomeView: View {
+    // MARK: Use to show & hide the user intro screen
     @State private var showIntro: Bool = false
     
     // MARK: used for localization sheet
@@ -38,14 +39,11 @@ struct HomeView: View {
                     // MARK: Header Section
                     headerSection
                     
-                    
                     // MARK: Appointment Card
                     MTAppointmentCard(day: "Tue", date: "21", time: "10:00 am - 11:00 am", doctorName: "Dr. Lawrence Leiter", department: "General Surgeon")
                     
-                    
                     // MARK: Medication Card
                     medicationSection
-                    
                     
                     // MARK: Daily activity Card
                     dailyActivityCard
@@ -91,21 +89,21 @@ extension HomeView {
             
             Spacer()
             
-            // localization icon
+            //localization icon
             GlassButton(
                 iconName: LocalizationService.shared.langText,
                 action: { self.showLanguageSheet.toggle() }
             )
             .padding()
             
-            // profile icon
+            //profile icon
             ProfileButton(profileImg: $profileImage)
                 .onTapGesture {
                     withAnimation(Animation.easeInOut(duration: 0.2)) {
                         self.showProfileView = true
                     }
                 }
-             
+            
         }
         .padding(.horizontal)
         .padding(.vertical, 10)
