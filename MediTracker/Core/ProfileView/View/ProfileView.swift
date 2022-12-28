@@ -11,7 +11,7 @@ import Combine
 struct ProfileView: View {
     @Environment(\.dismiss) var dismissMode
     @StateObject private var vm = OTPViewModel()
-    @StateObject private var profileVM = ProfileViewModel()
+    @ObservedObject private var profileVM = ProfileViewModel()
     
     // MARK: For image picker
     @State private var openActionSheet = false
@@ -21,7 +21,7 @@ struct ProfileView: View {
     
     
     // MARK: Personal infos
-    @Binding var userame: String
+    @Binding var username: String
     @AppStorage("mobile_num") private var mobile_num = "" // MARK: app storage for mobile number
     @State private var dob = Date()
     private let textLimit = 20
@@ -29,18 +29,14 @@ struct ProfileView: View {
     // MARK: Medical infos
     @State private var weight: Double = 0.0
     @State private var height: Double = 0.0
-    
     @State private var genderSelection = 0
-    var gender = ["Male", "Female", "Other"]
-    
     @State private var bloodTypeSelection = 0
-    var bloodType = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"]
-    
     @State private var wheelChairSelection: Bool = false
     @State private var organDonarSelection: Bool = false
     
     let appReleaseVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     let buildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+    
     
     var body: some View {
         ZStack (alignment: .topTrailing) {
@@ -101,18 +97,21 @@ struct ProfileView: View {
         } message: {
             Text("What do you want to open?")
         }// options for camera or photo library
+        .onAppear {
+            profileVM.fetchUserData(phoneNum: mobile_num)
+        }
     }
     
     func limitText(_ upper: Int) {
-        if userame.count > upper {
-            userame = String(userame.prefix(upper))
+        if username.count > upper {
+            username = String(username.prefix(upper))
         }
     }// limit the text for textField
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(imageSelected: .constant(UIImage()), userame: .constant(""))
+        ProfileView(imageSelected: .constant(UIImage()), username: .constant(""))
     }
 }
 
@@ -136,13 +135,13 @@ extension ProfileView {
     }// top section
     
     private var textField: some View {
-        TextField("Enter your name", text: $userame)
+        TextField("Enter your name", text: $username)
             .foregroundColor(.black.opacity(0.7))
             .padding()
             .overlay {
                 RoundedRectangle(cornerRadius: 16).stroke(Color.black.opacity(0.3), lineWidth: 1)
             }
-            .onReceive(Just(userame)) { _ in limitText(textLimit)}
+            .onReceive(Just(username)) { _ in limitText(textLimit)}
     }// top section
     
     
@@ -180,7 +179,6 @@ extension ProfileView {
                     TextField("Enter your weight", value: $weight, format: .number)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
-                        .keyboardType(.decimalPad)
                         .onReceive(Just(weight)) { _ in limitText(textLimit)}
                     Text("Kg").foregroundColor(.secondary)
                 }// weight
@@ -192,7 +190,6 @@ extension ProfileView {
                     TextField("Enter your height", value: $height, format: .number)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
-                        .keyboardType(.decimalPad)
                         .onReceive(Just(height)) { _ in limitText(textLimit)}
                     Text("cm").foregroundColor(.secondary)
                 }// height
@@ -202,8 +199,8 @@ extension ProfileView {
                     Text("Gender")
                     Spacer()
                     Picker("Gender", selection: $genderSelection) {
-                        ForEach(0..<gender.count, id: \.self) {
-                            Text(self.gender[$0]).tag($0)
+                        ForEach(0..<K.gender.count, id: \.self) {
+                            Text(K.gender[$0]).tag($0)
                         }
                     }// gender
                 }
@@ -213,8 +210,8 @@ extension ProfileView {
                     Text("Blood Type")
                     Spacer()
                     Picker("Blood Type", selection: $bloodTypeSelection) {
-                        ForEach(0..<bloodType.count, id: \.self) {
-                            Text(self.bloodType[$0]).tag($0)
+                        ForEach(0..<K.bloodType.count, id: \.self) {
+                            Text(K.bloodType[$0]).tag($0)
                         }
                     }// blood type
                 }

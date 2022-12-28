@@ -11,7 +11,10 @@ import CoreData
 
 class ProfileViewModel: ObservableObject {
     @Published var isLoading: Bool = false
+    @Published var userProfileData = [ProfileModel]()
     
+    
+    // MARK: Profile upload
     func uploadUserProfile(image: UIImage?, username: String, phoneNum: String, dateOfBirth: Date, weight: Double, height: Double, gender: Int, bloodType: Int, wheelChair: Bool, organDonar: Bool, completion: @escaping(Bool) -> ()) {
         
         self.isLoading = true
@@ -32,6 +35,38 @@ class ProfileViewModel: ObservableObject {
                 print("Successfully uploaded user profile data", phoneNum)
                 self.isLoading = false
                 completion(true)
+            }
+        }
+    }
+    
+    
+    // MARK: Fetch user data
+    func fetchUserData(phoneNum: String) {
+        self.isLoading = true
+        
+        COLLECTION_USERS.addSnapshotListener { querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            self.userProfileData = documents.map { (queryDocumentSnapshot) -> ProfileModel in
+                let data = queryDocumentSnapshot.data()
+
+                let image = data["image"] as? String ?? ""
+                let username = data["username"] as? String ?? ""
+                let phoneNum = data["phoneNum"] as? String ?? ""
+                let dateOfBirth = data["dateOfBirth"] as? Date ?? Date()
+                let weight = data["weight"] as? Double ?? 0.0
+                let height = data["height"] as? Double ?? 0.0
+                let gender = data["gender"] as? Int ?? 0
+                let bloodType = data["bloodType"] as? Int ?? 0
+                let wheelChair = data["wheelChair"] as? Bool ?? false
+                let organDonar = data["organDonar"] as? Bool ?? false
+
+                print("Success!")
+                
+                return ProfileModel(image: image, username: username, phoneNum: phoneNum, dateOfBirth: dateOfBirth, weight: weight, height: height, gender: gender, bloodType: bloodType, wheelChair: wheelChair, organDonar: organDonar)
             }
         }
     }

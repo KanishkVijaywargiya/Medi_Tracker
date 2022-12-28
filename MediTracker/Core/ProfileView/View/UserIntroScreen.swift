@@ -21,19 +21,16 @@ struct UserIntroScreen: View {
     @State private var imageSelected = UIImage()
     
     // MARK: Personal infos
-    @State var userame: String = ""
     @AppStorage("mobile_num") private var mobile_num = "" // MARK: app storage for mobile number
+    @State private var userame: String = ""
     @State private var dob = Date()
     private let textLimit = 20
     
     // MARK: Medical infos
-    @State var weight: Double = 0.0
-    @State var height: Double = 0.0
-    
+    @State private var weight: Double = 0.0
+    @State private var height: Double = 0.0
     @State private var genderSelection = 0
-    
     @State private var bloodTypeSelection = 0
-    
     @State private var wheelChairSelection: Bool = false
     @State private var organDonarSelection: Bool = false
     
@@ -220,18 +217,6 @@ extension UserIntroScreen {
     
     private var divider: some View {
         Divider().background(Color.black.blendMode(.lighten))
-    }
-    
-    private var closeButton: some View {
-        MTGlassButton(iconName: "square.and.arrow.up.fill", iconSize: 14)
-            .padding(.trailing, 8)
-            .padding(.top, 45)
-        //            .onTapGesture {
-        //                DispatchQueue.global(qos: .background).async {
-        //                    guard let image = imageSelected as UIImage? else { return }
-        //                    store(image: image, forKey: "ProfileImage", withStorageType: .userDefaults)
-        //                }
-        //            }
     }
     
     private func uploadProfile() {
