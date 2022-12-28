@@ -12,7 +12,7 @@ struct UserIntroScreen: View {
     @Environment(\.dismiss) private var dismissMode
     
     // MARK: can be used for core data
-    @StateObject private var profileVM = ProfileViewModel()
+    @StateObject private var vm = ProfileViewModel()
     
     // MARK: For image picker
     @State private var openActionSheet = false
@@ -27,14 +27,12 @@ struct UserIntroScreen: View {
     private let textLimit = 20
     
     // MARK: Medical infos
-    @State private var weight: Double = 0.0
-    @State private var height: Double = 0.0
+    @State var weight: Double = 0.0
+    @State var height: Double = 0.0
     
     @State private var genderSelection = 0
-    var gender = ["Male", "Female", "Other"]
     
     @State private var bloodTypeSelection = 0
-    var bloodType = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"]
     
     @State private var wheelChairSelection: Bool = false
     @State private var organDonarSelection: Bool = false
@@ -52,8 +50,7 @@ struct UserIntroScreen: View {
                     userInfoSection
                     
                     MTButton(action: {
-                        UserDefaults.standard.UserIntroScreenShown = true
-                        self.dismissMode()
+                        uploadProfile()
                     }, title: "Save", hexCode: K.BrandColors.pink).padding()
                 }.padding(.bottom, 40)
             }.scrollDismissesKeyboard(.immediately)
@@ -163,7 +160,6 @@ extension UserIntroScreen {
                     TextField("Enter your weight", value: $weight, format: .number)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
-                        .keyboardType(.decimalPad)
                         .onReceive(Just(weight)) { _ in limitText(textLimit)}
                     Text("Kg").foregroundColor(.secondary)
                 }// weight
@@ -175,7 +171,6 @@ extension UserIntroScreen {
                     TextField("Enter your height", value: $height, format: .number)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
-                        .keyboardType(.decimalPad)
                         .onReceive(Just(height)) { _ in limitText(textLimit)}
                     Text("cm").foregroundColor(.secondary)
                 }// height
@@ -185,8 +180,8 @@ extension UserIntroScreen {
                     Text("Gender")
                     Spacer()
                     Picker("Gender", selection: $genderSelection) {
-                        ForEach(0..<gender.count, id: \.self) {
-                            Text(self.gender[$0]).tag($0)
+                        ForEach(0..<K.gender.count, id: \.self) {
+                            Text(K.gender[$0]).tag($0)
                         }
                     }// gender
                 }
@@ -196,8 +191,8 @@ extension UserIntroScreen {
                     Text("Blood Type")
                     Spacer()
                     Picker("Blood Type", selection: $bloodTypeSelection) {
-                        ForEach(0..<bloodType.count, id: \.self) {
-                            Text(self.bloodType[$0]).tag($0)
+                        ForEach(0..<K.bloodType.count, id: \.self) {
+                            Text(K.bloodType[$0]).tag($0)
                         }
                     }// blood type
                 }
@@ -237,5 +232,14 @@ extension UserIntroScreen {
         //                    store(image: image, forKey: "ProfileImage", withStorageType: .userDefaults)
         //                }
         //            }
+    }
+    
+    private func uploadProfile() {
+        vm.uploadUserProfile(image: imageSelected, username: userame, phoneNum: mobile_num, dateOfBirth: dob, weight: weight, height: height, gender: genderSelection, bloodType: bloodTypeSelection, wheelChair: wheelChairSelection, organDonar: organDonarSelection) { returnedBool in
+            if returnedBool {
+                UserDefaults.standard.UserIntroScreenShown = true
+                self.dismissMode()
+            }
+        }
     }
 }

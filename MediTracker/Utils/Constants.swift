@@ -100,7 +100,8 @@ struct K {
         static let verification = "VERIFICATION"
     }
     
-    //checking  
-    
+    //general
+    static let bloodType = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"]
+    static let gender = ["Male", "Female", "Other"]
     
 }
