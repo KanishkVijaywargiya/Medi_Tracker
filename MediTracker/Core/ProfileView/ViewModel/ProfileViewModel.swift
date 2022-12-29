@@ -7,12 +7,17 @@
 
 import SwiftUI
 import Firebase
+import FirebaseFirestoreSwift
 import CoreData
 
 class ProfileViewModel: ObservableObject {
     @Published var isLoading: Bool = false
-    @Published var userProfileData = [ProfileModel]()
+    @Published var userProfileData: ProfileModel?
+    @AppStorage("mobile_num") private var mobile_num = "" //mobile num
     
+    init() {
+        fetchUserData(phoneNum: mobile_num)
+    }
     
     // MARK: Profile upload
     func uploadUserProfile(image: UIImage?, username: String, phoneNum: String, dateOfBirth: Date, weight: Double, height: Double, gender: Int, bloodType: Int, wheelChair: Bool, organDonar: Bool, completion: @escaping(Bool) -> ()) {
@@ -43,31 +48,23 @@ class ProfileViewModel: ObservableObject {
     // MARK: Fetch user data
     func fetchUserData(phoneNum: String) {
         self.isLoading = true
-        
-        COLLECTION_USERS.addSnapshotListener { querySnapshot, error in
-            guard let documents = querySnapshot?.documents else {
-                print("No documents")
-                return
-            }
-
-            self.userProfileData = documents.map { (queryDocumentSnapshot) -> ProfileModel in
-                let data = queryDocumentSnapshot.data()
-
-                let image = data["image"] as? String ?? ""
-                let username = data["username"] as? String ?? ""
-                let phoneNum = data["phoneNum"] as? String ?? ""
-                let dateOfBirth = data["dateOfBirth"] as? Date ?? Date()
-                let weight = data["weight"] as? Double ?? 0.0
-                let height = data["height"] as? Double ?? 0.0
-                let gender = data["gender"] as? Int ?? 0
-                let bloodType = data["bloodType"] as? Int ?? 0
-                let wheelChair = data["wheelChair"] as? Bool ?? false
-                let organDonar = data["organDonar"] as? Bool ?? false
-
-                print("Success!")
-                
-                return ProfileModel(image: image, username: username, phoneNum: phoneNum, dateOfBirth: dateOfBirth, weight: weight, height: height, gender: gender, bloodType: bloodType, wheelChair: wheelChair, organDonar: organDonar)
-            }
+        COLLECTION_USERS.document(phoneNum).getDocument { snapshot, _ in
+            guard let dictionary = snapshot?.data() else { return }
+            
+            guard let image = dictionary["image"] as? String else { return }
+            guard let username = dictionary["username"] as? String else { return }
+            guard let phoneNum = dictionary["phoneNum"] as? String else { return }
+            let dateOfBirth = (dictionary["dateOfBirth"] as? Timestamp)?.dateValue() ?? Date()
+            guard let weight = dictionary["weight"] as? Double else { return }
+            guard let height = dictionary["height"] as? Double else { return }
+            guard let gender = dictionary["gender"] as? Int else { return }
+            guard let bloodType = dictionary["bloodType"] as? Int else { return }
+            let wheelChairNum = dictionary["wheelChair"] as? NSNumber
+            let wheelChairBool = Bool(truncating: wheelChairNum ?? 1)
+            let organDonar = dictionary["organDonar"] as? NSNumber
+            let organDonarBool = Bool(truncating: organDonar ?? 1)
+            
+            self.userProfileData = ProfileModel(image: image, username: username, phoneNum: phoneNum, dateOfBirth: dateOfBirth, weight: weight, height: height, gender: gender, bloodType: bloodType, wheelChair: wheelChairBool, organDonar: organDonarBool)
         }
     }
 }

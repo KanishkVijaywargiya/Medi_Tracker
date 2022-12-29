@@ -19,16 +19,15 @@ import Firebase
 
 
 struct HomeView: View {
-    // MARK: Use to show & hide the user intro screen
-    @State private var showIntro: Bool = false
+    @State private var showIntro: Bool = false //show or hide user intro screen
+    @State private var showLanguageSheet: Bool = false //localization
+    @State private var showProfileView: Bool = false //show profile page
+    @State private var profileImage: String = "" //profile image
+    @State private var dob: Date = Date() //date of birth
+    @State private var nameText: String = "" //name text in onReceive
     
-    // MARK: used for localization sheet
-    @State private var showLanguageSheet: Bool = false
-    
-    // MARK: Profile page
-    @State private var showProfileView: Bool = false
-    @AppStorage("name") var name = ""
-    @State private var profileImage: UIImage = retrieveImage(forKey: "ProfileImage", inStorageType: .userDefaults)
+    @ObservedObject var profileVM: ProfileViewModel //profile viewModel
+    @AppStorage("mobile_num") private var mobile_num = "" //mobile num
     
     var body: some View {
         ZStack (alignment: .topLeading) {
@@ -36,23 +35,18 @@ struct HomeView: View {
             
             ScrollView(showsIndicators: false) {
                 VStack (alignment: .leading, spacing: 40) {
-                    // MARK: Header Section
-                    headerSection
+                    headerSection //header section
                     
-                    // MARK: Appointment Card
-                    MTAppointmentCard(day: "Tue", date: "21", time: "10:00 am - 11:00 am", doctorName: "Dr. Lawrence Leiter", department: "General Surgeon")
+                    MTAppointmentCard(day: "Tue", date: "21", time: "10:00 am - 11:00 am", doctorName: "Dr. Lawrence Leiter", department: "General Surgeon") // appointment card
                     
-                    // MARK: Medication Card
-                    medicationSection
+                    medicationSection //medication card
                     
-                    // MARK: Daily activity Card
-                    dailyActivityCard
+                    dailyActivityCard //activity card
                 }
             }
         }
         .fullScreenCover(isPresented: $showProfileView, content: {
-            ProfileView(imageSelected: $profileImage, username: $name)
-                .animation(Animation.spring(), value: name)
+            ProfileView().animation(Animation.spring(), value: showProfileView)
         })
         .sheet(isPresented: $showLanguageSheet) {
             LanguageSheet().presentationDetents([.medium])
@@ -67,12 +61,19 @@ struct HomeView: View {
             }
         }//for one time user intro screen
         .fullScreenCover(isPresented: $showIntro) { UserIntroScreen() }//user intro screen
+        .onReceive(profileVM.$userProfileData) { newValue in
+            if (newValue != nil) {
+                nameText = newValue?.username ?? "asdfghjkl"
+                profileImage = newValue?.image ?? ""
+                dob = newValue?.dateOfBirth ?? Date()
+            }
+        }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(profileVM: ProfileViewModel())
     }
 }
 
@@ -84,7 +85,7 @@ extension HomeView {
                 Text("Good Morning,")
                     .font(.title2.bold())
                     .foregroundColor(.secondary)
-                Text("\(name)").font(.title3.bold())
+                Text(nameText).font(.title3.bold())
             }
             
             Spacer()
@@ -97,12 +98,63 @@ extension HomeView {
             .padding()
             
             //profile icon
-            ProfileButton(profileImg: $profileImage)
-                .onTapGesture {
-                    withAnimation(Animation.easeInOut(duration: 0.2)) {
-                        self.showProfileView = true
+            AsyncImage(url: URL(string: profileImage)) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 32, height: 32)
+                    .padding(.all, 6)
+                    .background(Color.white)
+                    .clipShape(Circle())
+                    .overlay { Circle().stroke(Color.black.opacity(0.3), lineWidth: 2) }
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                    .onTapGesture {
+                        withAnimation(Animation.easeInOut(duration: 0.2)) {
+                            self.showProfileView = true
+                        }
                     }
-                }
+            } placeholder: {
+                Image(systemName: "person.fill")
+                    .font(.system(size: 32, weight: .bold))
+                    .padding(.all, 6)
+                    .background(Color.white)
+                    .clipShape(Circle())
+                    .overlay { Circle().stroke(Color.black.opacity(0.3), lineWidth: 2) }
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                    .onTapGesture {
+                        withAnimation(Animation.easeInOut(duration: 0.2)) {
+                            self.showProfileView = true
+                        }
+                    }
+            }
+            //            ProfileButton(profileImg: $profileImage)
+            //            if let image = profileVM.userProfileData?.image {
+            //                Image(image)
+            //                    .font(.system(size: 32, weight: .bold))
+            //                    .padding(.all, 6)
+            //                    .background(Color.white)
+            //                    .clipShape(Circle())
+            //                    .overlay { Circle().stroke(Color.black.opacity(0.3), lineWidth: 2) }
+            //                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+            //                    .onTapGesture {
+            //                        withAnimation(Animation.easeInOut(duration: 0.2)) {
+            //                            self.showProfileView = true
+            //                        }
+            //                    }
+            //            } else {
+            //                Image(systemName: "person.fill")
+            //                    .font(.system(size: 32, weight: .bold))
+            //                    .padding(.all, 6)
+            //                    .background(Color.white)
+            //                    .clipShape(Circle())
+            //                    .overlay { Circle().stroke(Color.black.opacity(0.3), lineWidth: 2) }
+            //                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+            //                    .onTapGesture {
+            //                        withAnimation(Animation.easeInOut(duration: 0.2)) {
+            //                            self.showProfileView = true
+            //                        }
+            //                    }
+            //            }
             
         }
         .padding(.horizontal)
@@ -111,6 +163,9 @@ extension HomeView {
     
     private var medicationSection: some View {
         VStack (alignment: .leading, spacing: 10) {
+            //DatePicker("Date of Birth", selection: $dob, displayedComponents: .date)
+            //Text(profileVM.userProfileData?.dateString ?? "")
+            
             Text("Medication")
                 .foregroundColor(.primary)
                 .font(.title)

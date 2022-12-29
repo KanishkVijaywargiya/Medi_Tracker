@@ -2,41 +2,17 @@
 //  ProfileView.swift
 //  MediTracker
 //
-//  Created by Kanishk Vijaywargiya on 23/12/22.
+//  Created by Kanishk Vijaywargiya on 29/12/22.
 //
 
 import SwiftUI
-import Combine
 
 struct ProfileView: View {
-    @Environment(\.dismiss) var dismissMode
-    @StateObject private var vm = OTPViewModel()
-    @ObservedObject private var profileVM = ProfileViewModel()
-    
-    // MARK: For image picker
-    @State private var openActionSheet = false
-    @State private var openCameraRoll = false
-    @State private var cameraType: CameraType = .photoLibrary
-    @Binding var imageSelected: UIImage
-    
-    
-    // MARK: Personal infos
-    @Binding var username: String
-    @AppStorage("mobile_num") private var mobile_num = "" // MARK: app storage for mobile number
-    @State private var dob = Date()
-    private let textLimit = 20
-    
-    // MARK: Medical infos
-    @State private var weight: Double = 0.0
-    @State private var height: Double = 0.0
-    @State private var genderSelection = 0
-    @State private var bloodTypeSelection = 0
-    @State private var wheelChairSelection: Bool = false
-    @State private var organDonarSelection: Bool = false
-    
+    @Environment(\.dismiss) private var dismissMode
+    @State private var showEditProfileView: Bool = false
+    @StateObject private var vm = OTPViewModel() //using for sign out
     let appReleaseVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     let buildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-    
     
     var body: some View {
         ZStack (alignment: .topTrailing) {
@@ -44,221 +20,143 @@ struct ProfileView: View {
             
             ScrollView(showsIndicators: false) {
                 VStack (alignment: .center) {
-                    // MARK: Username & User pic section
-                    userImgSection
+                    userImgAndName
                     
-                    // MARK: User detail section
-                    userInfoSection
+                    userDetails
                     
-                    // MARK: Allergies section
-                    VStack (alignment: .leading, spacing: 20) {
-                        // allergy title & add section
-                        allergyTitle
-                        
-                        // alergy card section
-                        allergyCard
-                    }
+                    allergySection
                     
-                    // MARK: Share & rate our app section
                     footerSection
                     
-                    signout
+                    signOutSection
                     
                 }.padding(.bottom, 40)
-                
-            }.scrollDismissesKeyboard(.immediately)
-            
-            closeButton
+            }
+            floatButtonSection
         }
-        .ignoresSafeArea()
-        .sheet(isPresented: $openCameraRoll, content: {
-            if cameraType == .camera {
-                ImagePicker(selectedImage: $imageSelected, sourceType: .camera)
-            } else {
-                ImagePicker(selectedImage: $imageSelected, sourceType: .photoLibrary)
-            }
-        })// open camera role or photo library according to selection
-        .confirmationDialog("What do you want to open?", isPresented: $openActionSheet) {
-            Button(action: {
-                openCameraRoll = true
-                cameraType = .camera
-            }) {
-                Text("Camera")
-            }
-            Button(action: {
-                openCameraRoll = true
-                cameraType = .photoLibrary
-            }) {
-                Text("Photo Gallery")
-            }
-            Button("Cancel", role: .cancel) {
-                openActionSheet = false
-            }
-        } message: {
-            Text("What do you want to open?")
-        }// options for camera or photo library
-        .onAppear {
-            profileVM.fetchUserData(phoneNum: mobile_num)
+        .fullScreenCover(isPresented: $showEditProfileView) {
+            
         }
     }
-    
-    func limitText(_ upper: Int) {
-        if username.count > upper {
-            username = String(username.prefix(upper))
-        }
-    }// limit the text for textField
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(imageSelected: .constant(UIImage()), username: .constant(""))
+        ProfileView()
     }
 }
 
 extension ProfileView {
-    private var userImgSection: some View {
+    private var userImgAndName: some View {
         VStack (alignment: .center, spacing: 10) {
-            profileImage
-            textField
+            Image(systemName: "person.fill")
+                .font(.system(size: 250))
+                .foregroundColor(.black)
+                .background(Color.white)
+                .cornerRadius(16)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 16).stroke(Color.black.opacity(0.3), lineWidth: 1)
+                }
+                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                .padding(.bottom)
+            
+            Text("Kanishk Vijaywargiya")
+                .font(.title2.bold())
         }
         .padding()
-        .padding(.top, 50)
-    }// top section
+        .padding(.top, 40)
+    }
     
-    private var profileImage: some View {
-        Button(action: {self.openActionSheet.toggle()}) {
-            ZStack {
-                ProfileImage(imageSelected: $imageSelected)
-            }
-        }
-        .padding(.bottom)
-    }// top section
-    
-    private var textField: some View {
-        TextField("Enter your name", text: $username)
-            .foregroundColor(.black.opacity(0.7))
-            .padding()
-            .overlay {
-                RoundedRectangle(cornerRadius: 16).stroke(Color.black.opacity(0.3), lineWidth: 1)
-            }
-            .onReceive(Just(username)) { _ in limitText(textLimit)}
-    }// top section
-    
-    
-    private var userInfoSection: some View {
-        VStack (alignment: .leading) {
-            personalInfo
+    private var userDetails: some View {
+        VStack (alignment: .leading, spacing: 12) {
+            HStack {
+                Text("Contact Number")
+                Spacer()
+                Text("+91-9123235319").foregroundColor(.secondary)
+            }// mobile num
+            divider
+            HStack {
+                Text("Date of Birth")
+                Spacer()
+                Text("01-Jan-1999").foregroundColor(.secondary)
+            }// dob
+            divider
             
-            medicalInfo
+            
+            VStack (alignment: .leading, spacing: 12) {
+                Group {
+                    HStack {
+                        Text("Weight")
+                        Spacer()
+                        Text("70 Kg").foregroundColor(.secondary)
+                    }// weight
+                    divider
+                    
+                    HStack {
+                        Text("Height")
+                        Spacer()
+                        Text("175 cm").foregroundColor(.secondary)
+                    }// height
+                    divider
+                    
+                    HStack {
+                        Text("Gender")
+                        Spacer()
+                        Text("Male").foregroundColor(.secondary)
+                    }
+                    divider
+                    
+                    HStack {
+                        Text("Blood Type")
+                        Spacer()
+                        Text("B+").foregroundColor(.secondary)
+                    }
+                    divider
+                }
+                Group {
+                    HStack {
+                        Text("Wheel Chair")
+                        Spacer()
+                        Text("No").foregroundColor(.secondary)
+                    }//wheel chair
+                    divider
+                    
+                    HStack {
+                        Text("Organ Donar")
+                        Spacer()
+                        Text("No").foregroundColor(.secondary)//organ donar chair
+                    }// organ donar
+                }
+            }
         }
+        .tint(Color(K.BrandColors.pink))
         .padding()
         .background(Color.gray.opacity(0.1))
         .cornerRadius(16)
         .padding(.horizontal)
-    }// mid section
+    }
     
-    private var personalInfo: some View {
-        VStack {
-            HStack {
-                Text("Contact Number")
+    private var allergySection: some View {
+        VStack (spacing: 0) {
+            HStack (alignment: .center) {
+                Text("My Allergies").font(.title.bold()).foregroundColor(.primary)
                 Spacer()
-                Text(mobile_num).foregroundColor(.secondary)
-            }// mobile num
-            divider
-            DatePicker("Date of Birth", selection: $dob, displayedComponents: .date)
-            divider
-        }.tint(Color(K.BrandColors.pink))
-    }// mid section
-    
-    private var medicalInfo: some View {
-        VStack {
-            Group {
-                HStack {
-                    Text("Weight")
-                    Spacer()
-                    TextField("Enter your weight", value: $weight, format: .number)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.trailing)
-                        .onReceive(Just(weight)) { _ in limitText(textLimit)}
-                    Text("Kg").foregroundColor(.secondary)
-                }// weight
-                divider
-                
-                HStack {
-                    Text("Height")
-                    Spacer()
-                    TextField("Enter your height", value: $height, format: .number)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.trailing)
-                        .onReceive(Just(height)) { _ in limitText(textLimit)}
-                    Text("cm").foregroundColor(.secondary)
-                }// height
-                divider
-                
-                HStack {
-                    Text("Gender")
-                    Spacer()
-                    Picker("Gender", selection: $genderSelection) {
-                        ForEach(0..<K.gender.count, id: \.self) {
-                            Text(K.gender[$0]).tag($0)
-                        }
-                    }// gender
-                }
-                divider
-                
-                HStack {
-                    Text("Blood Type")
-                    Spacer()
-                    Picker("Blood Type", selection: $bloodTypeSelection) {
-                        ForEach(0..<K.bloodType.count, id: \.self) {
-                            Text(K.bloodType[$0]).tag($0)
-                        }
-                    }// blood type
-                }
-                divider
-            }
-            Group {
-                HStack (spacing: 20) {
-                    Toggle("Wheel chair", isOn: $wheelChairSelection)
-                    Text(wheelChairSelection ? "Yes" : "No")
-                        .foregroundColor(.secondary)
-                        .animation(.easeIn, value: wheelChairSelection)
-                }// wheel chair
-                divider
-                
-                HStack (spacing: 20) {
-                    Toggle("Organ Donar", isOn: $organDonarSelection)
-                    Text(organDonarSelection ? "Yes" : "No")
-                        .foregroundColor(.secondary)
-                        .animation(.easeIn, value: organDonarSelection)
-                }// organ donar
-            }
-        }
-        .tint(Color(K.BrandColors.pink))
-    }// mid section
-    
-    private var allergyTitle: some View {
-        HStack (alignment: .center) {
-            Text("My Allergies").font(.title.bold()).foregroundColor(.primary)
-            Spacer()
-            MTAddButton(title: "Add", iconName: "plus", action: {})
-        }
-        .padding()
-        .padding(.top, 20)
-    }// allergy section
-    
-    private var allergyCard: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack (spacing: 20) {
-                ForEach(0..<5) { _ in
-                    MTMedicationCard(iconName: "allergens.fill", medicineName: "Aspirin", selection: false)
-                }
+                MTAddButton(title: "Add", iconName: "plus", action: {})
             }
             .padding()
-            .frame(maxWidth: .infinity)
+            .padding(.top, 20)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack (spacing: 20) {
+                    ForEach(0..<5) { _ in
+                        MTMedicationCard(iconName: "allergens.fill", medicineName: "Aspirin", selection: false)
+                    }
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+            }
         }
-    }// allergy section
-    
+    }
     
     private var footerSection: some View {
         VStack (alignment: .center, spacing: 20) {
@@ -271,20 +169,15 @@ extension ProfileView {
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
             
-            footerButton
+            HStack (spacing: 30) {
+                MTGeneralButton(title: "Share", action: {})
+                
+                MTGeneralButton(title: "Rate", action: {})
+            }
         }
-    }// footer section
+    }
     
-    private var footerButton: some View {
-        HStack (spacing: 30) {
-            MTGeneralButton(title: "Share", action: {})
-            
-            MTGeneralButton(title: "Rate", action: {})
-        }
-    }// footer section
-    
-    
-    private var signout: some View {
+    private var signOutSection: some View {
         VStack (alignment: .center, spacing: 4) {
             Text("Sign Out")
                 .font(.headline).foregroundColor(.primary)
@@ -295,19 +188,17 @@ extension ProfileView {
         }
         .padding(.top, 20)
         .onTapGesture { vm.signOut() }
-    }// sign out section
+    }
     
-    private var closeButton: some View {
-        MTGlassButton(iconName: "square.and.arrow.up.fill", iconSize: 14)
-            .padding(.trailing, 8)
-            .padding(.top, 45)
-            .onTapGesture {
-                DispatchQueue.global(qos: .background).async {
-                    guard let image = imageSelected as UIImage? else { return }
-                    store(image: image, forKey: "ProfileImage", withStorageType: .userDefaults)
-                }
-                self.dismissMode()
-            }
+    private var floatButtonSection: some View {
+        HStack {
+            MTGlassButton(iconName: "chevron.down", iconSize: 14, action: { self.dismissMode() })
+                
+            Spacer()
+            MTAddButton(title: "Edit", iconName: "pencil", action: {})
+                .background(BlurView(style: .systemUltraThinMaterial))
+                .cornerRadius(12)
+        }.padding(.horizontal)
     }
     
     private var divider: some View {

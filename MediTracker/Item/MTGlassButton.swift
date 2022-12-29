@@ -10,6 +10,7 @@ import SwiftUI
 struct MTGlassButton: View {
     var iconName: String = "chevron.backward"
     var iconSize: CGFloat = 12
+    var action: () -> ()
     
     var body: some View {
         Image(systemName: iconName)
@@ -18,11 +19,12 @@ struct MTGlassButton: View {
             .padding(.all, 10)
             .background(BlurView(style: .systemMaterialDark))
             .mask(Circle())
+            .onTapGesture { action() }
     }
 }
 
 struct MTGlassButton_Previews: PreviewProvider {
     static var previews: some View {
-        MTGlassButton()
+        MTGlassButton(action: {})
     }
 }

@@ -14,7 +14,7 @@ struct AuthenticationView: View {
     var body: some View {
         VStack {
             if log_status {
-                HomeView()
+                HomeView(profileVM: ProfileViewModel())
             } else {
                 Login()
             }

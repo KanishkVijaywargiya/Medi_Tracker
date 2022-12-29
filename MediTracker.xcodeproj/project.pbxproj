@@ -43,6 +43,7 @@
 		04A336632959CBA00070D745 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A336622959CBA00070D745 /* ProfileViewModel.swift */; };
 		04A336652959E0EF0070D745 /* UserIntroScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A336642959E0EF0070D745 /* UserIntroScreen.swift */; };
 		04A336672959F2450070D745 /* UserDefault+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A336662959F2450070D745 /* UserDefault+extension.swift */; };
+		04C06E00295D8D71006D00E2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C06DFF295D8D71006D00E2 /* ProfileView.swift */; };
 		04CECAC32949D87B00A6E6F5 /* MTLineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC22949D87B00A6E6F5 /* MTLineText.swift */; };
 		04CECAC52949D93F00A6E6F5 /* MTSocialLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */; };
 		04CECAC82949E2C800A6E6F5 /* AwesomeToast in Frameworks */ = {isa = PBXBuildFile; productRef = 04CECAC72949E2C800A6E6F5 /* AwesomeToast */; };
@@ -55,7 +56,7 @@
 		04DD544F2950DFC600372343 /* LanguageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD544E2950DFC600372343 /* LanguageCard.swift */; };
 		04DF96EB29562E970084820D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04DF96EA29562E970084820D /* GoogleService-Info.plist */; };
 		04E274E0295348D900707A46 /* FooterText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E274DF295348D900707A46 /* FooterText.swift */; };
-		04E8CBAB2955E88C00A4FD5C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E8CBAA2955E88B00A4FD5C /* ProfileView.swift */; };
+		04E8CBAB2955E88C00A4FD5C /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E8CBAA2955E88B00A4FD5C /* EditProfileView.swift */; };
 		04EE705E294B891100A64D10 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE705D294B891100A64D10 /* SplashScreen.swift */; };
 		04EE7061294B95D900A64D10 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 04EE7060294B95D900A64D10 /* Lottie */; };
 		04EE7063294B961900A64D10 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE7062294B961900A64D10 /* LottieView.swift */; };
@@ -103,6 +104,7 @@
 		04A336622959CBA00070D745 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		04A336642959E0EF0070D745 /* UserIntroScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIntroScreen.swift; sourceTree = "<group>"; };
 		04A336662959F2450070D745 /* UserDefault+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+extension.swift"; sourceTree = "<group>"; };
+		04C06DFF295D8D71006D00E2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		04CECAC22949D87B00A6E6F5 /* MTLineText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLineText.swift; sourceTree = "<group>"; };
 		04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTSocialLoginButton.swift; sourceTree = "<group>"; };
 		04D37BD72945F84700EEF926 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -115,7 +117,7 @@
 		04DD544E2950DFC600372343 /* LanguageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCard.swift; sourceTree = "<group>"; };
 		04DF96EA29562E970084820D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04E274DF295348D900707A46 /* FooterText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterText.swift; sourceTree = "<group>"; };
-		04E8CBAA2955E88B00A4FD5C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		04E8CBAA2955E88B00A4FD5C /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		04EE705D294B891100A64D10 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		04EE7062294B961900A64D10 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		04EE7064294B964600A64D10 /* HeartLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HeartLottie.json; sourceTree = "<group>"; };
@@ -311,9 +313,10 @@
 			isa = PBXGroup;
 			children = (
 				04A336642959E0EF0070D745 /* UserIntroScreen.swift */,
-				04E8CBAA2955E88B00A4FD5C /* ProfileView.swift */,
+				04E8CBAA2955E88B00A4FD5C /* EditProfileView.swift */,
 				048FC5A829560B460016F566 /* ProfileButton.swift */,
 				048FC5AA29560E730016F566 /* ProfileImage.swift */,
+				04C06DFF295D8D71006D00E2 /* ProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				048FC5A929560B460016F566 /* ProfileButton.swift in Sources */,
 				0457D43C295C663000145468 /* ImageUploader.swift in Sources */,
 				04A336632959CBA00070D745 /* ProfileViewModel.swift in Sources */,
+				04C06E00295D8D71006D00E2 /* ProfileView.swift in Sources */,
 				04D5A7F42949CA9E00700097 /* MTButton.swift in Sources */,
 				04A336672959F2450070D745 /* UserDefault+extension.swift in Sources */,
 				044AA224294890EC00EA04B4 /* RoundedCorners.swift in Sources */,
@@ -550,7 +554,7 @@
 				04632E842951C8A900FAF966 /* CountryModel.swift in Sources */,
 				0481B37E295C93290036326E /* ProfileModel.swift in Sources */,
 				04CECAC32949D87B00A6E6F5 /* MTLineText.swift in Sources */,
-				04E8CBAB2955E88C00A4FD5C /* ProfileView.swift in Sources */,
+				04E8CBAB2955E88C00A4FD5C /* EditProfileView.swift in Sources */,
 				04EE7068294BA67F00A64D10 /* AuthenticationView.swift in Sources */,
 				04E274E0295348D900707A46 /* FooterText.swift in Sources */,
 				04F7AC152945E1A000C6B479 /* MediTrackerApp.swift in Sources */,
