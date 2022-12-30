@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct GlassButton: View {
-    var iconName: String
     var action: () -> ()
     
     @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language
@@ -24,7 +23,7 @@ struct GlassButton: View {
 
 struct GlassButton_Previews: PreviewProvider {
     static var previews: some View {
-        GlassButton(iconName: "", action: {}).previewLayout(.sizeThatFits)
+        GlassButton(action: {}).previewLayout(.sizeThatFits)
     }
 }
 
@@ -54,7 +53,7 @@ extension GlassButton {
             Image(systemName: K.SFSymbols.globe)
                 .font(.title2.bold())
                 .foregroundColor(Color(K.BrandColors.pink))
-            Text(iconName).foregroundColor(Color(K.BrandColors.pink)).bold()
+            Text(LocalizationService.shared.langText).foregroundColor(Color(K.BrandColors.pink)).bold()
         }.onTapGesture(perform: action)
     }
 }

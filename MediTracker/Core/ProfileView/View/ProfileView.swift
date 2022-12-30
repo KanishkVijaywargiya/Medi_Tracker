@@ -11,6 +11,8 @@ struct ProfileView: View {
     @Environment(\.dismiss) private var dismissMode
     @State private var showEditProfileView: Bool = false
     @StateObject private var vm = OTPViewModel() //using for sign out
+    //@EnvironmentObject var profileVM: ProfileViewModel
+    
     let appReleaseVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     let buildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
     
@@ -35,7 +37,7 @@ struct ProfileView: View {
             floatButtonSection
         }
         .fullScreenCover(isPresented: $showEditProfileView) {
-            
+            // add edit screen
         }
     }
 }
@@ -192,7 +194,11 @@ extension ProfileView {
     
     private var floatButtonSection: some View {
         HStack {
-            MTGlassButton(iconName: "chevron.down", iconSize: 14, action: { self.dismissMode() })
+            MTGlassButton(iconName: "chevron.down", iconSize: 14, action: {
+                withAnimation {
+                    self.dismissMode()
+                }
+            })
                 
             Spacer()
             MTAddButton(title: "Edit", iconName: "pencil", action: {})

@@ -46,7 +46,7 @@ struct HomeView: View {
             }
         }
         .fullScreenCover(isPresented: $showProfileView, content: {
-            ProfileView().animation(Animation.spring(), value: showProfileView)
+            ProfileView()
         })
         .sheet(isPresented: $showLanguageSheet) {
             LanguageSheet().presentationDetents([.medium])

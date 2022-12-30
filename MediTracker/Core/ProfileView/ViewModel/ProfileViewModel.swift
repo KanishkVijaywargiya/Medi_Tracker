@@ -16,7 +16,7 @@ class ProfileViewModel: ObservableObject {
     @AppStorage("mobile_num") private var mobile_num = "" //mobile num
     
     init() {
-        fetchUserData(phoneNum: mobile_num)
+        fetchUserData()
     }
     
     // MARK: Profile upload
@@ -40,15 +40,16 @@ class ProfileViewModel: ObservableObject {
                 print("Successfully uploaded user profile data", phoneNum)
                 self.isLoading = false
                 completion(true)
+                self.fetchUserData()
             }
         }
     }
     
     
     // MARK: Fetch user data
-    func fetchUserData(phoneNum: String) {
+    func fetchUserData() {
         self.isLoading = true
-        COLLECTION_USERS.document(phoneNum).getDocument { snapshot, _ in
+        COLLECTION_USERS.document(mobile_num).getDocument { snapshot, _ in
             guard let dictionary = snapshot?.data() else { return }
             
             guard let image = dictionary["image"] as? String else { return }
