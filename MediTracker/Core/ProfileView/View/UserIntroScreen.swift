@@ -11,74 +11,77 @@ import Combine
 struct UserIntroScreen: View {
     @Environment(\.dismiss) private var dismissMode
     
-    // MARK: can be used for core data
-    @StateObject private var vm = ProfileViewModel()
+    @State private var openActionSheet = false// image picker
+    @State private var openCameraRoll = false// image picker
+    @State private var cameraType: CameraType = .photoLibrary// image picker
+    @State private var imageSelected = UIImage()// image picker
+    @State private var userame: String = ""// username
+    @State private var dob = Date()// dob
+    @State private var weight: Double = 0.0// weight
+    @State private var height: Double = 0.0// height
+    @State private var genderSelection = 0// gender
+    @State private var bloodTypeSelection = 0// blood type
+    @State private var wheelChairSelection: Bool = false// wheel chair
+    @State private var organDonarSelection: Bool = false// organ donar
+    @State private var path = [Int]()// using for navigation stack
     
-    // MARK: For image picker
-    @State private var openActionSheet = false
-    @State private var openCameraRoll = false
-    @State private var cameraType: CameraType = .photoLibrary
-    @State private var imageSelected = UIImage()
+    private let textLimit = 20// text field limit
     
-    // MARK: Personal infos
-    @AppStorage("mobile_num") private var mobile_num = "" // MARK: app storage for mobile number
-    @State private var userame: String = ""
-    @State private var dob = Date()
-    private let textLimit = 20
-    
-    // MARK: Medical infos
-    @State private var weight: Double = 0.0
-    @State private var height: Double = 0.0
-    @State private var genderSelection = 0
-    @State private var bloodTypeSelection = 0
-    @State private var wheelChairSelection: Bool = false
-    @State private var organDonarSelection: Bool = false
+    @StateObject private var vm = ProfileViewModel()// profile view model
+    @AppStorage("mobile_num") private var mobile_num = ""// mobile num
     
     var body: some View {
-        ZStack (alignment: .topTrailing) {
-            Color.white
-            
-            ScrollView(showsIndicators: false) {
-                VStack (alignment: .center) {
-                    // MARK: Username & User pic section
-                    userImgSection
-                    
-                    // MARK: User detail section
-                    userInfoSection
-                    
-                    MTButton(action: {
-                        uploadProfile()
-                    }, title: "Save", hexCode: K.BrandColors.pink).padding()
-                }.padding(.bottom, 40)
-            }.scrollDismissesKeyboard(.immediately)
+        NavigationStack(path: $path) {
+            ZStack (alignment: .topTrailing) {
+                Color.white
+                
+                ScrollView(showsIndicators: false) {
+                    VStack (alignment: .center) {
+                        // MARK: Username & User pic section
+                        userImgSection
+                        
+                        // MARK: User detail section
+                        
+                        userInfoSection
+                        
+                        MTButton(action: {
+                            uploadProfile()
+                        }, title: "Save", hexCode: K.BrandColors.pink).padding()
+                    }.padding(.bottom, 40)
+                }.scrollDismissesKeyboard(.immediately)
+            }
+            .ignoresSafeArea()
+            .sheet(isPresented: $openCameraRoll, content: {
+                if cameraType == .camera {
+                    ImagePicker(selectedImage: $imageSelected, sourceType: .camera)
+                } else {
+                    ImagePicker(selectedImage: $imageSelected, sourceType: .photoLibrary)
+                }
+            })// open camera role or photo library according to selection
+            .confirmationDialog("What do you want to open?", isPresented: $openActionSheet) {
+                Button(action: {
+                    openCameraRoll = true
+                    cameraType = .camera
+                }) {
+                    Text("Camera")
+                }
+                Button(action: {
+                    openCameraRoll = true
+                    cameraType = .photoLibrary
+                }) {
+                    Text("Photo Gallery")
+                }
+                Button("Cancel", role: .cancel) {
+                    openActionSheet = false
+                }
+            } message: {
+                Text("What do you want to open?")
+            }// options for camera or photo library
+            .navigationDestination(for: Int.self) { _ in
+                HomeView(profileVM: ProfileViewModel())
+            }
+            .navigationBarHidden(true)
         }
-        .ignoresSafeArea()
-        .sheet(isPresented: $openCameraRoll, content: {
-            if cameraType == .camera {
-                ImagePicker(selectedImage: $imageSelected, sourceType: .camera)
-            } else {
-                ImagePicker(selectedImage: $imageSelected, sourceType: .photoLibrary)
-            }
-        })// open camera role or photo library according to selection
-        .confirmationDialog("What do you want to open?", isPresented: $openActionSheet) {
-            Button(action: {
-                openCameraRoll = true
-                cameraType = .camera
-            }) {
-                Text("Camera")
-            }
-            Button(action: {
-                openCameraRoll = true
-                cameraType = .photoLibrary
-            }) {
-                Text("Photo Gallery")
-            }
-            Button("Cancel", role: .cancel) {
-                openActionSheet = false
-            }
-        } message: {
-            Text("What do you want to open?")
-        }// options for camera or photo library
     }
     
     func limitText(_ upper: Int) {
@@ -223,7 +226,8 @@ extension UserIntroScreen {
         vm.uploadUserProfile(image: imageSelected, username: userame, phoneNum: mobile_num, dateOfBirth: dob, weight: weight, height: height, gender: genderSelection, bloodType: bloodTypeSelection, wheelChair: wheelChairSelection, organDonar: organDonarSelection) { returnedBool in
             if returnedBool {
                 UserDefaults.standard.UserIntroScreenShown = true
-                self.dismissMode()
+                //self.dismissMode()
+                path.append(0)
             }
         }
     }

@@ -19,7 +19,6 @@ import Firebase
 
 
 struct HomeView: View {
-    @State private var showIntro: Bool = false //show or hide user intro screen
     @State private var showLanguageSheet: Bool = false //localization
     @State private var showProfileView: Bool = false //show profile page
     @State private var profileImage: String = "" //profile image
@@ -51,16 +50,6 @@ struct HomeView: View {
         .sheet(isPresented: $showLanguageSheet) {
             LanguageSheet().presentationDetents([.medium])
         }//for lang. select
-        .onAppear {
-            DispatchQueue.main.async {
-                if UserDefaults.standard.UserIntroScreenShown {
-                    self.showIntro = false
-                } else {
-                    self.showIntro = true
-                }
-            }
-        }//for one time user intro screen
-        .fullScreenCover(isPresented: $showIntro) { UserIntroScreen() }//user intro screen
         .onReceive(profileVM.$userProfileData) { newValue in
             if (newValue != nil) {
                 nameText = newValue?.username ?? "asdfghjkl"
@@ -68,6 +57,7 @@ struct HomeView: View {
                 dob = newValue?.dateOfBirth ?? Date()
             }
         }
+        .navigationBarHidden(true)
     }
 }
 
@@ -92,7 +82,6 @@ extension HomeView {
             
             //localization icon
             GlassButton(
-                iconName: LocalizationService.shared.langText,
                 action: { self.showLanguageSheet.toggle() }
             )
             .padding()

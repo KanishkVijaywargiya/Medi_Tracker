@@ -14,7 +14,11 @@ struct AuthenticationView: View {
     var body: some View {
         VStack {
             if log_status {
-                HomeView(profileVM: ProfileViewModel())
+                if UserDefaults.standard.UserIntroScreenShown {
+                    HomeView(profileVM: ProfileViewModel()).toolbar(.hidden)
+                } else {
+                    UserIntroScreen().toolbar(.hidden)
+                }
             } else {
                 Login()
             }

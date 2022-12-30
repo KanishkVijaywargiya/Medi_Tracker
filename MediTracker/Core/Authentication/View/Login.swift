@@ -180,7 +180,7 @@ extension Login {
     }// MARK: Footer text
     
     private var localization: some View {
-        GlassButton(iconName: LocalizationService.shared.langText, action: {
+        GlassButton(action: {
             self.showLanguageSheet.toggle()
         })
             .padding(.leading, 12)

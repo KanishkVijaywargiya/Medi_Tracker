@@ -9,7 +9,6 @@ import SwiftUI
 
 struct GlassButton: View {
     var action: () -> ()
-    
     @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language
     
     var body: some View {
