@@ -37,16 +37,12 @@ struct UserIntroScreen: View {
                 
                 ScrollView(showsIndicators: false) {
                     VStack (alignment: .center) {
-                        // MARK: Username & User pic section
-                        userImgSection
+                        userImgAndName
                         
-                        // MARK: User detail section
+                        userDetails
                         
-                        userInfoSection
+                        saveButton
                         
-                        MTButton(action: {
-                            uploadProfile()
-                        }, title: "Save", hexCode: K.BrandColors.pink).padding()
                     }.padding(.bottom, 40)
                 }.scrollDismissesKeyboard(.immediately)
             }
@@ -98,48 +94,29 @@ struct UserIntroScreen_Previews: PreviewProvider {
 }
 
 extension UserIntroScreen {
-    private var userImgSection: some View {
+    private var userImgAndName: some View {
         VStack (alignment: .center, spacing: 10) {
-            profileImage
-            textField
+            Button(action: {self.openActionSheet.toggle()}) {
+                ZStack {
+                    ProfileImage(imageSelected: $imageSelected)
+                }
+            }
+            .padding(.bottom)
+            
+            TextField("Enter your name", text: $userame)
+                .foregroundColor(.black.opacity(0.7))
+                .padding()
+                .overlay {
+                    RoundedRectangle(cornerRadius: 16).stroke(Color.black.opacity(0.3), lineWidth: 1)
+                }
+                .onReceive(Just(userame)) { _ in limitText(textLimit)}
         }
         .padding()
         .padding(.top, 50)
-    }// top section
+    }
     
-    private var profileImage: some View {
-        Button(action: {self.openActionSheet.toggle()}) {
-            ZStack {
-                ProfileImage(imageSelected: $imageSelected)
-            }
-        }
-        .padding(.bottom)
-    }// top section
-    
-    private var textField: some View {
-        TextField("Enter your name", text: $userame)
-            .foregroundColor(.black.opacity(0.7))
-            .padding()
-            .overlay {
-                RoundedRectangle(cornerRadius: 16).stroke(Color.black.opacity(0.3), lineWidth: 1)
-            }
-            .onReceive(Just(userame)) { _ in limitText(textLimit)}
-    }// top section
-    
-    private var userInfoSection: some View {
-        VStack (alignment: .leading) {
-            personalInfo
-            
-            medicalInfo
-        }
-        .padding()
-        .background(Color.gray.opacity(0.1))
-        .cornerRadius(16)
-        .padding(.horizontal)
-    }// mid section
-    
-    private var personalInfo: some View {
-        VStack {
+    private var userDetails: some View {
+        VStack (alignment: .leading, spacing: 12) {
             HStack {
                 Text("Contact Number")
                 Spacer()
@@ -148,78 +125,86 @@ extension UserIntroScreen {
             divider
             DatePicker("Date of Birth", selection: $dob, displayedComponents: .date)
             divider
-        }.tint(Color(K.BrandColors.pink))
-    }// mid section
-    
-    private var medicalInfo: some View {
-        VStack {
-            Group {
-                HStack {
-                    Text("Weight")
-                    Spacer()
-                    TextField("Enter your weight", value: $weight, format: .number)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.trailing)
-                        .onReceive(Just(weight)) { _ in limitText(textLimit)}
-                    Text("Kg").foregroundColor(.secondary)
-                }// weight
-                divider
-                
-                HStack {
-                    Text("Height")
-                    Spacer()
-                    TextField("Enter your height", value: $height, format: .number)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.trailing)
-                        .onReceive(Just(height)) { _ in limitText(textLimit)}
-                    Text("cm").foregroundColor(.secondary)
-                }// height
-                divider
-                
-                HStack {
-                    Text("Gender")
-                    Spacer()
-                    Picker("Gender", selection: $genderSelection) {
-                        ForEach(0..<K.gender.count, id: \.self) {
-                            Text(K.gender[$0]).tag($0)
-                        }
-                    }// gender
+            
+            VStack (alignment: .leading, spacing: 12) {
+                Group {
+                    HStack {
+                        Text("Weight")
+                        Spacer()
+                        TextField("Enter your weight", value: $weight, format: .number)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.trailing)
+                            .onReceive(Just(weight)) { _ in limitText(textLimit)}
+                        Text("Kg").foregroundColor(.secondary)
+                    }// weight
+                    divider
+                    
+                    HStack {
+                        Text("Height")
+                        Spacer()
+                        TextField("Enter your height", value: $height, format: .number)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.trailing)
+                            .onReceive(Just(height)) { _ in limitText(textLimit)}
+                        Text("cm").foregroundColor(.secondary)
+                    }// height
+                    divider
+                    
+                    HStack {
+                        Text("Gender")
+                        Spacer()
+                        Picker("Gender", selection: $genderSelection) {
+                            ForEach(0..<K.gender.count, id: \.self) {
+                                Text(K.gender[$0]).tag($0)
+                            }
+                        }// gender
+                    }
+                    divider
+                    
+                    HStack {
+                        Text("Blood Type")
+                        Spacer()
+                        Picker("Blood Type", selection: $bloodTypeSelection) {
+                            ForEach(0..<K.bloodType.count, id: \.self) {
+                                Text(K.bloodType[$0]).tag($0)
+                            }
+                        }// blood type
+                    }
+                    divider
                 }
-                divider
-                
-                HStack {
-                    Text("Blood Type")
-                    Spacer()
-                    Picker("Blood Type", selection: $bloodTypeSelection) {
-                        ForEach(0..<K.bloodType.count, id: \.self) {
-                            Text(K.bloodType[$0]).tag($0)
-                        }
-                    }// blood type
+                Group {
+                    HStack (spacing: 20) {
+                        Toggle("Wheel chair", isOn: $wheelChairSelection)
+                        Text(wheelChairSelection ? "Yes" : "No")
+                            .foregroundColor(.secondary)
+                            .animation(.easeIn, value: wheelChairSelection)
+                    }// wheel chair
+                    divider
+                    
+                    HStack (spacing: 20) {
+                        Toggle("Organ Donar", isOn: $organDonarSelection)
+                        Text(organDonarSelection ? "Yes" : "No")
+                            .foregroundColor(.secondary)
+                            .animation(.easeIn, value: organDonarSelection)
+                    }// organ donar
                 }
-                divider
-            }
-            Group {
-                HStack (spacing: 20) {
-                    Toggle("Wheel chair", isOn: $wheelChairSelection)
-                    Text(wheelChairSelection ? "Yes" : "No")
-                        .foregroundColor(.secondary)
-                        .animation(.easeIn, value: wheelChairSelection)
-                }// wheel chair
-                divider
-                
-                HStack (spacing: 20) {
-                    Toggle("Organ Donar", isOn: $organDonarSelection)
-                    Text(organDonarSelection ? "Yes" : "No")
-                        .foregroundColor(.secondary)
-                        .animation(.easeIn, value: organDonarSelection)
-                }// organ donar
             }
         }
         .tint(Color(K.BrandColors.pink))
-    }// mid section
+        .padding()
+        .background(Color.gray.opacity(0.1))
+        .cornerRadius(16)
+        .padding(.horizontal)
+    }
     
     private var divider: some View {
         Divider().background(Color.black.blendMode(.lighten))
+    }
+    
+    private var saveButton: some View {
+        MTButton(action: {
+            uploadProfile()
+        }, title: "Save", hexCode: K.BrandColors.pink).padding()
     }
     
     private func uploadProfile() {

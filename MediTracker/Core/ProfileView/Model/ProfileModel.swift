@@ -39,4 +39,12 @@ struct ProfileModel: Codable {
         formatter.dateFormat = "EEEE, dd 'of' MMMM YYYY"
         return formatter.string(from: dateOfBirth)
     }
+    
+    var wheelCharValue: String {
+        return wheelChair ? "Yes" : "No"
+    }
+    
+    var organDonarValue: String {
+        return organDonar ? "Yes" : "No"
+    }
 }

@@ -45,17 +45,17 @@ struct HomeView: View {
             }
         }
         .fullScreenCover(isPresented: $showProfileView, content: {
-            ProfileView()
+            ProfileView().environmentObject(ProfileViewModel())
         })
         .sheet(isPresented: $showLanguageSheet) {
             LanguageSheet().presentationDetents([.medium])
         }//for lang. select
         .onReceive(profileVM.$userProfileData) { newValue in
-            if (newValue != nil) {
-                nameText = newValue?.username ?? "asdfghjkl"
-                profileImage = newValue?.image ?? ""
-                dob = newValue?.dateOfBirth ?? Date()
-            }
+            //if (newValue) {
+                nameText = newValue.username
+                profileImage = newValue.image
+                dob = newValue.dateOfBirth
+            //}
         }
         .navigationBarHidden(true)
     }
@@ -90,10 +90,8 @@ extension HomeView {
             AsyncImage(url: URL(string: profileImage)) { image in
                 image
                     .resizable()
+                    .frame(width: 46, height: 46)
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 32, height: 32)
-                    .padding(.all, 6)
-                    .background(Color.white)
                     .clipShape(Circle())
                     .overlay { Circle().stroke(Color.black.opacity(0.3), lineWidth: 2) }
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
@@ -116,35 +114,6 @@ extension HomeView {
                         }
                     }
             }
-            //            ProfileButton(profileImg: $profileImage)
-            //            if let image = profileVM.userProfileData?.image {
-            //                Image(image)
-            //                    .font(.system(size: 32, weight: .bold))
-            //                    .padding(.all, 6)
-            //                    .background(Color.white)
-            //                    .clipShape(Circle())
-            //                    .overlay { Circle().stroke(Color.black.opacity(0.3), lineWidth: 2) }
-            //                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-            //                    .onTapGesture {
-            //                        withAnimation(Animation.easeInOut(duration: 0.2)) {
-            //                            self.showProfileView = true
-            //                        }
-            //                    }
-            //            } else {
-            //                Image(systemName: "person.fill")
-            //                    .font(.system(size: 32, weight: .bold))
-            //                    .padding(.all, 6)
-            //                    .background(Color.white)
-            //                    .clipShape(Circle())
-            //                    .overlay { Circle().stroke(Color.black.opacity(0.3), lineWidth: 2) }
-            //                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-            //                    .onTapGesture {
-            //                        withAnimation(Animation.easeInOut(duration: 0.2)) {
-            //                            self.showProfileView = true
-            //                        }
-            //                    }
-            //            }
-            
         }
         .padding(.horizontal)
         .padding(.vertical, 10)

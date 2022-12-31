@@ -11,7 +11,7 @@ struct ProfileView: View {
     @Environment(\.dismiss) private var dismissMode
     @State private var showEditProfileView: Bool = false
     @StateObject private var vm = OTPViewModel() //using for sign out
-    //@EnvironmentObject var profileVM: ProfileViewModel
+    @EnvironmentObject var profileVM: ProfileViewModel //profile view model to get all data from home page
     
     let appReleaseVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     let buildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
@@ -44,25 +44,38 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView().environmentObject(ProfileViewModel())
     }
 }
 
 extension ProfileView {
     private var userImgAndName: some View {
         VStack (alignment: .center, spacing: 10) {
-            Image(systemName: "person.fill")
-                .font(.system(size: 250))
-                .foregroundColor(.black)
-                .background(Color.white)
-                .cornerRadius(16)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 16).stroke(Color.black.opacity(0.3), lineWidth: 1)
-                }
-                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                .padding(.bottom)
+            AsyncImage(url: URL(string: profileVM.userProfileData.image)) { image in
+                image
+                    .resizable()
+                    .frame(width: 250, height: 250)
+                    .aspectRatio(contentMode: .fill)
+                    .cornerRadius(16)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 16).stroke(Color.black.opacity(0.3), lineWidth: 1)
+                    }
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                    .padding(.bottom)
+            } placeholder: {
+                Image(systemName: "person.fill")
+                    .font(.system(size: 250))
+                    .foregroundColor(.black)
+                    .background(Color.white)
+                    .cornerRadius(16)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 16).stroke(Color.black.opacity(0.3), lineWidth: 1)
+                    }
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                    .padding(.bottom)
+            }
             
-            Text("Kanishk Vijaywargiya")
+            Text(profileVM.userProfileData.username)
                 .font(.title2.bold())
         }
         .padding()
@@ -74,13 +87,13 @@ extension ProfileView {
             HStack {
                 Text("Contact Number")
                 Spacer()
-                Text("+91-9123235319").foregroundColor(.secondary)
+                Text(profileVM.userProfileData.phoneNum).foregroundColor(.secondary)
             }// mobile num
             divider
             HStack {
                 Text("Date of Birth")
                 Spacer()
-                Text("01-Jan-1999").foregroundColor(.secondary)
+                Text("\(profileVM.userProfileData.dateString)").foregroundColor(.secondary)
             }// dob
             divider
             
@@ -90,28 +103,28 @@ extension ProfileView {
                     HStack {
                         Text("Weight")
                         Spacer()
-                        Text("70 Kg").foregroundColor(.secondary)
+                        Text("\(profileVM.userProfileData.weight.asNumString())").foregroundColor(.secondary)
                     }// weight
                     divider
                     
                     HStack {
                         Text("Height")
                         Spacer()
-                        Text("175 cm").foregroundColor(.secondary)
+                        Text("\(profileVM.userProfileData.height.asNumString())").foregroundColor(.secondary)
                     }// height
                     divider
                     
                     HStack {
                         Text("Gender")
                         Spacer()
-                        Text("Male").foregroundColor(.secondary)
+                        Text(K.gender[profileVM.userProfileData.gender]).foregroundColor(.secondary)
                     }
                     divider
                     
                     HStack {
                         Text("Blood Type")
                         Spacer()
-                        Text("B+").foregroundColor(.secondary)
+                        Text(K.bloodType[profileVM.userProfileData.bloodType]).foregroundColor(.secondary)
                     }
                     divider
                 }
@@ -119,14 +132,14 @@ extension ProfileView {
                     HStack {
                         Text("Wheel Chair")
                         Spacer()
-                        Text("No").foregroundColor(.secondary)
+                        Text(profileVM.userProfileData.wheelCharValue).foregroundColor(.secondary)
                     }//wheel chair
                     divider
                     
                     HStack {
                         Text("Organ Donar")
                         Spacer()
-                        Text("No").foregroundColor(.secondary)//organ donar chair
+                        Text(profileVM.userProfileData.organDonarValue).foregroundColor(.secondary)//organ donar chair
                     }// organ donar
                 }
             }

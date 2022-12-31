@@ -10,6 +10,7 @@
 		0401CEC42955DAFF00A8B543 /* MTAppointmentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0401CEC32955DAFE00A8B543 /* MTAppointmentCard.swift */; };
 		04124F182949EC58002F57E3 /* AwesomeNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 04124F172949EC58002F57E3 /* AwesomeNetwork */; };
 		041F64A9295082B300B2DD1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 041F64AB295082B300B2DD1D /* Localizable.strings */; };
+		043CA8622960626000AEEFA9 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CA8612960626000AEEFA9 /* Double.swift */; };
 		043E7E8B2948AD25005F4740 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E7E8A2948AD25005F4740 /* ColorExtensions.swift */; };
 		043E7E8D2948E353005F4740 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E7E8C2948E353005F4740 /* Country.swift */; };
 		043E7E902948E5E5005F4740 /* ListOfCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E7E8F2948E5E5005F4740 /* ListOfCountries.swift */; };
@@ -76,6 +77,7 @@
 		0401CEC32955DAFE00A8B543 /* MTAppointmentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTAppointmentCard.swift; sourceTree = "<group>"; };
 		041F64AA295082B300B2DD1D /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		041F64AC295082E300B2DD1D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		043CA8612960626000AEEFA9 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		043E7E8A2948AD25005F4740 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		043E7E8C2948E353005F4740 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		043E7E8F2948E5E5005F4740 /* ListOfCountries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfCountries.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				043E7E8A2948AD25005F4740 /* ColorExtensions.swift */,
 				04A336662959F2450070D745 /* UserDefault+extension.swift */,
+				043CA8612960626000AEEFA9 /* Double.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				04C06E00295D8D71006D00E2 /* ProfileView.swift in Sources */,
 				04D5A7F42949CA9E00700097 /* MTButton.swift in Sources */,
 				04A336672959F2450070D745 /* UserDefault+extension.swift in Sources */,
+				043CA8622960626000AEEFA9 /* Double.swift in Sources */,
 				044AA224294890EC00EA04B4 /* RoundedCorners.swift in Sources */,
 				046A9A8D2955B7B2003CE426 /* UserSectionView.swift in Sources */,
 				04632E842951C8A900FAF966 /* CountryModel.swift in Sources */,

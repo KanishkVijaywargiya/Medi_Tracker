@@ -12,7 +12,7 @@ import CoreData
 
 class ProfileViewModel: ObservableObject {
     @Published var isLoading: Bool = false
-    @Published var userProfileData: ProfileModel?
+    @Published var userProfileData: ProfileModel = .init(image: "", username: "", phoneNum: "", dateOfBirth: Date(), weight: 0.0, height: 0.0, gender: 0, bloodType: 0, wheelChair: false, organDonar: false)
     @AppStorage("mobile_num") private var mobile_num = "" //mobile num
     
     init() {
