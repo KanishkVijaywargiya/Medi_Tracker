@@ -383,6 +383,8 @@
 			isa = PBXGroup;
 			children = (
 				04D7F3F22945F1CC006C96E7 /* Info.plist */,
+				04F7AC142945E1A000C6B479 /* MediTrackerApp.swift */,
+				04F7AC162945E1A000C6B479 /* ContentView.swift */,
 				041F64A62950823A00B2DD1D /* Localization */,
 				04EE7066294BA53300A64D10 /* Lottie */,
 				044AA221294890CF00EA04B4 /* Utils */,
@@ -390,8 +392,6 @@
 				043E7E8E2948E5C9005F4740 /* Item */,
 				04122D312948606900B3760B /* Model */,
 				04F7AC232945E26300C6B479 /* Core */,
-				04F7AC142945E1A000C6B479 /* MediTrackerApp.swift */,
-				04F7AC162945E1A000C6B479 /* ContentView.swift */,
 				04F7AC182945E1A400C6B479 /* Assets.xcassets */,
 				04F7AC1A2945E1A400C6B479 /* MediTracker.entitlements */,
 				04DF96EA29562E970084820D /* GoogleService-Info.plist */,

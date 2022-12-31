@@ -10,11 +10,14 @@ import AwesomeNetwork
 
 struct AuthenticationView: View {
     @AppStorage("log_status") private var log_status = false
+    @StateObject private var vm = ProfileViewModel()
+    
+    @State private var checkData: Bool = false
     
     var body: some View {
         VStack {
             if log_status {
-                if UserDefaults.standard.UserIntroScreenShown {
+                if UserDefaults.standard.UserIntroScreenShown || self.checkData {
                     HomeView(profileVM: ProfileViewModel()).toolbar(.hidden)
                 } else {
                     UserIntroScreen().toolbar(.hidden)
@@ -22,6 +25,9 @@ struct AuthenticationView: View {
             } else {
                 Login()
             }
+        }
+        .onChange(of: vm.checkDataExists) { newValue in
+            self.checkData = newValue
         }
     }
 }

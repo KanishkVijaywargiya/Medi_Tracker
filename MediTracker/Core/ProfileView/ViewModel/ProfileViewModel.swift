@@ -13,10 +13,15 @@ import CoreData
 class ProfileViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var userProfileData: ProfileModel = .init(image: "", username: "", phoneNum: "", dateOfBirth: Date(), weight: 0.0, height: 0.0, gender: 0, bloodType: 0, wheelChair: false, organDonar: false)
+    @Published var checkDataExists: Bool = false //check data avail on firestore
+    
     @AppStorage("mobile_num") private var mobile_num = "" //mobile num
     
     init() {
-        fetchUserData()
+        if !mobile_num.isEmpty {
+            Task{ await fetchUserData() }
+            Task{ await checkFirestoreData() }
+        }
     }
     
     // MARK: Profile upload
@@ -40,16 +45,18 @@ class ProfileViewModel: ObservableObject {
                 print("Successfully uploaded user profile data", phoneNum)
                 self.isLoading = false
                 completion(true)
-                self.fetchUserData()
+                Task {await self.fetchUserData()}
             }
         }
     }
     
     
     // MARK: Fetch user data
-    func fetchUserData() {
-        self.isLoading = true
-        COLLECTION_USERS.document(mobile_num).getDocument { snapshot, _ in
+    func fetchUserData() async {
+        DispatchQueue.main.async {
+            self.isLoading = true
+        }
+        let _ = COLLECTION_USERS.document(mobile_num).getDocument { snapshot, _ in
             guard let dictionary = snapshot?.data() else { return }
             
             guard let image = dictionary["image"] as? String else { return }
@@ -66,6 +73,24 @@ class ProfileViewModel: ObservableObject {
             let organDonarBool = Bool(truncating: organDonar ?? 1)
             
             self.userProfileData = ProfileModel(image: image, username: username, phoneNum: phoneNum, dateOfBirth: dateOfBirth, weight: weight, height: height, gender: gender, bloodType: bloodType, wheelChair: wheelChairBool, organDonar: organDonarBool)
+        }
+    }
+    
+    func checkFirestoreData() async {
+        let _ = COLLECTION_USERS.document(mobile_num).getDocument { (document, error) in
+            guard error == nil else {
+                print("error", error ?? "")
+                return
+            }
+            
+            if let document = document, document.exists {
+                let data = document.data()
+                if let _ = data {
+                    self.checkDataExists = true
+                } else {
+                    self.checkDataExists = false
+                }
+            }
         }
     }
 }

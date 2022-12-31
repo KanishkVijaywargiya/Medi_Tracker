@@ -17,22 +17,23 @@ enum OTPField {
 }// MARK: focus state enum for otp text fields
 
 struct Verification: View {
-    @Environment(\.dismiss) private var dismissMode
-    @EnvironmentObject var vm: OTPViewModel
-    @FocusState var activeField: OTPField? // MARK: TextField FocusState
+    @Environment(\.dismiss) private var dismissMode //use to close screen
+    @EnvironmentObject var vm: OTPViewModel //otp view model
+    @FocusState var activeField: OTPField? // focus state for TextField
     
     // MARK: timer variables to activate resend button
-    @State private var timeRemaining = 20
+    @State private var timeRemaining = 20 
     @State private var showTimer: Bool = true
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var count: Int = 0
+    
+    @StateObject private var profileVM = ProfileViewModel() //used for fetching/checking of data from firestore
     
     // MARK: Mobile num with country code in title
     var mobileNum: String
     var countryCode: String
     
-    // MARK: Localization
-    @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language
+    @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language //localization
     
     var body: some View {
         VStack {
@@ -58,9 +59,12 @@ struct Verification: View {
             }
         }
         .onChange(of: vm.otpText) { newValue in
-            print(newValue)
             if newValue.count == 6 {
-                Task{await vm.verifyOTP(countryCode: countryCode)}
+                Task{
+                    await vm.verifyOTP(countryCode: countryCode)
+                    await profileVM.fetchUserData()
+                    await profileVM.checkFirestoreData()
+                }
             }
         }
         .showToast(title: vm.verificationAlertTitle, isPresented: $vm.verificationAlert, color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), duration: 5, alignment: .top, toastType: .offsetToast, image: Image(K.AppImg.appLogo))
