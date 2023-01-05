@@ -50,23 +50,26 @@ struct Verification: View {
         .navigationTitle(K.NavigationTag.verification.localized(language_choosen))
         .onChange(of: vm.otpFields) { newValue in
             otpCondition(value: newValue)
-        }
+        }//otp condition
         .onReceive(timer) { _ in
             if timeRemaining > 1 {
                 timeRemaining -= 1
             } else if timeRemaining == 1 {
                 showTimer = false
             }
-        }
+        }//resend otp button timer
         .onChange(of: vm.otpText) { newValue in
             if newValue.count == 6 {
                 Task{
                     await vm.verifyOTP(countryCode: countryCode)
-                    await profileVM.fetchUserData()
-                    await profileVM.checkFirestoreData()
+                    //await profileVM.fetchUserData()
                 }
             }
-        }
+        }//verify otp
+        .onChange(of: profileVM.checkDataExists) { _ in
+            profileVM.checkFirestoreData()
+            profileVM.fetchUserData()
+        }//check firestore data & fetch user
         .showToast(title: vm.verificationAlertTitle, isPresented: $vm.verificationAlert, color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), duration: 5, alignment: .top, toastType: .offsetToast, image: Image(K.AppImg.appLogo))
     }
 }

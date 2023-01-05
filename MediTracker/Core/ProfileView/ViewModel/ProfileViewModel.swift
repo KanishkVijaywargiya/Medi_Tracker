@@ -5,6 +5,15 @@
 //  Created by Kanishk Vijaywargiya on 26/12/22.
 //
 
+// TODO: solve small bugs related to user data avail, then home screen otherwise user intro screen
+// TODO: develop edit screen for profile
+// TODO: add allergies in profile view & save it to core data
+
+// TODO: solve small bugs related to verification & login screen
+// TODO: disable all the text inputs fileds in login & in verification screen, when pressed on continue
+
+// TODO: Add more localized lang. to cover whole India
+
 import SwiftUI
 import Firebase
 import FirebaseFirestoreSwift
@@ -19,8 +28,8 @@ class ProfileViewModel: ObservableObject {
     
     init() {
         if !mobile_num.isEmpty {
-            Task{ await fetchUserData() }
-            Task{ await checkFirestoreData() }
+            fetchUserData()
+            checkFirestoreData()
         }
     }
     
@@ -45,14 +54,15 @@ class ProfileViewModel: ObservableObject {
                 print("Successfully uploaded user profile data", phoneNum)
                 self.isLoading = false
                 completion(true)
-                Task {await self.fetchUserData()}
+                //Task {await self.fetchUserData()}
+                self.fetchUserData()
             }
         }
     }
     
     
     // MARK: Fetch user data
-    func fetchUserData() async {
+    func fetchUserData() {
         DispatchQueue.main.async {
             self.isLoading = true
         }
@@ -76,7 +86,8 @@ class ProfileViewModel: ObservableObject {
         }
     }
     
-    func checkFirestoreData() async {
+    // MARK: Check if data is avail in firebase firestore
+    func checkFirestoreData() {
         let _ = COLLECTION_USERS.document(mobile_num).getDocument { (document, error) in
             guard error == nil else {
                 print("error", error ?? "")

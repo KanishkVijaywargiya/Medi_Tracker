@@ -714,8 +714,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MediTracker/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow $(PRODUCT_NAME) to access camera";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "$(PRODUCT_NAME) wants to take image from your gallery.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow MediTracker to access camera";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "MediTracker wants to take image from your gallery.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -732,7 +732,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.blacenovas.MediTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blacenovass.MediTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
@@ -759,8 +759,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MediTracker/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow $(PRODUCT_NAME) to access camera";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "$(PRODUCT_NAME) wants to take image from your gallery.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow MediTracker to access camera";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "MediTracker wants to take image from your gallery.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -777,7 +777,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.blacenovas.MediTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blacenovass.MediTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
