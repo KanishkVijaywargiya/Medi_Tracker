@@ -13,23 +13,32 @@ struct K {
         static let black = "Black"
         
         // MARK: Other color shades
+        static let codeRed = "codeRed"
+        
+        static let darkBlue = "DarkBlue"
         static let pastelBlue = "PastelBlue"
         static let pastelBlue2 = "PastelBlue2"
         static let pastelBlue3 = "PastelBlue3"
         static let pastelBlue4 = "PastelBlue4"
+        static let codeEng = "codeEnglish"
         
         static let pastelGreen = "PastelGreen"
         static let pastelGreen2 = "PastelGreen2"
         static let pastelGreen3 = "PastelGreen3"
+        static let codeGreen = "codeGreen"
         
         static let pastelOrange = "PastelOrange"
+        static let codeOrange = "codeOrange"
         
         static let pastelPink = "pastelPink"
         static let pastelPink2 = "PastelPink2"
+        static let codePink = "codePink"
         
         static let pastelPurple = "PastelPurple"
+        static let codePurple = "codePurple"
         
         static let pastelYellow = "PastelYellow"
+        static let codeBrown = "codeBrown"
     }
     
     struct SFSymbols {

@@ -45,6 +45,14 @@
 		04A336652959E0EF0070D745 /* UserIntroScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A336642959E0EF0070D745 /* UserIntroScreen.swift */; };
 		04A336672959F2450070D745 /* UserDefault+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A336662959F2450070D745 /* UserDefault+extension.swift */; };
 		04C06E00295D8D71006D00E2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C06DFF295D8D71006D00E2 /* ProfileView.swift */; };
+		04C356FF296963B5001DB5BC /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C356FE296963B5001DB5BC /* CalendarView.swift */; };
+		04C3570129696996001DB5BC /* FontsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3570029696996001DB5BC /* FontsExtension.swift */; };
+		04C357032969719A001DB5BC /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C357022969719A001DB5BC /* ViewExtensions.swift */; };
+		04C35705296973E6001DB5BC /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C35704296973E6001DB5BC /* DateExtension.swift */; };
+		04C3570729697503001DB5BC /* CalendarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3570629697503001DB5BC /* CalendarExtension.swift */; };
+		04C35709296981D5001DB5BC /* AppointmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C35708296981D5001DB5BC /* AppointmentModel.swift */; };
+		04C3570B29698348001DB5BC /* DoctorDepartment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3570A29698348001DB5BC /* DoctorDepartment.swift */; };
+		04C3570D29699C43001DB5BC /* AddAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3570C29699C43001DB5BC /* AddAppointmentView.swift */; };
 		04CECAC32949D87B00A6E6F5 /* MTLineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC22949D87B00A6E6F5 /* MTLineText.swift */; };
 		04CECAC52949D93F00A6E6F5 /* MTSocialLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */; };
 		04CECAC82949E2C800A6E6F5 /* AwesomeToast in Frameworks */ = {isa = PBXBuildFile; productRef = 04CECAC72949E2C800A6E6F5 /* AwesomeToast */; };
@@ -107,6 +115,14 @@
 		04A336642959E0EF0070D745 /* UserIntroScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIntroScreen.swift; sourceTree = "<group>"; };
 		04A336662959F2450070D745 /* UserDefault+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+extension.swift"; sourceTree = "<group>"; };
 		04C06DFF295D8D71006D00E2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		04C356FE296963B5001DB5BC /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		04C3570029696996001DB5BC /* FontsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsExtension.swift; sourceTree = "<group>"; };
+		04C357022969719A001DB5BC /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		04C35704296973E6001DB5BC /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		04C3570629697503001DB5BC /* CalendarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtension.swift; sourceTree = "<group>"; };
+		04C35708296981D5001DB5BC /* AppointmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentModel.swift; sourceTree = "<group>"; };
+		04C3570A29698348001DB5BC /* DoctorDepartment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorDepartment.swift; sourceTree = "<group>"; };
+		04C3570C29699C43001DB5BC /* AddAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentView.swift; sourceTree = "<group>"; };
 		04CECAC22949D87B00A6E6F5 /* MTLineText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLineText.swift; sourceTree = "<group>"; };
 		04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTSocialLoginButton.swift; sourceTree = "<group>"; };
 		04D37BD72945F84700EEF926 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -182,7 +198,11 @@
 			children = (
 				043E7E8A2948AD25005F4740 /* ColorExtensions.swift */,
 				04A336662959F2450070D745 /* UserDefault+extension.swift */,
+				04C3570029696996001DB5BC /* FontsExtension.swift */,
 				043CA8612960626000AEEFA9 /* Double.swift */,
+				04C357022969719A001DB5BC /* ViewExtensions.swift */,
+				04C35704296973E6001DB5BC /* DateExtension.swift */,
+				04C3570629697503001DB5BC /* CalendarExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -335,6 +355,33 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		04C356FB2969608E001DB5BC /* AppointmentView */ = {
+			isa = PBXGroup;
+			children = (
+				04C356FC2969633E001DB5BC /* Model */,
+				04C356FD29696342001DB5BC /* View */,
+			);
+			path = AppointmentView;
+			sourceTree = "<group>";
+		};
+		04C356FC2969633E001DB5BC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04C35708296981D5001DB5BC /* AppointmentModel.swift */,
+				04C3570A29698348001DB5BC /* DoctorDepartment.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04C356FD29696342001DB5BC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04C356FE296963B5001DB5BC /* CalendarView.swift */,
+				04C3570C29699C43001DB5BC /* AddAppointmentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		04E8CBA92955E86E00A4FD5C /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				04EE7069294BB73900A64D10 /* Authentication */,
+				04C356FB2969608E001DB5BC /* AppointmentView */,
 				046A9A892955B753003CE426 /* HomeView */,
 				04E8CBA92955E86E00A4FD5C /* ProfileView */,
 				04EE705D294B891100A64D10 /* SplashScreen.swift */,
@@ -524,8 +572,12 @@
 				04F7AC2A2945E40800C6B479 /* OTPViewModel.swift in Sources */,
 				04A3365C2959AF920070D745 /* MTAddButton.swift in Sources */,
 				044BB5E929508F0F00B48B79 /* LocalizationService.swift in Sources */,
+				04C35705296973E6001DB5BC /* DateExtension.swift in Sources */,
+				04C356FF296963B5001DB5BC /* CalendarView.swift in Sources */,
 				04EE7063294B961900A64D10 /* LottieView.swift in Sources */,
+				04C3570729697503001DB5BC /* CalendarExtension.swift in Sources */,
 				048FC5A72956073A0016F566 /* MTGlassButton.swift in Sources */,
+				04C3570129696996001DB5BC /* FontsExtension.swift in Sources */,
 				04DC382B295A0011005F0710 /* CameraType.swift in Sources */,
 				04CECAC52949D93F00A6E6F5 /* MTSocialLoginButton.swift in Sources */,
 				04D37BD82945F84700EEF926 /* Login.swift in Sources */,
@@ -540,22 +592,26 @@
 				0401CEC42955DAFF00A8B543 /* MTAppointmentCard.swift in Sources */,
 				04A3365F2959C91C0070D745 /* ProfileContainer.xcdatamodeld in Sources */,
 				043E7E8D2948E353005F4740 /* Country.swift in Sources */,
+				04C3570D29699C43001DB5BC /* AddAppointmentView.swift in Sources */,
 				04EE705E294B891100A64D10 /* SplashScreen.swift in Sources */,
 				04F7AC172945E1A000C6B479 /* ContentView.swift in Sources */,
 				04DD544B2950CDA900372343 /* LanguageSheet.swift in Sources */,
 				044BB5E729508BF500B48B79 /* Strings+Localisation.swift in Sources */,
 				04A3365A2959AD200070D745 /* MTGeneralButton.swift in Sources */,
+				04C3570B29698348001DB5BC /* DoctorDepartment.swift in Sources */,
 				048FC5A5295602A30016F566 /* ImagePicker.swift in Sources */,
 				048FC5A929560B460016F566 /* ProfileButton.swift in Sources */,
 				0457D43C295C663000145468 /* ImageUploader.swift in Sources */,
 				04A336632959CBA00070D745 /* ProfileViewModel.swift in Sources */,
 				04C06E00295D8D71006D00E2 /* ProfileView.swift in Sources */,
+				04C35709296981D5001DB5BC /* AppointmentModel.swift in Sources */,
 				04D5A7F42949CA9E00700097 /* MTButton.swift in Sources */,
 				04A336672959F2450070D745 /* UserDefault+extension.swift in Sources */,
 				043CA8622960626000AEEFA9 /* Double.swift in Sources */,
 				044AA224294890EC00EA04B4 /* RoundedCorners.swift in Sources */,
 				046A9A8D2955B7B2003CE426 /* UserSectionView.swift in Sources */,
 				04632E842951C8A900FAF966 /* CountryModel.swift in Sources */,
+				04C357032969719A001DB5BC /* ViewExtensions.swift in Sources */,
 				0481B37E295C93290036326E /* ProfileModel.swift in Sources */,
 				04CECAC32949D87B00A6E6F5 /* MTLineText.swift in Sources */,
 				04E8CBAB2955E88C00A4FD5C /* EditProfileView.swift in Sources */,
