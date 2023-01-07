@@ -36,7 +36,9 @@ struct HomeView: View {
                 VStack (alignment: .leading, spacing: 40) {
                     headerSection //header section
                     
-                    MTAppointmentCard(day: "Tue", date: "21", time: "10:00 am - 11:00 am", doctorName: "Dr. Lawrence Leiter", department: "General Surgeon") // appointment card
+                    NavigationLink(destination: CalendarView(profileVM: ProfileViewModel())) {
+                        MTAppointmentCard(day: "Tue", date: "21", time: "10:00 am - 11:00 am", doctorName: "Dr. Lawrence Leiter", department: "General Surgeon") // appointment card
+                    }
                     
                     medicationSection //medication card
                     

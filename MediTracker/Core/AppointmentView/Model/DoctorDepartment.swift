@@ -19,6 +19,7 @@ enum Department: String, CaseIterable, CustomStringConvertible {
     case gyne = "Gynecology"
     case neurology = "Neurology"
     case dermatology = "Dermatology"
+    case plasticSurgeon = "Plastic Surgeon"
     
     var description: String {
         return self.rawValue
@@ -30,11 +31,12 @@ enum Department: String, CaseIterable, CustomStringConvertible {
         case .physician: return Color(K.BrandColors.darkBlue)
         case .anesthetics: return Color(K.BrandColors.codePurple)
         case .cardio: return Color(K.BrandColors.pink)
-        case .ent: return Color(K.BrandColors.codeBrown)//
-        case .gas: return Color(K.BrandColors.codeEng)//
+        case .ent: return Color(K.BrandColors.codeBrown)
+        case .gas: return Color(K.BrandColors.codeEng)
         case .gyne: return Color(K.BrandColors.codeRed)
         case .neurology: return Color(K.BrandColors.pastelGreen3)
         case .dermatology: return Color(K.BrandColors.codeOrange)
+        case .plasticSurgeon: return Color(K.BrandColors.codePink)
         }
     }
 }

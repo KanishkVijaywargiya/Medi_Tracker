@@ -27,6 +27,7 @@ struct CalendarView: View {
         .onReceive(profileVM.$userProfileData) { newValue in
                 nameText = newValue.username
         }
+        .navigationBarHidden(true)
     }
 }
 
