@@ -31,6 +31,7 @@
 		04632E822951BFF900FAF966 /* CountryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04632E812951BFF900FAF966 /* CountryCard.swift */; };
 		04632E842951C8A900FAF966 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04632E832951C8A900FAF966 /* CountryModel.swift */; };
 		046A9A8D2955B7B2003CE426 /* UserSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A9A8C2955B7B2003CE426 /* UserSectionView.swift */; };
+		046E85FA297185E10089885B /* MediTrackerContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 046E85F8297185E10089885B /* MediTrackerContainer.xcdatamodeld */; };
 		046ED3142951AFA00067A5A1 /* ListOfCountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046ED3132951AFA00067A5A1 /* ListOfCountriesViewModel.swift */; };
 		0481B37E295C93290036326E /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481B37D295C93290036326E /* ProfileModel.swift */; };
 		048BC4DC2953079200142AD9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048BC4DB2953079200142AD9 /* Constants.swift */; };
@@ -58,6 +59,8 @@
 		04CECAC32949D87B00A6E6F5 /* MTLineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC22949D87B00A6E6F5 /* MTLineText.swift */; };
 		04CECAC52949D93F00A6E6F5 /* MTSocialLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */; };
 		04CECAC82949E2C800A6E6F5 /* AwesomeToast in Frameworks */ = {isa = PBXBuildFile; productRef = 04CECAC72949E2C800A6E6F5 /* AwesomeToast */; };
+		04D30B65297177FF00C658F0 /* KeyBoardClosing+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D30B64297177FF00C658F0 /* KeyBoardClosing+Extension.swift */; };
+		04D30B68297181B300C658F0 /* AppointmentCoreDataVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D30B67297181B300C658F0 /* AppointmentCoreDataVM.swift */; };
 		04D37BD82945F84700EEF926 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37BD72945F84700EEF926 /* Login.swift */; };
 		04D5A7F42949CA9E00700097 /* MTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5A7F32949CA9E00700097 /* MTButton.swift */; };
 		04D65C9A2955E538009DFD71 /* MTActivityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D65C992955E538009DFD71 /* MTActivityCard.swift */; };
@@ -104,6 +107,7 @@
 		04632E812951BFF900FAF966 /* CountryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCard.swift; sourceTree = "<group>"; };
 		04632E832951C8A900FAF966 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		046A9A8C2955B7B2003CE426 /* UserSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSectionView.swift; sourceTree = "<group>"; };
+		046E85F9297185E10089885B /* MediTrackerContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MediTrackerContainer.xcdatamodel; sourceTree = "<group>"; };
 		046ED3132951AFA00067A5A1 /* ListOfCountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfCountriesViewModel.swift; sourceTree = "<group>"; };
 		0481B37D295C93290036326E /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		048BC4DB2953079200142AD9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 		04C6CE59296EDE2C00FFA643 /* ActivityDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDescription.swift; sourceTree = "<group>"; };
 		04CECAC22949D87B00A6E6F5 /* MTLineText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLineText.swift; sourceTree = "<group>"; };
 		04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTSocialLoginButton.swift; sourceTree = "<group>"; };
+		04D30B64297177FF00C658F0 /* KeyBoardClosing+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyBoardClosing+Extension.swift"; sourceTree = "<group>"; };
+		04D30B67297181B300C658F0 /* AppointmentCoreDataVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCoreDataVM.swift; sourceTree = "<group>"; };
 		04D37BD72945F84700EEF926 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		04D5A7F32949CA9E00700097 /* MTButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTButton.swift; sourceTree = "<group>"; };
 		04D65C992955E538009DFD71 /* MTActivityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTActivityCard.swift; sourceTree = "<group>"; };
@@ -210,6 +216,7 @@
 				04C35704296973E6001DB5BC /* DateExtension.swift */,
 				04C3570629697503001DB5BC /* CalendarExtension.swift */,
 				04D7696A2969CAE80078FC80 /* NavigationControllerExtension.swift */,
+				04D30B64297177FF00C658F0 /* KeyBoardClosing+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -368,6 +375,7 @@
 			children = (
 				04C356FC2969633E001DB5BC /* Model */,
 				04C356FD29696342001DB5BC /* View */,
+				04D30B662971818400C658F0 /* ViewModel */,
 			);
 			path = AppointmentView;
 			sourceTree = "<group>";
@@ -397,6 +405,14 @@
 				04076D89296EE155002B0338 /* ActivityModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		04D30B662971818400C658F0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				04D30B67297181B300C658F0 /* AppointmentCoreDataVM.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		04E8CBA92955E86E00A4FD5C /* ProfileView */ = {
@@ -456,6 +472,7 @@
 				043E7E8E2948E5C9005F4740 /* Item */,
 				04122D312948606900B3760B /* Model */,
 				04F7AC232945E26300C6B479 /* Core */,
+				046E85F8297185E10089885B /* MediTrackerContainer.xcdatamodeld */,
 				04F7AC182945E1A400C6B479 /* Assets.xcassets */,
 				04F7AC1A2945E1A400C6B479 /* MediTracker.entitlements */,
 				04DF96EA29562E970084820D /* GoogleService-Info.plist */,
@@ -583,6 +600,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D30B65297177FF00C658F0 /* KeyBoardClosing+Extension.swift in Sources */,
 				04DD544F2950DFC600372343 /* LanguageCard.swift in Sources */,
 				04DD544D2950DDDD00372343 /* LanguageSelection.swift in Sources */,
 				046ED3142951AFA00067A5A1 /* ListOfCountriesViewModel.swift in Sources */,
@@ -616,6 +634,7 @@
 				04F7AC172945E1A000C6B479 /* ContentView.swift in Sources */,
 				04DD544B2950CDA900372343 /* LanguageSheet.swift in Sources */,
 				044BB5E729508BF500B48B79 /* Strings+Localisation.swift in Sources */,
+				046E85FA297185E10089885B /* MediTrackerContainer.xcdatamodeld in Sources */,
 				04D7696B2969CAE80078FC80 /* NavigationControllerExtension.swift in Sources */,
 				04A3365A2959AD200070D745 /* MTGeneralButton.swift in Sources */,
 				04C3570B29698348001DB5BC /* DoctorDepartment.swift in Sources */,
@@ -625,6 +644,7 @@
 				04A336632959CBA00070D745 /* ProfileViewModel.swift in Sources */,
 				04C06E00295D8D71006D00E2 /* ProfileView.swift in Sources */,
 				04C35709296981D5001DB5BC /* AppointmentModel.swift in Sources */,
+				04D30B68297181B300C658F0 /* AppointmentCoreDataVM.swift in Sources */,
 				04D5A7F42949CA9E00700097 /* MTButton.swift in Sources */,
 				04A336672959F2450070D745 /* UserDefault+extension.swift in Sources */,
 				043CA8622960626000AEEFA9 /* Double.swift in Sources */,
@@ -966,6 +986,16 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
+		046E85F8297185E10089885B /* MediTrackerContainer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				046E85F9297185E10089885B /* MediTrackerContainer.xcdatamodel */,
+			);
+			currentVersion = 046E85F9297185E10089885B /* MediTrackerContainer.xcdatamodel */;
+			path = MediTrackerContainer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		04A3365D2959C91C0070D745 /* ProfileContainer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

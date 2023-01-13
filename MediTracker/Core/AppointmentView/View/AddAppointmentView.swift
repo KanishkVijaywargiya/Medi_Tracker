@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddAppointmentView: View {
-    var onAdd: (AppointmentModel) -> () /// - Callback
+    //var onAdd: (AppointmentModel) -> () /// - Callback
     @Environment(\.dismiss) private var dismissMode
     
     @State private var hospitalName: String = ""
@@ -20,6 +20,8 @@ struct AddAppointmentView: View {
     //category animation properties
     @State private var animateColor: Color = Department.cardio.color
     @State private var animate: Bool = false
+    
+    @ObservedObject var vm: AppointmentCoreDataVM // used for appointment core data
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -113,8 +115,8 @@ struct AddAppointmentView: View {
 
 struct AddAppointmentView_Previews: PreviewProvider {
     static var previews: some View {
-        AddAppointmentView { appointments in
-        }
+        //AddAppointmentView(onAdd: {appointments in}, vm: AppointmentCoreDataVM())
+        AddAppointmentView(vm: AppointmentCoreDataVM())
     }
 }
 
@@ -202,9 +204,10 @@ extension AddAppointmentView {
     
     private var createAppointmentButton: some View {
         Button {
-            let appointment = AppointmentModel(dateAdded: dateAdded, hospitalName: hospitalName, doctorName: doctorName, description: description, departmentName: departmentName)
-            onAdd(appointment)
-            dismissMode()
+            let appointment = AppointmentModel(dateAdded: dateAdded, hospitalName: hospitalName, doctorName: doctorName, descriptions: description, departmentName: departmentName)
+//            onAdd(appointment)
+            vm.addAppointments(appointment: appointment)
+            if !vm.isLoading { dismissMode() }
         } label: {
             Text("Create Appointment")
                 .customFont(16, weight: .regular)

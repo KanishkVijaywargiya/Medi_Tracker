@@ -13,6 +13,7 @@ struct CalendarView: View {
     @State private var addAppointments: Bool = false //use to open appointment view
     @State private var nameText: String = "" //name text in onReceive
     @ObservedObject var profileVM: ProfileViewModel //profile viewModel
+    @StateObject var appointVM = AppointmentCoreDataVM() //appointment core data vm
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -20,12 +21,13 @@ struct CalendarView: View {
         }
         .safeAreaInset(edge: .top, spacing: 0) { headerView }
         .fullScreenCover(isPresented: $addAppointments) {
-            AddAppointmentView { appointment in
-                appointments.append(appointment)
-            }
+            AddAppointmentView(vm: appointVM)
+//            AddAppointmentView(onAdd: { appointment in
+//                appointVM.addAppointments(appointment: appointment)
+//            }, vm: appointVM)
         }
         .onReceive(profileVM.$userProfileData) { newValue in
-                nameText = newValue.username
+            nameText = newValue.username
         }
         .navigationBarHidden(true)
     }
@@ -136,17 +138,17 @@ extension CalendarView {
             
             /// - Filtering appointments
             let calendar = Calendar.current
-            let filteredAppointments = appointments.filter {
+            let filteredAppointments = appointVM.appointmentEntities.filter {
                 if
                     let hour = calendar.dateComponents([.hour], from: date).hour,
                     let appointmentHour = calendar
                         .dateComponents(
                             [.hour],
-                            from: $0.dateAdded
+                            from: $0.dateAdded ?? Date()
                         ).hour,
                     hour == appointmentHour &&
                         calendar.isDate(
-                            $0.dateAdded,
+                            $0.dateAdded ?? Date(),
                             inSameDayAs: currentDay
                         ) {
                     return true
@@ -172,24 +174,24 @@ extension CalendarView {
     }
     
     // appointment view row
-    private func AppointmentViewRow(_ appointment: AppointmentModel) -> some View {
+    private func AppointmentViewRow(_ appointment: AppointmentEntity) -> some View {
         VStack (alignment: .leading, spacing: 8) {
-            Text(appointment.hospitalName)
+            Text(appointment.hospitalName ?? "")
                 .customFont(18, weight: .bold)
-                .foregroundColor(appointment.departmentName.color)
+                .foregroundColor(Department(rawValue: appointment.departmentName ?? "")?.color)
             
-            Text(appointment.doctorName)
+            Text(appointment.doctorName ?? "")
                 .customFont(16, weight: .bold)
-                .foregroundColor(appointment.departmentName.color)
+                .foregroundColor(Department(rawValue: appointment.departmentName ?? "")?.color)
             
-            Text(appointment.departmentName.description)
+            Text(Department(rawValue: appointment.departmentName ?? "")?.description ?? "")
                 .customFont(14, weight: .bold)
-                .foregroundColor(appointment.departmentName.color)
+                .foregroundColor(Department(rawValue: appointment.departmentName ?? "")?.color)
             
-            if appointment.description != "" {
-                Text(appointment.description).lineLimit(2)
+            if appointment.descriptions != "" {
+                Text(appointment.descriptions ?? "").lineLimit(2)
                     .customFont(14, weight: .light)
-                    .foregroundColor(appointment.departmentName.color.opacity(0.8))
+                    .foregroundColor(Department(rawValue: appointment.departmentName ?? "")?.color)
             }
         }
         .hAlign(.leading)
@@ -197,10 +199,10 @@ extension CalendarView {
         .background {
             ZStack (alignment: .leading) {
                 Rectangle()
-                    .fill(appointment.departmentName.color)
+                    .fill(Department(rawValue: appointment.departmentName ?? "")?.color ?? Color(.clear))
                     .frame(width: 4)
                 Rectangle()
-                    .fill(appointment.departmentName.color.opacity(0.25))
+                    .fill(Department(rawValue: appointment.departmentName ?? "")?.color.opacity(0.25) ?? Color(hex: ""))
             }
         }
         .cornerRadius(12, corners: [.topRight, .bottomRight])
