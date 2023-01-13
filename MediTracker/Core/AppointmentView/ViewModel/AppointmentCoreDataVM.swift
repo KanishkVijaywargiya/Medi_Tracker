@@ -5,6 +5,7 @@
 //  Created by Kanishk Vijaywargiya on 13/01/23.
 //
 
+import UserNotifications
 import CoreData
 import SwiftUI
 
@@ -26,10 +27,14 @@ class AppointmentCoreDataVM: ObservableObject {
         
         fetchAppointments()
         
+        //MARK: timer for clearing core data things
         let timer = Timer.scheduledTimer(withTimeInterval: 86400, repeats: true) { _ in
             self.clearData()
         }
         timer.fire()
+        
+        //MARK: request authorization for local notifications
+        requestAuthorization()
     }
     
     private func clearData() {
@@ -43,7 +48,7 @@ class AppointmentCoreDataVM: ObservableObject {
         } catch {
             print(error)
         }
-    }
+    } // for clearing previous data from core data from device after 7 days
     
     private func fetchAppointments() {
         let request = NSFetchRequest<AppointmentEntity>(entityName: "AppointmentEntity")
@@ -55,9 +60,9 @@ class AppointmentCoreDataVM: ObservableObject {
             print("Error fetching. \(error.localizedDescription)")
             isLoading = false
         }
-    }
+    }// fetching data from Core data
     
-    func addAppointments(appointment: AppointmentModel) {
+    func addAppointments(_ appointment: AppointmentModel) {
         isLoading = true
         let newAppointment = AppointmentEntity(context: container.viewContext)
         newAppointment.doctorName = appointment.doctorName
@@ -65,16 +70,49 @@ class AppointmentCoreDataVM: ObservableObject {
         newAppointment.dateAdded = appointment.dateAdded
         newAppointment.descriptions = appointment.descriptions
         newAppointment.departmentName = appointment.departmentName.rawValue
-        saveData()
-    }
+        saveData(appointment)
+    }// adding appointments to core data
     
-    func saveData() {
+    private func saveData(_ appointment: AppointmentModel) {
         do {
             try container.viewContext.save()
             fetchAppointments()
+            scheduleNotification(appointment)
         } catch let error {
             print("Error Saving!⚠️ \(error.localizedDescription)")
             isLoading = false
         }
-    }
+    }// saving data to core data
+    
+    private func requestAuthorization() {
+        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { success, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription) ⚠️")
+            } else {
+                print("Success")
+            }
+        }
+    }// authorizing users for local notifications
+    
+    private func scheduleNotification(_ appointment: AppointmentModel) {
+        let content = UNMutableNotificationContent()
+        content.title = "Appointment Reminder"
+        content.subtitle = "\(appointment.dateAdded.toString("EE/dd/MM")) - \(appointment.dateAdded.toString("hh:mm a"))"
+        content.body = "Don't forget your appointment with Dr. \(appointment.doctorName) at \(appointment.hospitalName) today!"
+        content.sound = .default
+        content.badge = 1
+        
+        //calendar - 15 mins prior to schedu
+        let reminderDate = Calendar.current.date(byAdding: .minute, value: -15, to: appointment.dateAdded)!
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: reminderDate)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: content,
+            trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request)
+    }// scheduling the notification for users
 }

@@ -33,37 +33,37 @@ struct AddAppointmentView: View {
                         .foregroundColor(.white)
                         .contentShape(Rectangle())
                 }
-
+                
                 Text("Create New Appointment")
                     .customFont(28, weight: .light)
                     .foregroundColor(.white)
                     .padding(.vertical, 15)
-
+                
                 TitleView("Hospital name")
                 TextField("Enter your hospital name", text: $hospitalName)
                     .customFont(16, weight: .regular)
                     .tint(.white)
                     .padding(.top, 2)
-
+                
                 Rectangle()
                     .fill(.white.opacity(0.7))
                     .frame(height: 1)
-
+                
                 TitleView("Doctor name").padding(.top, 2)
                 TextField("Enter your doctor's name", text: $doctorName)
                     .customFont(16, weight: .regular)
                     .tint(.white)
                     .padding(.top, 2)
-
+                
                 Rectangle()
                     .fill(.white.opacity(0.7))
                     .frame(height: 1)
-
+                
                 TitleView("Date").padding(.top, 15)
-
+                
                 HStack (alignment: .bottom, spacing: 12) {
                     dateText
-
+                    
                     timeText
                 }
                 .padding(.bottom, 15)
@@ -73,7 +73,7 @@ struct AddAppointmentView: View {
             .background {
                 ZStack {
                     departmentName.color
-
+                    
                     //use to pop out new color from bottom trailing as a scalling effect
                     GeometryReader {
                         let size = $0.size
@@ -87,26 +87,26 @@ struct AddAppointmentView: View {
                     }.clipped()
                 }.ignoresSafeArea()
             }
-
+            
             VStack (alignment: .leading, spacing: 10) {
                 TitleView("Description".uppercased(), .gray)
-
+                
                 TextField("About your appointment", text: $description, axis: .vertical)
                     .customFont(16, weight: .regular)
                     .padding(.top, 2)
                     .lineLimit(5)
-
+                
                 Rectangle()
                     .fill(.black.opacity(0.2))
                     .frame(height: 1)
-
+                
                 TitleView("Department".uppercased(), .gray)
                     .padding(.top, 15)
-
+                
                 gridView //grid view for departments
-
+                
                 createAppointmentButton // create appointment
-
+                
             }.padding(15)
         }
         .vAlign(.top)
@@ -171,42 +171,42 @@ extension AddAppointmentView {
     }
     
     private var gridView: some View {
-        ScrollView (showsIndicators: false) {
-            LazyVGrid(columns: Array(repeating: .init(.flexible(), spacing: 20), count: 2), spacing: 15) {
-                ForEach(Department.allCases, id: \.rawValue) { department in
-                    Text(department.description.uppercased())
-                        .customFont(12, weight: .bold)
-                        .hAlign(.center)
-                        .padding(.vertical, 10)
-                        .background {
-                            RoundedRectangle(cornerRadius: 5, style: .continuous)
-                                .fill(department.color.opacity(0.25))
+        //        ScrollView (showsIndicators: false) {
+        LazyVGrid(columns: Array(repeating: .init(.flexible(), spacing: 20), count: 2), spacing: 15) {
+            ForEach(Department.allCases, id: \.rawValue) { department in
+                Text(department.description.uppercased())
+                    .customFont(12, weight: .bold)
+                    .hAlign(.center)
+                    .padding(.vertical, 10)
+                    .background {
+                        RoundedRectangle(cornerRadius: 5, style: .continuous)
+                            .fill(department.color.opacity(0.25))
+                    }
+                    .foregroundColor(department.color)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        guard !animate else { return }//avoid simultaneous tapping
+                        animateColor = department.color
+                        withAnimation(.interactiveSpring(response: 0.7, dampingFraction: 1, blendDuration: 1)) {
+                            animate = true
                         }
-                        .foregroundColor(department.color)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            guard !animate else { return }//avoid simultaneous tapping
-                            animateColor = department.color
-                            withAnimation(.interactiveSpring(response: 0.7, dampingFraction: 1, blendDuration: 1)) {
-                                animate = true
-                            }
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                                animate = false
-                                departmentName = department
-                            }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                            animate = false
+                            departmentName = department
                         }
-                }
+                    }
             }
-            .padding(.top, 5)
-        }.frame(height: 200)
+        }
+        .padding(.top, 5)
+        //        }.frame(height: 200)
     }
     
     private var createAppointmentButton: some View {
         Button {
             let appointment = AppointmentModel(dateAdded: dateAdded, hospitalName: hospitalName, doctorName: doctorName, descriptions: description, departmentName: departmentName)
-//            onAdd(appointment)
-            vm.addAppointments(appointment: appointment)
+            //            onAdd(appointment)
+            vm.addAppointments(appointment)
             if !vm.isLoading { dismissMode() }
         } label: {
             Text("Create Appointment")

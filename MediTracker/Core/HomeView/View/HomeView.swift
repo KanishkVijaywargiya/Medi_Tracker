@@ -64,6 +64,7 @@ struct HomeView: View {
             dob = newValue.dateOfBirth
             //}
         }
+        .onAppear { UIApplication.shared.applicationIconBadgeNumber = 0 }
         .navigationBarHidden(true)
     }
 }
