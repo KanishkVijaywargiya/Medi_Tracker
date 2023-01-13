@@ -12,37 +12,37 @@ struct MTActivityCard: View {
     var data: String
     var iconName: String
     var chartBar: String
+    var color: Color
     
     var body: some View {
-        VStack (alignment: .center, spacing: 10) {
-            HStack (alignment: .top, spacing: 20) {
-                VStack (alignment: .leading, spacing: 8) {
-                    Text(title)
-                        .foregroundColor(.white)
-                        .font(.footnote)
-                        .fontWeight(.semibold)
-                    
-                    Text(data)
-                        .foregroundColor(.white)
-                        .font(.title2.bold())
+        ZStack {
+            Rectangle()
+                .fill(color.gradient)
+                .frame(width: 170, height: 170)
+            
+            VStack (alignment: .center, spacing: 40) {
+                HStack (alignment: .top, spacing: 40) {
+                    VStack (alignment: .leading, spacing: 10) {
+                        Text(title)
+                            .font(.system(size: 22)).fontWeight(.medium)
+                        Text(data)
+                            .font(.body).fontWeight(.medium)
+                            .foregroundColor(.secondary)
+                    }
+                    Image(systemName: iconName)
+                        .font(.title.bold())
+                        .foregroundColor(.purple.opacity(0.5))
                 }
-                Image(systemName: iconName)
-                    .font(.title.bold())
+                Image(systemName: chartBar)
+                    .font(.system(size: 45, weight: .bold))
                     .foregroundColor(.purple.opacity(0.5))
             }
-            // need to replace with actual bar chart
-            Image(systemName: chartBar)
-                .font(.system(size: 45, weight: .bold))
-                .foregroundColor(.purple.opacity(0.5))
-        }
-        .padding()
-        .background(Color(K.BrandColors.pastelPurple))
-        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        }.clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
     }
 }
 
 struct MTActivityCard_Previews: PreviewProvider {
     static var previews: some View {
-        MTActivityCard(title: "Steps", data: "3,456", iconName: "figure.step.training", chartBar: "chart.bar")
+        MTActivityCard(title: "Steps", data: "3,456", iconName: "figure.step.training", chartBar: "chart.bar", color: Color(K.BrandColors.pastelPurple))
     }
 }

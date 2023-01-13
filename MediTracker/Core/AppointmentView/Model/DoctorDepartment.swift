@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 // MARK: Doctor Department Enum with Color codes
-enum Department: String, CaseIterable, CustomStringConvertible {
+enum Department: String, CaseIterable {
     case genearal = "General Surgeon"
     case physician = "Genearl Physician"
     case anesthetics = "Anesthetics"

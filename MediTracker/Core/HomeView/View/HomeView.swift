@@ -28,6 +28,10 @@ struct HomeView: View {
     @ObservedObject var profileVM: ProfileViewModel //profile viewModel
     @AppStorage("mobile_num") private var mobile_num = "" //mobile num
     
+    private let adaptiveColumns = [
+        GridItem(.adaptive(minimum: 170))
+    ]
+    
     var body: some View {
         ZStack (alignment: .topLeading) {
             Color.white.opacity(0.1).ignoresSafeArea()
@@ -37,12 +41,13 @@ struct HomeView: View {
                     headerSection //header section
                     
                     NavigationLink(destination: CalendarView(profileVM: ProfileViewModel())) {
-                        MTAppointmentCard(day: "Tue", date: "21", time: "10:00 am - 11:00 am", doctorName: "Dr. Lawrence Leiter", department: "General Surgeon") // appointment card
+                        MTAppointmentCard(day: "Tue", date: Date(), time: "10:00 am - 11:00 am", doctorName: "Dr. Lawrence Leiter", department: "General Surgeon") // appointment card
                     }
                     
                     medicationSection //medication card
                     
-                    dailyActivityCard //activity card
+                    //dailyActivityCard
+                    dailyActivityGridCard //activity card
                 }
             }
         }
@@ -54,9 +59,9 @@ struct HomeView: View {
         }//for lang. select
         .onReceive(profileVM.$userProfileData) { newValue in
             //if (newValue) {
-                nameText = newValue.username
-                profileImage = newValue.image
-                dob = newValue.dateOfBirth
+            nameText = newValue.username
+            profileImage = newValue.image
+            dob = newValue.dateOfBirth
             //}
         }
         .navigationBarHidden(true)
@@ -145,24 +150,41 @@ extension HomeView {
         }
     }
     
-    private var dailyActivityCard: some View {
-        VStack (alignment: .leading, spacing: 10) {
+    private var dailyActivityGridCard: some View {
+        VStack (alignment: .leading, spacing: 20) {
             Text("Daily Activity")
                 .foregroundColor(.primary)
                 .font(.title)
                 .fontWeight(.semibold)
                 .padding(.horizontal)
             
-            // activity cards
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack (spacing: 16) {
-                    ForEach(0..<5) { _ in
-                        MTActivityCard(title: "Steps", data: "3,456", iconName: "figure.step.training", chartBar: "chart.bar")
-                    }
-                }.padding(.horizontal)
+            LazyVGrid(columns: adaptiveColumns, spacing: 20) {
+                //ForEach(Department.allCases, id: \.rawValue) { department in
+                ForEach(1...5, id: \.self) { itme in
+                    MTActivityCard(title: "Steps", data: "3,456", iconName: "figure.step.training", chartBar: "chart.bar", color: Color(K.BrandColors.pastelPurple))
+                }
             }
-            .padding(.vertical)
-            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
         }
     }
+    
+//    private var dailyActivityCard: some View {
+//        VStack (alignment: .leading, spacing: 10) {
+//            Text("Daily Activity")
+//                .foregroundColor(.primary)
+//                .font(.title)
+//                .fontWeight(.semibold)
+//                .padding(.horizontal)
+//            
+//            // activity cards
+//            ScrollView(.horizontal, showsIndicators: false) {
+//                HStack (spacing: 16) {
+//                    ForEach(0..<5) { _ in
+//                        MTActivityCard(title: "Steps", data: "3,456", iconName: "figure.step.training", chartBar: "chart.bar", color: Color(K.BrandColors.codeOrange))
+//                    }
+//                }.padding(.horizontal)
+//            }
+//            .padding(.vertical)
+//            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+//        }
+//    }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0401CEC42955DAFF00A8B543 /* MTAppointmentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0401CEC32955DAFE00A8B543 /* MTAppointmentCard.swift */; };
+		04076D8A296EE155002B0338 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04076D89296EE155002B0338 /* ActivityModel.swift */; };
 		04124F182949EC58002F57E3 /* AwesomeNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 04124F172949EC58002F57E3 /* AwesomeNetwork */; };
 		041F64A9295082B300B2DD1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 041F64AB295082B300B2DD1D /* Localizable.strings */; };
 		043CA8622960626000AEEFA9 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CA8612960626000AEEFA9 /* Double.swift */; };
@@ -53,6 +54,7 @@
 		04C35709296981D5001DB5BC /* AppointmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C35708296981D5001DB5BC /* AppointmentModel.swift */; };
 		04C3570B29698348001DB5BC /* DoctorDepartment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3570A29698348001DB5BC /* DoctorDepartment.swift */; };
 		04C3570D29699C43001DB5BC /* AddAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3570C29699C43001DB5BC /* AddAppointmentView.swift */; };
+		04C6CE5A296EDE2D00FFA643 /* ActivityDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6CE59296EDE2C00FFA643 /* ActivityDescription.swift */; };
 		04CECAC32949D87B00A6E6F5 /* MTLineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC22949D87B00A6E6F5 /* MTLineText.swift */; };
 		04CECAC52949D93F00A6E6F5 /* MTSocialLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */; };
 		04CECAC82949E2C800A6E6F5 /* AwesomeToast in Frameworks */ = {isa = PBXBuildFile; productRef = 04CECAC72949E2C800A6E6F5 /* AwesomeToast */; };
@@ -84,6 +86,7 @@
 
 /* Begin PBXFileReference section */
 		0401CEC32955DAFE00A8B543 /* MTAppointmentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTAppointmentCard.swift; sourceTree = "<group>"; };
+		04076D89296EE155002B0338 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		041F64AA295082B300B2DD1D /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		041F64AC295082E300B2DD1D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		043CA8612960626000AEEFA9 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
@@ -124,6 +127,7 @@
 		04C35708296981D5001DB5BC /* AppointmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentModel.swift; sourceTree = "<group>"; };
 		04C3570A29698348001DB5BC /* DoctorDepartment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorDepartment.swift; sourceTree = "<group>"; };
 		04C3570C29699C43001DB5BC /* AddAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentView.swift; sourceTree = "<group>"; };
+		04C6CE59296EDE2C00FFA643 /* ActivityDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDescription.swift; sourceTree = "<group>"; };
 		04CECAC22949D87B00A6E6F5 /* MTLineText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLineText.swift; sourceTree = "<group>"; };
 		04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTSocialLoginButton.swift; sourceTree = "<group>"; };
 		04D37BD72945F84700EEF926 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 		046A9A892955B753003CE426 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
+				04C6CE58296EDE0D00FFA643 /* Model */,
 				046A9A8A2955B773003CE426 /* View */,
 				046A9A8B2955B778003CE426 /* ViewModel */,
 			);
@@ -383,6 +388,15 @@
 				04C3570C29699C43001DB5BC /* AddAppointmentView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		04C6CE58296EDE0D00FFA643 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04C6CE59296EDE2C00FFA643 /* ActivityDescription.swift */,
+				04076D89296EE155002B0338 /* ActivityModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		04E8CBA92955E86E00A4FD5C /* ProfileView */ = {
@@ -579,6 +593,7 @@
 				04C356FF296963B5001DB5BC /* CalendarView.swift in Sources */,
 				04EE7063294B961900A64D10 /* LottieView.swift in Sources */,
 				04C3570729697503001DB5BC /* CalendarExtension.swift in Sources */,
+				04076D8A296EE155002B0338 /* ActivityModel.swift in Sources */,
 				048FC5A72956073A0016F566 /* MTGlassButton.swift in Sources */,
 				04C3570129696996001DB5BC /* FontsExtension.swift in Sources */,
 				04DC382B295A0011005F0710 /* CameraType.swift in Sources */,
@@ -592,6 +607,7 @@
 				04F7AC272945E2A800C6B479 /* Verification.swift in Sources */,
 				0462035C2949A85700A487CD /* BlurView.swift in Sources */,
 				048FC5AB29560E730016F566 /* ProfileImage.swift in Sources */,
+				04C6CE5A296EDE2D00FFA643 /* ActivityDescription.swift in Sources */,
 				0401CEC42955DAFF00A8B543 /* MTAppointmentCard.swift in Sources */,
 				04A3365F2959C91C0070D745 /* ProfileContainer.xcdatamodeld in Sources */,
 				043E7E8D2948E353005F4740 /* Country.swift in Sources */,
