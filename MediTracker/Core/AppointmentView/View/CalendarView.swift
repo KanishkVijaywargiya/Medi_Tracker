@@ -13,7 +13,7 @@ struct CalendarView: View {
     @State private var addAppointments: Bool = false //use to open appointment view
     @State private var nameText: String = "" //name text in onReceive
     @ObservedObject var profileVM: ProfileViewModel //profile viewModel
-    @StateObject var appointVM = AppointmentCoreDataVM() //appointment core data vm
+    @ObservedObject var appointVM: AppointmentCoreDataVM //appointment core data vm
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -35,7 +35,7 @@ struct CalendarView: View {
 
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarView(profileVM: ProfileViewModel())
+        CalendarView(profileVM: ProfileViewModel(), appointVM: AppointmentCoreDataVM())
     }
 }
 

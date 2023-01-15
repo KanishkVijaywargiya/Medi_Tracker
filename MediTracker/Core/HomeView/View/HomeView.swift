@@ -25,6 +25,7 @@ struct HomeView: View {
     @State private var dob: Date = Date() //date of birth
     @State private var nameText: String = "" //name text in onReceive
     
+    @StateObject var appointVM = AppointmentCoreDataVM() //appointment core data vm
     @ObservedObject var profileVM: ProfileViewModel //profile viewModel
     @AppStorage("mobile_num") private var mobile_num = "" //mobile num
     
@@ -34,19 +35,35 @@ struct HomeView: View {
     
     var body: some View {
         ZStack (alignment: .topLeading) {
-            Color.white.opacity(0.1).ignoresSafeArea()
+            //Color.white.opacity(0.1).ignoresSafeArea()
             
             ScrollView(showsIndicators: false) {
                 VStack (alignment: .leading, spacing: 40) {
                     headerSection //header section
                     
-                    NavigationLink(destination: CalendarView(profileVM: ProfileViewModel())) {
-                        MTAppointmentCard(day: "Tue", date: Date(), time: "10:00 am - 11:00 am", doctorName: "Dr. Lawrence Leiter", department: "General Surgeon") // appointment card
+                    NavigationLink(destination: CalendarView(profileVM: ProfileViewModel(), appointVM: appointVM)) {
+                        if appointVM.appointmentItem.count > 0 {
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack {
+                                    ForEach(appointVM.appointmentItem, id: \.id) { item in
+                                        MTAppointmentCard(
+                                            day: item.dateAdded?.toString("EE") ?? "",
+                                            date: item.dateAdded?.toString("dd") ?? "",
+                                            time: item.dateAdded?.toString("hh:mm a") ?? "",
+                                            doctorName: item.doctorName ?? "",
+                                            department: item.departmentName ?? "",
+                                            check: true
+                                        )
+                                    }
+                                }.padding()
+                            }
+                        } else {
+                            MTAppointmentCard(day: Date().toString("EE"), date: Date().toString("dd"), time: Date().toString("hh:mm a"), doctorName: "", department: "", check: false)
+                        }
                     }
                     
                     medicationSection //medication card
                     
-                    //dailyActivityCard
                     dailyActivityGridCard //activity card
                 }
             }
@@ -65,6 +82,7 @@ struct HomeView: View {
             //}
         }
         .onAppear { UIApplication.shared.applicationIconBadgeNumber = 0 }
+        .onAppear {appointVM.filterLatestData()}
         .navigationBarHidden(true)
     }
 }
@@ -129,9 +147,6 @@ extension HomeView {
     
     private var medicationSection: some View {
         VStack (alignment: .leading, spacing: 10) {
-            //DatePicker("Date of Birth", selection: $dob, displayedComponents: .date)
-            //Text(profileVM.userProfileData?.dateString ?? "")
-            
             Text("Medication")
                 .foregroundColor(.primary)
                 .font(.title)
@@ -167,25 +182,4 @@ extension HomeView {
             }
         }
     }
-    
-//    private var dailyActivityCard: some View {
-//        VStack (alignment: .leading, spacing: 10) {
-//            Text("Daily Activity")
-//                .foregroundColor(.primary)
-//                .font(.title)
-//                .fontWeight(.semibold)
-//                .padding(.horizontal)
-//            
-//            // activity cards
-//            ScrollView(.horizontal, showsIndicators: false) {
-//                HStack (spacing: 16) {
-//                    ForEach(0..<5) { _ in
-//                        MTActivityCard(title: "Steps", data: "3,456", iconName: "figure.step.training", chartBar: "chart.bar", color: Color(K.BrandColors.codeOrange))
-//                    }
-//                }.padding(.horizontal)
-//            }
-//            .padding(.vertical)
-//            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-//        }
-//    }
 }

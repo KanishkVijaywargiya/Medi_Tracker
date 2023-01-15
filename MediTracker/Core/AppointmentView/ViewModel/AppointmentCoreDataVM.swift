@@ -12,6 +12,7 @@ import SwiftUI
 class AppointmentCoreDataVM: ObservableObject {
     let container: NSPersistentContainer
     @Published var appointmentEntities: [AppointmentEntity] = []
+    @Published var appointmentItem: [AppointmentEntity] = []// using for filtering of items for current day
     @Published var isLoading: Bool = false
     
     init() {
@@ -65,6 +66,7 @@ class AppointmentCoreDataVM: ObservableObject {
     func addAppointments(_ appointment: AppointmentModel) {
         isLoading = true
         let newAppointment = AppointmentEntity(context: container.viewContext)
+        newAppointment.id = UUID()
         newAppointment.doctorName = appointment.doctorName
         newAppointment.hospitalName = appointment.hospitalName
         newAppointment.dateAdded = appointment.dateAdded
@@ -115,4 +117,14 @@ class AppointmentCoreDataVM: ObservableObject {
         
         UNUserNotificationCenter.current().add(request)
     }// scheduling the notification for users
+    
+    func filterLatestData() {
+        if appointmentEntities.count > 0 {
+            let todaysAppointmentArray = appointmentEntities.filter {
+                $0.dateAdded?.toString("dd hh") ?? Date().toString("dd hh") >= Date().toString("dd hh")
+            }
+            guard todaysAppointmentArray.count > 0 else { return }
+            appointmentItem = todaysAppointmentArray
+        }
+    }
 }
