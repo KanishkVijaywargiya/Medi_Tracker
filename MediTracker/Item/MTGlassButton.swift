@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MTGlassButton: View {
-    var iconName: String = "chevron.backward"
+    var iconName: String = K.SFSymbols.chevBack
     var iconSize: CGFloat = 12
     var action: () -> ()
     

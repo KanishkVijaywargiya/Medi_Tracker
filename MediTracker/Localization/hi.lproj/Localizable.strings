@@ -66,3 +66,38 @@
 "GOOD_EVE" = "नमस्ते,";
 "MEDICA" = "दवाई";
 "D_ACTIVITY" = "प्रतिदिन की गतिविधि";
+
+
+// MARK: PROFILE - User intro screen
+"WAT_U_WANT_TO_OPEN" = "आप क्या खोलना चाहते हैं?";
+"CAMERA" = "कैमरा";
+"GALLERY" = "चित्र प्रदर्शनी";
+"CANCEL" = "रद्द करना";
+"ENTER_NAME" = "अपना नाम दर्ज करें";
+"CONTACT_NUM" = "संपर्क संख्या";
+"DOB" = "जन्म की तारीख";
+"WEIGHT" = "वज़न";
+"ENTER_WEIGHT" = "अपना वजन दर्ज करें";
+"HEIGHT" = "कद";
+"ENTER_HEIGHT" = "अपनी ऊंचाई दर्ज करें";
+"GENDER" = "लिंग";
+"BLOOD_TYPE" = "रक्त प्रकार";
+"WHEEL_CHAIR" = "व्हील चेयर";
+"ORGAN_DONAR" = "अंग दाता";
+"YES" = "हाँ";
+"NO" = "नहीं";
+"SAVE" = "बचाना";
+"ALLERGIES" = "एलर्जी";
+"SPREAD" = "प्रचार कीजिये";
+"WE_LOVE" = "हम अपने उपयोगकर्ताओं से सुनना पसंद करते हैं, हमारे ऐप का आनंद ले रहे हैं, कृपया हमें ऐपस्टोर पर रेट करें";
+"SHARE" = "साझा करना";
+"RATE" = "भाव";
+"SIGN_OUT" = "प्रस्थान करें";
+
+
+// MARK: Item - MTAppointmentCard
+"MANAGE_CAL" = "अपना कैलेंडर प्रबंधित करें";
+"NO_SCHEDULE" = "कोई आगामी कार्यक्रम नहीं";
+"YOUR_APPOINT" = "आपकी नियुक्तियाँ";
+
+

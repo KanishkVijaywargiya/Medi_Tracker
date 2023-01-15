@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MTAppointmentCard: View {
+    @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language //localize app storage
+    
     var day: String
     var date: String
     var time: String
@@ -15,10 +17,10 @@ struct MTAppointmentCard: View {
     var department: String
     var check: Bool
     
-    init(day: String? = Date().toString("EE"), date: String? = Date().toString("dd"), time: String? = Date().toString("hh:mm a"), doctorName: String? = "", department: String? = "", check: Bool = false) {
-        self.day = day ?? Date().toString("EE")
-        self.date = date ?? Date().toString("dd")
-        self.time = time ?? Date().toString("hh:mm a")
+    init(day: String? = Date().toString(K.DateSymb.DAY), date: String? = Date().toString(K.DateSymb.DATE), time: String? = Date().toString(K.DateSymb.TIME), doctorName: String? = "", department: String? = "", check: Bool = false) {
+        self.day = day ?? Date().toString(K.DateSymb.DAY)
+        self.date = date ?? Date().toString(K.DateSymb.DATE)
+        self.time = time ?? Date().toString(K.DateSymb.TIME)
         self.doctorName = doctorName ?? ""
         self.department = department ?? ""
         self.check = check
@@ -60,12 +62,12 @@ struct MTAppointmentCard: View {
                 VStack (alignment: .leading, spacing: 10) {
                     VStack (alignment: .leading, spacing: 2) {
                         appointmentText
-                        Text("Manage your Calendar")
+                        Text(K.LocalizedKey.MANAGE_CAL.localized(language_choosen))
                             .font(.footnote)
                             .foregroundColor(.white)
                     }//upper part
                     
-                    Text("No Upcoming Schedules")
+                    Text(K.LocalizedKey.NO_SCHEDULE.localized(language_choosen))
                         .font(.caption.bold())
                         .foregroundColor(.white)
                         .multilineTextAlignment(.leading)
@@ -106,13 +108,13 @@ extension MTAppointmentCard {
     
     private var appointmentText: some View {
         HStack (alignment: .center) {
-            Text("Your appointments")
+            Text(K.LocalizedKey.YOUR_APPOINT.localized(language_choosen))
                 .font(.title2.bold())
                 .foregroundColor(.white)
             
             Spacer()
             
-            Image(systemName: "chevron.right")
+            Image(systemName: K.SFSymbols.chevRight)
                 .foregroundColor(.white)
         }
     }

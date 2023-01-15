@@ -13,7 +13,7 @@ struct ProfileButton: View {
     var body: some View {
         ZStack {
             if profileImg == UIImage() {
-                Image(systemName: "person.fill")
+                Image(systemName: K.SFSymbols.person_fill)
                     .font(.system(size: 32, weight: .bold))
                     .padding(.all, 6)
                     .background(Color.white)

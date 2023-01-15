@@ -29,6 +29,7 @@ struct UserIntroScreen: View {
     
     @StateObject private var vm = ProfileViewModel()// profile view model
     @AppStorage("mobile_num") private var mobile_num = ""// mobile num
+    @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language //localize app storage
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -54,24 +55,24 @@ struct UserIntroScreen: View {
                     ImagePicker(selectedImage: $imageSelected, sourceType: .photoLibrary)
                 }
             })// open camera role or photo library according to selection
-            .confirmationDialog("What do you want to open?", isPresented: $openActionSheet) {
+            .confirmationDialog(K.LocalizedKey.WAT_OPEN.localized(language_choosen), isPresented: $openActionSheet) {
                 Button(action: {
                     openCameraRoll = true
                     cameraType = .camera
                 }) {
-                    Text("Camera")
+                    Text(K.LocalizedKey.CAMERA.localized(language_choosen))
                 }
                 Button(action: {
                     openCameraRoll = true
                     cameraType = .photoLibrary
                 }) {
-                    Text("Photo Gallery")
+                    Text(K.LocalizedKey.GALLERY.localized(language_choosen))
                 }
-                Button("Cancel", role: .cancel) {
+                Button(K.LocalizedKey.CANCEL.localized(language_choosen), role: .cancel) {
                     openActionSheet = false
                 }
             } message: {
-                Text("What do you want to open?")
+                Text(K.LocalizedKey.WAT_OPEN.localized(language_choosen))
             }// options for camera or photo library
             .navigationDestination(for: Int.self) { _ in
                 HomeView(profileVM: ProfileViewModel())
@@ -103,7 +104,7 @@ extension UserIntroScreen {
             }
             .padding(.bottom)
             
-            TextField("Enter your name", text: $userame)
+            TextField(K.LocalizedKey.ENTER_NAME.localized(language_choosen), text: $userame)
                 .foregroundColor(.black.opacity(0.7))
                 .padding()
                 .overlay {
@@ -118,42 +119,42 @@ extension UserIntroScreen {
     private var userDetails: some View {
         VStack (alignment: .leading, spacing: 12) {
             HStack {
-                Text("Contact Number")
+                Text(K.LocalizedKey.CONTACT_NUM.localized(language_choosen))
                 Spacer()
                 Text(mobile_num).foregroundColor(.secondary)
             }// mobile num
             divider
-            DatePicker("Date of Birth", selection: $dob, displayedComponents: .date)
+            DatePicker(K.LocalizedKey.DOB.localized(language_choosen), selection: $dob, displayedComponents: .date)
             divider
             
             VStack (alignment: .leading, spacing: 12) {
                 Group {
                     HStack {
-                        Text("Weight")
+                        Text(K.LocalizedKey.WEIGHT.localized(language_choosen))
                         Spacer()
-                        TextField("Enter your weight", value: $weight, format: .number)
+                        TextField(K.LocalizedKey.ENTER_WEIGHT.localized(language_choosen), value: $weight, format: .number)
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.trailing)
                             .onReceive(Just(weight)) { _ in limitText(textLimit)}
-                        Text("Kg").foregroundColor(.secondary)
+                        Text("Kg".localized(language_choosen)).foregroundColor(.secondary)
                     }// weight
                     divider
                     
                     HStack {
-                        Text("Height")
+                        Text(K.LocalizedKey.HEIGHT.localized(language_choosen))
                         Spacer()
-                        TextField("Enter your height", value: $height, format: .number)
+                        TextField(K.LocalizedKey.ENTER_HEIGHT.localized(language_choosen), value: $height, format: .number)
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.trailing)
                             .onReceive(Just(height)) { _ in limitText(textLimit)}
-                        Text("cm").foregroundColor(.secondary)
+                        Text("cm".localized(language_choosen)).foregroundColor(.secondary)
                     }// height
                     divider
                     
                     HStack {
-                        Text("Gender")
+                        Text(K.LocalizedKey.GENDER.localized(language_choosen))
                         Spacer()
-                        Picker("Gender", selection: $genderSelection) {
+                        Picker(K.LocalizedKey.GENDER.localized(language_choosen), selection: $genderSelection) {
                             ForEach(0..<K.gender.count, id: \.self) {
                                 Text(K.gender[$0]).tag($0)
                             }
@@ -162,9 +163,9 @@ extension UserIntroScreen {
                     divider
                     
                     HStack {
-                        Text("Blood Type")
+                        Text(K.LocalizedKey.BLOOD_TYPE.localized(language_choosen))
                         Spacer()
-                        Picker("Blood Type", selection: $bloodTypeSelection) {
+                        Picker(K.LocalizedKey.BLOOD_TYPE.localized(language_choosen), selection: $bloodTypeSelection) {
                             ForEach(0..<K.bloodType.count, id: \.self) {
                                 Text(K.bloodType[$0]).tag($0)
                             }
@@ -174,16 +175,16 @@ extension UserIntroScreen {
                 }
                 Group {
                     HStack (spacing: 20) {
-                        Toggle("Wheel chair", isOn: $wheelChairSelection)
-                        Text(wheelChairSelection ? "Yes" : "No")
+                        Toggle(K.LocalizedKey.WHEEL_CHAIR.localized(language_choosen), isOn: $wheelChairSelection)
+                        Text(wheelChairSelection ? K.LocalizedKey.YES.localized(language_choosen) : K.LocalizedKey.NO.localized(language_choosen))
                             .foregroundColor(.secondary)
                             .animation(.easeIn, value: wheelChairSelection)
                     }// wheel chair
                     divider
                     
                     HStack (spacing: 20) {
-                        Toggle("Organ Donar", isOn: $organDonarSelection)
-                        Text(organDonarSelection ? "Yes" : "No")
+                        Toggle(K.LocalizedKey.ORGAN_DONAR.localized(language_choosen), isOn: $organDonarSelection)
+                        Text(organDonarSelection ? K.LocalizedKey.YES.localized(language_choosen) : K.LocalizedKey.NO.localized(language_choosen))
                             .foregroundColor(.secondary)
                             .animation(.easeIn, value: organDonarSelection)
                     }// organ donar
@@ -204,14 +205,13 @@ extension UserIntroScreen {
     private var saveButton: some View {
         MTButton(action: {
             uploadProfile()
-        }, title: "Save", hexCode: K.BrandColors.pink).padding()
+        }, title: K.LocalizedKey.SAVE.localized(language_choosen), hexCode: K.BrandColors.pink).padding()
     }
     
     private func uploadProfile() {
         vm.uploadUserProfile(image: imageSelected, username: userame, phoneNum: mobile_num, dateOfBirth: dob, weight: weight, height: height, gender: genderSelection, bloodType: bloodTypeSelection, wheelChair: wheelChairSelection, organDonar: organDonarSelection) { returnedBool in
             if returnedBool {
                 UserDefaults.standard.UserIntroScreenShown = true
-                //self.dismissMode()
                 path.append(0)
             }
         }

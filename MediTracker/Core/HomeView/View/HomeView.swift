@@ -137,7 +137,7 @@ extension HomeView {
     }
     
     private var medicationSection: some View {
-        VStack (alignment: .leading, spacing: 10) {
+        VStack (alignment: .leading, spacing: 20) {
             Text(K.LocalizedKey.MEDICA.localized(language_choosen))
                 .foregroundColor(.primary)
                 .font(.title)
@@ -167,7 +167,6 @@ extension HomeView {
                 .padding(.top, 20)
             
             LazyVGrid(columns: adaptiveColumns, spacing: 20) {
-                //ForEach(Department.allCases, id: \.rawValue) { department in
                 ForEach(1...5, id: \.self) { itme in
                     MTActivityCard(title: "Steps", data: "3,456", iconName: "figure.step.training", chartBar: "chart.bar", color: Color(K.BrandColors.pastelPurple))
                 }

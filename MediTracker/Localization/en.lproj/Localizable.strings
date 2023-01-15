@@ -66,3 +66,37 @@
 "GOOD_EVE" = "Good Evening,";
 "MEDICA" = "Medication";
 "D_ACTIVITY" = "Daily Activity";
+
+
+// MARK: PROFILE - User intro screen
+"WAT_U_WANT_TO_OPEN" = "What do you want to open?";
+"CAMERA" = "Camera";
+"GALLERY" = "Photo Gallery";
+"CANCEL" = "Cancel";
+"ENTER_NAME" = "Enter your name";
+"CONTACT_NUM" = "Contact Number";
+"DOB" = "Date of Birth";
+"WEIGHT" = "Weight";
+"ENTER_WEIGHT" = "Enter your weight";
+"HEIGHT" = "Height";
+"ENTER_HEIGHT" = "Enter your height";
+"GENDER" = "Gender";
+"BLOOD_TYPE" = "Blood Type";
+"WHEEL_CHAIR" = "Wheel chair";
+"ORGAN_DONAR" = "Organ Donar";
+"YES" = "Yes";
+"NO" = "No";
+"SAVE" = "Save";
+"ALLERGIES" = "My Allergies";
+"SPREAD" = "Spread the word";
+"WE_LOVE" = "We love hearing from our users, enjoying our app, please rate us on the AppStore";
+"SHARE" = "Share";
+"RATE" = "Rate";
+"SIGN_OUT" = "Sign Out";
+
+
+// MARK: Item - MTAppointmentCard
+"MANAGE_CAL" = "Manage your Calendar";
+"NO_SCHEDULE" = "No Upcoming Schedules";
+"YOUR_APPOINT" = "Your appointments";
+

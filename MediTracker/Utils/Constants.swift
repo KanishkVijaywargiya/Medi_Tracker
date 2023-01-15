@@ -42,34 +42,24 @@ struct K {
     }
     
     struct SFSymbols {
-        // MARK: Login Screen
+        static let chevLeft = "chevron.left"
+        static let chevRight = "chevron.right"
+        static let chevDown = "chevron.down"
+        static let chevBack = "chevron.backward"
         static let arrowTriangleDownFill = "arrowtriangle.down.fill"
         static let ellipsis = "ellipsis"
         static let appleLogin = "apple.logo"
-        
-        // MARK: List of Countries Screen
-        static let chevDown = "chevron.down"
-        
-        // MARK: Localization Glass Button
         static let characBubble = "character.bubble"
         static let characBubbleFill = "character.bubble.fill.ja"
         static let globe = "globe"
-        static let chevBack = "chevron.backward"
-        
-        // MARK: Localization Language Card
         static let larFillCircle = "largecircle.fill.circle"
         static let circle = "circle"
-        
-        // MARK: Calendar view
         static let plus = "plus"
-        
-        // MARK: Add appointment view
-        static let chevLeft = "chevron.left"
         static let calendar = "calendar"
         static let clock = "clock"
-        
-        // MARK: Home view
         static let person_fill = "person.fill"
+        static let pencil = "pencil"
+        static let allergyFill = "allergens.fill"
     }
     
     struct AppImg {
@@ -139,6 +129,36 @@ struct K {
         static let D_ACTIVITY = "D_ACTIVITY"
         
         // MARK: Profile view
+        static let WAT_OPEN = "WAT_U_WANT_TO_OPEN"
+        static let CAMERA = "CAMERA"
+        static let GALLERY = "GALLERY"
+        static let CANCEL = "CANCEL"
+        static let ENTER_NAME = "ENTER_NAME"
+        static let CONTACT_NUM = "CONTACT_NUM"
+        static let DOB = "DOB"
+        static let WEIGHT = "WEIGHT"
+        static let ENTER_WEIGHT = "ENTER_WEIGHT"
+        static let HEIGHT = "HEIGHT"
+        static let ENTER_HEIGHT = "ENTER_HEIGHT"
+        static let GENDER = "GENDER"
+        static let BLOOD_TYPE = "BLOOD_TYPE"
+        static let WHEEL_CHAIR = "WHEEL_CHAIR"
+        static let ORGAN_DONAR = "ORGAN_DONAR"
+        static let YES = "YES"
+        static let NO = "NO"
+        static let SAVE = "SAVE"
+        static let ALLERGIES = "ALLERGIES"
+        static let SPREAD = "SPREAD"
+        static let WE_LOVE = "WE_LOVE"
+        static let SHARE = "SHARE"
+        static let RATE = "RATE"
+        static let SIGN_OUT = "SIGN_OUT"
+        
+        // MARK: ITEM - MTAppointmentCard
+        static let MANAGE_CAL = "MANAGE_CAL"
+        static let NO_SCHEDULE = "NO_SCHEDULE"
+        static let YOUR_APPOINT = "YOUR_APPOINT"
+        
     }
     
     struct NavigationTag {

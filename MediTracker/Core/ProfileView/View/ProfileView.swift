@@ -13,6 +13,8 @@ struct ProfileView: View {
     @StateObject private var vm = OTPViewModel() //using for sign out
     @EnvironmentObject var profileVM: ProfileViewModel //profile view model to get all data from home page
     
+    @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language //localize app storage
+    
     let appReleaseVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     let buildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
     
@@ -63,7 +65,7 @@ extension ProfileView {
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                     .padding(.bottom)
             } placeholder: {
-                Image(systemName: "person.fill")
+                Image(systemName: K.SFSymbols.person_fill)
                     .font(.system(size: 250))
                     .foregroundColor(.black)
                     .background(Color.white)
@@ -85,13 +87,13 @@ extension ProfileView {
     private var userDetails: some View {
         VStack (alignment: .leading, spacing: 12) {
             HStack {
-                Text("Contact Number")
+                Text(K.LocalizedKey.CONTACT_NUM.localized(language_choosen))
                 Spacer()
                 Text(profileVM.userProfileData.phoneNum).foregroundColor(.secondary)
             }// mobile num
             divider
             HStack {
-                Text("Date of Birth")
+                Text(K.LocalizedKey.DOB.localized(language_choosen))
                 Spacer()
                 Text("\(profileVM.userProfileData.dateString)").foregroundColor(.secondary)
             }// dob
@@ -101,28 +103,28 @@ extension ProfileView {
             VStack (alignment: .leading, spacing: 12) {
                 Group {
                     HStack {
-                        Text("Weight")
+                        Text(K.LocalizedKey.WEIGHT.localized(language_choosen))
                         Spacer()
                         Text("\(profileVM.userProfileData.weight.asNumString())").foregroundColor(.secondary)
                     }// weight
                     divider
                     
                     HStack {
-                        Text("Height")
+                        Text(K.LocalizedKey.HEIGHT.localized(language_choosen))
                         Spacer()
                         Text("\(profileVM.userProfileData.height.asNumString())").foregroundColor(.secondary)
                     }// height
                     divider
                     
                     HStack {
-                        Text("Gender")
+                        Text(K.LocalizedKey.GENDER.localized(language_choosen))
                         Spacer()
                         Text(K.gender[profileVM.userProfileData.gender]).foregroundColor(.secondary)
                     }
                     divider
                     
                     HStack {
-                        Text("Blood Type")
+                        Text(K.LocalizedKey.BLOOD_TYPE.localized(language_choosen))
                         Spacer()
                         Text(K.bloodType[profileVM.userProfileData.bloodType]).foregroundColor(.secondary)
                     }
@@ -130,14 +132,14 @@ extension ProfileView {
                 }
                 Group {
                     HStack {
-                        Text("Wheel Chair")
+                        Text(K.LocalizedKey.WHEEL_CHAIR.localized(language_choosen))
                         Spacer()
                         Text(profileVM.userProfileData.wheelCharValue).foregroundColor(.secondary)
                     }//wheel chair
                     divider
                     
                     HStack {
-                        Text("Organ Donar")
+                        Text(K.LocalizedKey.ORGAN_DONAR.localized(language_choosen))
                         Spacer()
                         Text(profileVM.userProfileData.organDonarValue).foregroundColor(.secondary)//organ donar chair
                     }// organ donar
@@ -154,9 +156,9 @@ extension ProfileView {
     private var allergySection: some View {
         VStack (spacing: 0) {
             HStack (alignment: .center) {
-                Text("My Allergies").font(.title.bold()).foregroundColor(.primary)
+                Text(K.LocalizedKey.ALLERGIES.localized(language_choosen)).font(.title.bold()).foregroundColor(.primary)
                 Spacer()
-                MTAddButton(title: "Add", iconName: "plus", action: {})
+                MTAddButton(title: "Add", iconName: K.SFSymbols.plus, action: {})
             }
             .padding()
             .padding(.top, 20)
@@ -164,7 +166,7 @@ extension ProfileView {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack (spacing: 20) {
                     ForEach(0..<5) { _ in
-                        MTMedicationCard(iconName: "allergens.fill", medicineName: "Aspirin", selection: false)
+                        MTMedicationCard(iconName: K.SFSymbols.allergyFill, medicineName: "Aspirin", selection: false)
                     }
                 }
                 .padding()
@@ -175,26 +177,26 @@ extension ProfileView {
     
     private var footerSection: some View {
         VStack (alignment: .center, spacing: 20) {
-            Text("Spread the word")
+            Text(K.LocalizedKey.SPREAD.localized(language_choosen))
                 .font(.headline)
                 .padding(.top)
-            Text("We love hearing from our users, enjoying our app, please rate us on the AppStore")
+            Text(K.LocalizedKey.WE_LOVE.localized(language_choosen))
                 .padding(.horizontal, 16)
                 .font(.footnote)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
             
             HStack (spacing: 30) {
-                MTGeneralButton(title: "Share", action: {})
+                MTGeneralButton(title: K.LocalizedKey.SHARE.localized(language_choosen), action: {})
                 
-                MTGeneralButton(title: "Rate", action: {})
+                MTGeneralButton(title: K.LocalizedKey.RATE.localized(language_choosen), action: {})
             }
         }
     }
     
     private var signOutSection: some View {
         VStack (alignment: .center, spacing: 4) {
-            Text("Sign Out")
+            Text(K.LocalizedKey.SIGN_OUT.localized(language_choosen))
                 .font(.headline).foregroundColor(.primary)
             Text("Version: \(appReleaseVersion ?? "") (\(buildVersion ?? ""))")
                 .font(.system(size: 16))
@@ -207,14 +209,14 @@ extension ProfileView {
     
     private var floatButtonSection: some View {
         HStack {
-            MTGlassButton(iconName: "chevron.down", iconSize: 14, action: {
+            MTGlassButton(iconName: K.SFSymbols.chevDown, iconSize: 14, action: {
                 withAnimation {
                     self.dismissMode()
                 }
             })
                 
             Spacer()
-            MTAddButton(title: "Edit", iconName: "pencil", action: {})
+            MTAddButton(title: "Edit", iconName: K.SFSymbols.pencil, action: {})
                 .background(BlurView(style: .systemUltraThinMaterial))
                 .cornerRadius(12)
         }.padding(.horizontal)

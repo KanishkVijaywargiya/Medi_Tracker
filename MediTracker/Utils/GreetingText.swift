@@ -13,7 +13,7 @@ enum Greeting {
     case evening
 }
 
-func getGreetingText() -> Greeting {
+private func getGreetingText() -> Greeting {
     let now = Date()
     let hour = Calendar.current.component(.hour, from: now)
     

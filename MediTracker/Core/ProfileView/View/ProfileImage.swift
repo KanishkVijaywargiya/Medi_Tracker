@@ -12,7 +12,7 @@ struct ProfileImage: View {
     
     var body: some View {
         if imageSelected == UIImage() {
-            Image(systemName: "person.fill")
+            Image(systemName: K.SFSymbols.person_fill)
                 .font(.system(size: 250))
                 .foregroundColor(.black)
                 .background(Color.white)
