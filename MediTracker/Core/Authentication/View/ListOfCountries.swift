@@ -29,7 +29,7 @@ struct ListOfCountries: View {
             })
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Image(systemName: K.SFSymbols.chevronDown)
+                    Image(systemName: K.SFSymbols.chevDown)
                         .padding(.trailing)
                         .onTapGesture {
                             withAnimation(.easeOut) {

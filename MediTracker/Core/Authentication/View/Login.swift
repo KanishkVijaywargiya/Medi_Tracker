@@ -16,11 +16,9 @@ struct Login: View {
     @State private var countryCode: String = "+91"
     @State private var countryFlag: String = "🇮🇳"
     
-    // MARK: used for localization sheet
-    @State private var showLanguageSheet: Bool = false
+    @State private var showLanguageSheet: Bool = false //localize sheet
     
-    // MARK: app storage for localization
-    @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language
+    @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language //localize app storage
     
     var body: some View {
         ZStack(alignment: .topLeading) {

@@ -8,16 +8,6 @@
 import SwiftUI
 import Firebase
 
-/*
- TODO:
- 2. make full screen cover instead of medium for localization
- 3. add functionality of scroll to top in language screen
- 4. add accordian design modification to normal cards of language selection
- 5. add more languages
- 6. need to check the verification manual typing & button calling func.
- */
-
-
 struct HomeView: View {
     @State private var showLanguageSheet: Bool = false //localization
     @State private var showProfileView: Bool = false //show profile page
@@ -28,6 +18,7 @@ struct HomeView: View {
     @StateObject var appointVM = AppointmentCoreDataVM() //appointment core data vm
     @ObservedObject var profileVM: ProfileViewModel //profile viewModel
     @AppStorage("mobile_num") private var mobile_num = "" //mobile num
+    @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language //localize app storage
     
     private let adaptiveColumns = [
         GridItem(.adaptive(minimum: 170))
@@ -35,8 +26,6 @@ struct HomeView: View {
     
     var body: some View {
         ZStack (alignment: .topLeading) {
-            //Color.white.opacity(0.1).ignoresSafeArea()
-            
             ScrollView(showsIndicators: false) {
                 VStack (alignment: .leading, spacing: 20) {
                     headerSection //header section
@@ -47,9 +36,9 @@ struct HomeView: View {
                                 HStack (spacing: 0) {
                                     ForEach(appointVM.appointmentItem, id: \.id) { item in
                                         MTAppointmentCard(
-                                            day: item.dateAdded?.toString("EE") ?? "",
-                                            date: item.dateAdded?.toString("dd") ?? "",
-                                            time: item.dateAdded?.toString("hh:mm a") ?? "",
+                                            day: item.dateAdded?.toString(K.DateSymb.DAY) ?? "",
+                                            date: item.dateAdded?.toString(K.DateSymb.DATE) ?? "",
+                                            time: item.dateAdded?.toString(K.DateSymb.TIME) ?? "",
                                             doctorName: item.doctorName ?? "",
                                             department: item.departmentName ?? "",
                                             check: true
@@ -100,7 +89,7 @@ extension HomeView {
         HStack (alignment: .center) {
             // title & user text
             VStack(alignment: .leading, spacing: 6) {
-                Text("Good Morning,")
+                Text(displayGreeting().localized(language_choosen))
                     .font(.title2.bold())
                     .foregroundColor(.secondary)
                 Text(nameText).font(.title3.bold())
@@ -129,7 +118,7 @@ extension HomeView {
                         }
                     }
             } placeholder: {
-                Image(systemName: "person.fill")
+                Image(systemName: K.SFSymbols.person_fill)
                     .font(.system(size: 32, weight: .bold))
                     .padding(.all, 6)
                     .background(Color.white)
@@ -149,7 +138,7 @@ extension HomeView {
     
     private var medicationSection: some View {
         VStack (alignment: .leading, spacing: 10) {
-            Text("Medication")
+            Text(K.LocalizedKey.MEDICA.localized(language_choosen))
                 .foregroundColor(.primary)
                 .font(.title)
                 .fontWeight(.semibold)
@@ -170,7 +159,7 @@ extension HomeView {
     
     private var dailyActivityGridCard: some View {
         VStack (alignment: .leading, spacing: 20) {
-            Text("Daily Activity")
+            Text(K.LocalizedKey.D_ACTIVITY.localized(language_choosen))
                 .foregroundColor(.primary)
                 .font(.title)
                 .fontWeight(.semibold)

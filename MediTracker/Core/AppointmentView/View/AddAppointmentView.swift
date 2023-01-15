@@ -23,24 +23,26 @@ struct AddAppointmentView: View {
     
     @ObservedObject var vm: AppointmentCoreDataVM // used for appointment core data
     
+    @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language //localize app storage
+    
     var body: some View {
         VStack (alignment: .leading) {
             VStack (alignment: .leading, spacing: 10) {
                 Button {
                     dismissMode()
                 } label: {
-                    Image(systemName: "chevron.left")
+                    Image(systemName: K.SFSymbols.chevDown)
                         .foregroundColor(.white)
                         .contentShape(Rectangle())
                 }
                 
-                Text("Create New Appointment")
+                Text(K.LocalizedKey.NEW_APPOINTMENT.localized(language_choosen))
                     .customFont(28, weight: .light)
                     .foregroundColor(.white)
                     .padding(.vertical, 15)
                 
-                TitleView("Hospital name")
-                TextField("Enter your hospital name", text: $hospitalName)
+                TitleView(K.LocalizedKey.HOSPITAL_NAME.localized(language_choosen))
+                TextField(K.LocalizedKey.ENTER_HOS_NAME.localized(language_choosen), text: $hospitalName)
                     .customFont(16, weight: .regular)
                     .tint(.white)
                     .padding(.top, 2)
@@ -49,8 +51,8 @@ struct AddAppointmentView: View {
                     .fill(.white.opacity(0.7))
                     .frame(height: 1)
                 
-                TitleView("Doctor name").padding(.top, 2)
-                TextField("Enter your doctor's name", text: $doctorName)
+                TitleView(K.LocalizedKey.DOC_NAME.localized(language_choosen)).padding(.top, 2)
+                TextField(K.LocalizedKey.ENTER_DOC_NAME.localized(language_choosen), text: $doctorName)
                     .customFont(16, weight: .regular)
                     .tint(.white)
                     .padding(.top, 2)
@@ -59,7 +61,7 @@ struct AddAppointmentView: View {
                     .fill(.white.opacity(0.7))
                     .frame(height: 1)
                 
-                TitleView("Date").padding(.top, 15)
+                TitleView(K.LocalizedKey.DATES.localized(language_choosen)).padding(.top, 15)
                 
                 HStack (alignment: .bottom, spacing: 12) {
                     dateText
@@ -89,9 +91,9 @@ struct AddAppointmentView: View {
             }
             
             VStack (alignment: .leading, spacing: 10) {
-                TitleView("Description".uppercased(), .gray)
+                TitleView(K.LocalizedKey.DESCRIPTION.localized(language_choosen).uppercased(), .gray)
                 
-                TextField("About your appointment", text: $description, axis: .vertical)
+                TextField(K.LocalizedKey.YOUR_APPOINTMENT.localized(language_choosen), text: $description, axis: .vertical)
                     .customFont(16, weight: .regular)
                     .padding(.top, 2)
                     .lineLimit(5)
@@ -100,7 +102,7 @@ struct AddAppointmentView: View {
                     .fill(.black.opacity(0.2))
                     .frame(height: 1)
                 
-                TitleView("Department".uppercased(), .gray)
+                TitleView(K.LocalizedKey.DEPARTMENT.uppercased(), .gray)
                     .padding(.top, 15)
                 
                 gridView //grid view for departments
@@ -128,10 +130,10 @@ extension AddAppointmentView {
     
     private var dateText: some View {
         HStack (spacing: 12) {
-            Text(dateAdded.toString("EEEE dd MMMM")).customFont(16, weight: .regular)
+            Text(dateAdded.toString(K.DateSymb.DAY_DATE_MON)).customFont(16, weight: .regular)
             
             // MARK: Custom Date Picker
-            Image(systemName: "calendar")
+            Image(systemName: K.SFSymbols.calendar)
                 .font(.title3)
                 .foregroundColor(.white)
                 .overlay {
@@ -150,10 +152,10 @@ extension AddAppointmentView {
     
     private var timeText: some View {
         HStack (spacing: 12) {
-            Text(dateAdded.toString("hh:mm a")).customFont(16, weight: .regular)
+            Text(dateAdded.toString(K.DateSymb.TIME)).customFont(16, weight: .regular)
             
             // MARK: Custom Date Picker
-            Image(systemName: "clock")
+            Image(systemName: K.SFSymbols.clock)
                 .font(.title3)
                 .foregroundColor(.white)
                 .overlay {
@@ -209,7 +211,7 @@ extension AddAppointmentView {
             vm.addAppointments(appointment)
             if !vm.isLoading { dismissMode() }
         } label: {
-            Text("Create Appointment")
+            Text(K.LocalizedKey.CREATE_APPOINTMENT.localized(language_choosen))
                 .customFont(16, weight: .regular)
                 .foregroundColor(.white)
                 .padding(.vertical, 15)

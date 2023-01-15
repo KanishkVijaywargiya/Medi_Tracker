@@ -15,6 +15,8 @@ struct CalendarView: View {
     @ObservedObject var profileVM: ProfileViewModel //profile viewModel
     @ObservedObject var appointVM: AppointmentCoreDataVM //appointment core data vm
     
+    @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language //localize app storage
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             timeLine.padding(15)
@@ -44,7 +46,7 @@ extension CalendarView {
         VStack {
             HStack {
                 VStack (alignment: .leading, spacing: 6) {
-                    Text("Today").customFont(30, weight: .light)
+                    Text(K.LocalizedKey.TODAY.localized(language_choosen)).customFont(30, weight: .light)
                     Text(nameText).customFont(14, weight: .light)
                 }.hAlign(.leading)
                 
@@ -52,8 +54,8 @@ extension CalendarView {
                     addAppointments.toggle()
                 } label: {
                     HStack (spacing: 10) {
-                        Image(systemName: "plus")
-                        Text("Add Task").customFont(15, weight: .regular)
+                        Image(systemName: K.SFSymbols.plus)
+                        Text(K.LocalizedKey.ADD_TASK.localized(language_choosen)).customFont(15, weight: .regular)
                     }
                     .padding(.vertical, 10)
                     .padding(.horizontal, 15)
@@ -63,7 +65,7 @@ extension CalendarView {
                 
             }
             Text(Date()
-                .toString("MMM YYYY")).customFont(16, weight: .medium)
+                .toString(K.DateSymb.MON_YR)).customFont(16, weight: .medium)
                 .hAlign(.leading)
                 .padding(.top, 15)
             
@@ -96,7 +98,7 @@ extension CalendarView {
                 let status = Calendar.current.isDate(weekDay.date, inSameDayAs: currentDay)
                 VStack (spacing: 6) {
                     Text(weekDay.string.prefix(3)).customFont(12, weight: .medium)
-                    Text(weekDay.date.toString("dd")).customFont(16, weight: status ? .medium : .regular)
+                    Text(weekDay.date.toString(K.DateSymb.DATE)).customFont(16, weight: status ? .medium : .regular)
                 }
                 .foregroundColor (status ? Color(K.BrandColors.pink) : .gray)//highlight current active day
                 .hAlign(.center)
@@ -132,7 +134,7 @@ extension CalendarView {
     // time line view row
     private func TimeLineViewRow(_ date: Date) -> some View {
         HStack (alignment: .top) {
-            Text(date.toString("h a"))
+            Text(date.toString(K.DateSymb.HR_AM_PM))
                 .customFont(14, weight: .regular)
                 .frame(width: 45, alignment: .leading)
             

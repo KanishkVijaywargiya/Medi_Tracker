@@ -40,3 +40,29 @@
 "NO_CONNECTION" = "इंटरनेट से कनेक्ट नहीं हो सका";
 "VALID_NUM" = "कृपया मान्य फोन नंबर दर्ज करें।";
 "SOMETHING_WRONG" = "कुछ गलत हो गया";
+
+
+// MARK: Calendar View
+"TODAY" = "आज";
+"ADD_TASK" = "अनुसूची";
+
+
+// MARK: Add appointment view
+"NEW_APPOINTMENT" = "नई नियुक्ति बनाएँ";
+"HOSPITAL_NAME" = "अस्पताल का नाम";
+"ENTER_HOS_NAME" = "अपने अस्पताल का नाम दर्ज करें";
+"DOC_NAME" = "डॉक्टर का नाम";
+"ENTER_DOC_NAME" = "अपने डॉक्टर का नाम दर्ज करें";
+"DATES" = "तारीख";
+"DESCRIPTION" = "विवरण";
+"YOUR_APPOINTMENT" = "आपकी नियुक्ति के बारे में";
+"DEPARTMENT" = "विभाग";
+"CREATE_APPOINTMENT" = "अपॉइंटमेंट बनाएं";
+
+
+// MARK: Home view
+"GOOD_MOR" = "शुभ प्रभात,";
+"GOOD_AFTER" = "नमस्कार,";
+"GOOD_EVE" = "नमस्ते,";
+"MEDICA" = "दवाई";
+"D_ACTIVITY" = "प्रतिदिन की गतिविधि";

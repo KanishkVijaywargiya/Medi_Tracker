@@ -21,17 +21,15 @@ struct Verification: View {
     @EnvironmentObject var vm: OTPViewModel //otp view model
     @FocusState var activeField: OTPField? // focus state for TextField
     
-    // MARK: timer variables to activate resend button
-    @State private var timeRemaining = 20 
-    @State private var showTimer: Bool = true
+    @State private var timeRemaining = 20 //otp resend timer state
+    @State private var showTimer: Bool = true //otp resend timer state
+    @State private var count: Int = 0 //otp resend timer state
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State private var count: Int = 0
     
-    @StateObject private var profileVM = ProfileViewModel() //used for fetching/checking of data from firestore
+    @StateObject private var profileVM = ProfileViewModel() //fetch/check of data
     
-    // MARK: Mobile num with country code in title
-    var mobileNum: String
-    var countryCode: String
+    var mobileNum: String //mobile num
+    var countryCode: String //country code
     
     @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language //localization
     

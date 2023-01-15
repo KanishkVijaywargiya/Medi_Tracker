@@ -48,7 +48,7 @@ struct K {
         static let appleLogin = "apple.logo"
         
         // MARK: List of Countries Screen
-        static let chevronDown = "chevron.down"
+        static let chevDown = "chevron.down"
         
         // MARK: Localization Glass Button
         static let characBubble = "character.bubble"
@@ -59,6 +59,17 @@ struct K {
         // MARK: Localization Language Card
         static let larFillCircle = "largecircle.fill.circle"
         static let circle = "circle"
+        
+        // MARK: Calendar view
+        static let plus = "plus"
+        
+        // MARK: Add appointment view
+        static let chevLeft = "chevron.left"
+        static let calendar = "calendar"
+        static let clock = "clock"
+        
+        // MARK: Home view
+        static let person_fill = "person.fill"
     }
     
     struct AppImg {
@@ -103,10 +114,44 @@ struct K {
         static let VALID_NUM = "VALID_NUM"
         static let VERIFICATION = "VERIFICATION"
         static let SOMETHING_WRONG = "SOMETHING_WRONG"
+        
+        // MARK: Calendar view
+        static let TODAY = "TODAY"
+        static let ADD_TASK = "ADD_TASK"
+        
+        // MARK: Add appointment view
+        static let NEW_APPOINTMENT = "NEW_APPOINTMENT"
+        static let HOSPITAL_NAME = "HOSPITAL_NAME"
+        static let ENTER_HOS_NAME = "ENTER_HOS_NAME"
+        static let DOC_NAME = "DOC_NAME"
+        static let ENTER_DOC_NAME = "ENTER_DOC_NAME"
+        static let DATES = "DATES"
+        static let DESCRIPTION = "DESCRIPTION"
+        static let YOUR_APPOINTMENT = "YOUR_APPOINTMENT"
+        static let DEPARTMENT = "DEPARTMENT"
+        static let CREATE_APPOINTMENT = "CREATE_APPOINTMENT"
+        
+        // MARK: Home view
+        static let GOOD_MOR = "GOOD_MOR"
+        static let GOOD_AFTER = "GOOD_AFTER"
+        static let GOOD_EVE = "GOOD_EVE"
+        static let MEDICA = "MEDICA"
+        static let D_ACTIVITY = "D_ACTIVITY"
+        
+        // MARK: Profile view
     }
     
     struct NavigationTag {
         static let verification = "VERIFICATION"
+    }
+    
+    struct DateSymb {
+        static let DAY = "EE"
+        static let DATE = "dd"
+        static let TIME = "hh:mm a"
+        static let HR_AM_PM = "h a"
+        static let MON_YR = "MMM YYYY"
+        static let DAY_DATE_MON = "EEEE dd MMMM"
     }
     
     //general

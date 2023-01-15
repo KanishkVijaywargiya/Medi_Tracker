@@ -40,3 +40,29 @@
 "NO_CONNECTION" = "Could not connect to the internet";
 "VALID_NUM" = "Please enter a valid phone number.";
 "SOMETHING_WRONG" = "Something went wrong";
+
+
+// MARK: Calendar View
+"TODAY" = "Today";
+"ADD_TASK" = "Schedule";
+
+
+// MARK: Add appointment view
+"NEW_APPOINTMENT" = "Create New Appointment";
+"HOSPITAL_NAME" = "Hospital name";
+"ENTER_HOS_NAME" = "Enter your hospital name";
+"DOC_NAME" = "Doctor name";
+"ENTER_DOC_NAME" = "Enter your doctor's name";
+"DATES" = "Date";
+"DESCRIPTION" = "Description";
+"YOUR_APPOINTMENT" = "About your appointment";
+"DEPARTMENT" = "Department";
+"CREATE_APPOINTMENT" = "Create Appointment";
+
+
+// MARK: Home view
+"GOOD_MOR" = "Good Morning,";
+"GOOD_AFTER" = "Good Afternoon,";
+"GOOD_EVE" = "Good Evening,";
+"MEDICA" = "Medication";
+"D_ACTIVITY" = "Daily Activity";

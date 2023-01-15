@@ -33,6 +33,7 @@
 		046A9A8D2955B7B2003CE426 /* UserSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A9A8C2955B7B2003CE426 /* UserSectionView.swift */; };
 		046E85FA297185E10089885B /* MediTrackerContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 046E85F8297185E10089885B /* MediTrackerContainer.xcdatamodeld */; };
 		046ED3142951AFA00067A5A1 /* ListOfCountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046ED3132951AFA00067A5A1 /* ListOfCountriesViewModel.swift */; };
+		0474781A29744CF30040CC37 /* GreetingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0474781929744CF30040CC37 /* GreetingText.swift */; };
 		0481B37E295C93290036326E /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481B37D295C93290036326E /* ProfileModel.swift */; };
 		048BC4DC2953079200142AD9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048BC4DB2953079200142AD9 /* Constants.swift */; };
 		048FC5A3295602580016F566 /* ProfileImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FC5A2295602580016F566 /* ProfileImageStorage.swift */; };
@@ -109,6 +110,7 @@
 		046A9A8C2955B7B2003CE426 /* UserSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSectionView.swift; sourceTree = "<group>"; };
 		046E85F9297185E10089885B /* MediTrackerContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MediTrackerContainer.xcdatamodel; sourceTree = "<group>"; };
 		046ED3132951AFA00067A5A1 /* ListOfCountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfCountriesViewModel.swift; sourceTree = "<group>"; };
+		0474781929744CF30040CC37 /* GreetingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingText.swift; sourceTree = "<group>"; };
 		0481B37D295C93290036326E /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		048BC4DB2953079200142AD9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		048FC5A2295602580016F566 /* ProfileImageStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageStorage.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				0462035B2949A85700A487CD /* BlurView.swift */,
 				048BC4DB2953079200142AD9 /* Constants.swift */,
 				0457D439295C65B900145468 /* FirebaseConstants.swift */,
+				0474781929744CF30040CC37 /* GreetingText.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 				043E7E8D2948E353005F4740 /* Country.swift in Sources */,
 				04C3570D29699C43001DB5BC /* AddAppointmentView.swift in Sources */,
 				04EE705E294B891100A64D10 /* SplashScreen.swift in Sources */,
+				0474781A29744CF30040CC37 /* GreetingText.swift in Sources */,
 				04F7AC172945E1A000C6B479 /* ContentView.swift in Sources */,
 				04DD544B2950CDA900372343 /* LanguageSheet.swift in Sources */,
 				044BB5E729508BF500B48B79 /* Strings+Localisation.swift in Sources */,
