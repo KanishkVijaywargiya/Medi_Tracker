@@ -13,7 +13,16 @@ struct MTAppointmentCard: View {
     var time: String
     var doctorName: String
     var department: String
-    var check: Bool = false
+    var check: Bool
+    
+    init(day: String? = Date().toString("EE"), date: String? = Date().toString("dd"), time: String? = Date().toString("hh:mm a"), doctorName: String? = "", department: String? = "", check: Bool = false) {
+        self.day = day ?? Date().toString("EE")
+        self.date = date ?? Date().toString("dd")
+        self.time = time ?? Date().toString("hh:mm a")
+        self.doctorName = doctorName ?? ""
+        self.department = department ?? ""
+        self.check = check
+    }
     
     var body: some View {
         if check {
@@ -38,13 +47,11 @@ struct MTAppointmentCard: View {
                     }
                 }//text, time, doc & depart name
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(30)
             .background(Color(K.BrandColors.pink).gradient)
             .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
             .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             .shadow(color: Color.pink.opacity(0.3), radius: 10, x: 0, y: 10)
-            .padding(.horizontal)
         } else {
             HStack (alignment: .center, spacing: 20) {
                 leftSection
@@ -62,33 +69,13 @@ struct MTAppointmentCard: View {
                         .font(.caption.bold())
                         .foregroundColor(.white)
                         .multilineTextAlignment(.leading)
-                    
-//                    HStack (alignment: .center, spacing: 2) {
-//                        Text("No Upcoming Schedules")
-//                            .font(.caption.bold())
-//                            .foregroundColor(.white)
-//                            .multilineTextAlignment(.leading)
-//                        Spacer()
-//
-//                        VStack {
-//                            Text(time)
-//                                .padding(5)
-////                                .font(.footnote)
-//                                .customFont(12, weight: .medium)
-//                                .foregroundColor(.secondary)
-//                        }
-//                        .background(.white.gradient)
-//                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-//                    } //nxt appointment with time
                 }
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(30)
             .background(Color(K.BrandColors.pink).gradient)
             .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
             .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             .shadow(color: Color.pink.opacity(0.3), radius: 10, x: 0, y: 10)
-            .padding(.horizontal)
         }
     }
 }

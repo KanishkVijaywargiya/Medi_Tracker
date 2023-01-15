@@ -38,13 +38,13 @@ struct HomeView: View {
             //Color.white.opacity(0.1).ignoresSafeArea()
             
             ScrollView(showsIndicators: false) {
-                VStack (alignment: .leading, spacing: 40) {
+                VStack (alignment: .leading, spacing: 20) {
                     headerSection //header section
                     
                     NavigationLink(destination: CalendarView(profileVM: ProfileViewModel(), appointVM: appointVM)) {
                         if appointVM.appointmentItem.count > 0 {
                             ScrollView(.horizontal, showsIndicators: false) {
-                                HStack {
+                                HStack (spacing: 0) {
                                     ForEach(appointVM.appointmentItem, id: \.id) { item in
                                         MTAppointmentCard(
                                             day: item.dateAdded?.toString("EE") ?? "",
@@ -54,11 +54,13 @@ struct HomeView: View {
                                             department: item.departmentName ?? "",
                                             check: true
                                         )
+                                        .padding(.horizontal)
                                     }
-                                }.padding()
+                                }.frame(height: 230)
                             }
                         } else {
-                            MTAppointmentCard(day: Date().toString("EE"), date: Date().toString("dd"), time: Date().toString("hh:mm a"), doctorName: "", department: "", check: false)
+                            MTAppointmentCard(check: false)
+                                .padding(.horizontal)
                         }
                     }
                     
@@ -173,6 +175,7 @@ extension HomeView {
                 .font(.title)
                 .fontWeight(.semibold)
                 .padding(.horizontal)
+                .padding(.top, 20)
             
             LazyVGrid(columns: adaptiveColumns, spacing: 20) {
                 //ForEach(Department.allCases, id: \.rawValue) { department in

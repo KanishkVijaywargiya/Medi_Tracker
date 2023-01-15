@@ -126,5 +126,5 @@ class AppointmentCoreDataVM: ObservableObject {
             guard todaysAppointmentArray.count > 0 else { return }
             appointmentItem = todaysAppointmentArray
         }
-    }
+    }//use to filter the appointment items
 }
