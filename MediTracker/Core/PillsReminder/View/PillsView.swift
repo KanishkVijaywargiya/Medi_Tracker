@@ -58,14 +58,14 @@ extension PillsView {
     
     private var filterCard: some View {
         HStack (alignment: .center) {
-            Image("morning")
+            Image(displayImageWRTTime())
                 .resizable()
                 .frame(width: UIScreen.main.bounds.width - 30, height: 150)
                 .mask {
                     Rectangle().clipShape(Capsule())
                 }
                 .overlay {
-                    Text("Morning")
+                    Text(displayGreetingTextForPills())
                         .kerning(3)
                         .font(.title3.bold())
                         .foregroundColor(.white)

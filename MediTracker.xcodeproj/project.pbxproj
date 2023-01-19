@@ -214,7 +214,9 @@
 		0429C0352979334B009364FF /* PillsReminder */ = {
 			isa = PBXGroup;
 			children = (
+				04D20AE129799BE000A2CB54 /* Model */,
 				0429C038297967C1009364FF /* View */,
+				04D20AE029799BD200A2CB54 /* ViewModel */,
 			);
 			path = PillsReminder;
 			sourceTree = "<group>";
@@ -427,6 +429,20 @@
 			children = (
 				04C6CE59296EDE2C00FFA643 /* ActivityDescription.swift */,
 				04076D89296EE155002B0338 /* ActivityModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04D20AE029799BD200A2CB54 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		04D20AE129799BE000A2CB54 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Model;
 			sourceTree = "<group>";

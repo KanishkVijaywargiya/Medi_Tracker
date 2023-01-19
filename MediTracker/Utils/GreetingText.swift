@@ -26,6 +26,7 @@ private func getGreetingText() -> Greeting {
     }
 }
 
+// used in home view
 func displayGreeting() -> String {
     let currentGreeting = getGreetingText()
     
@@ -35,3 +36,33 @@ func displayGreeting() -> String {
     case .evening: return K.LocalizedKey.GOOD_EVE
     }
 }
+
+//used in pills view
+func displayGreetingTextForPills() -> String {
+    let currentGreeting = getGreetingText()
+    
+    switch currentGreeting {
+    case .morning: return "Morning"
+    case .afternoon: return "Afternoon"
+    case .evening: return "Evening"
+    }
+}
+
+//used in pills view - change image
+func displayImageWRTTime() -> String {
+    let currentGreeting = getGreetingText()
+    
+    switch currentGreeting {
+    case .morning: return "morning"
+    case .afternoon: return "afternoon"
+    case .evening:
+        let randomImage = arc4random_uniform(2)
+        if randomImage == 0 {
+            return "evening"
+        } else {
+            return "night"
+        }
+    }
+}
+
+

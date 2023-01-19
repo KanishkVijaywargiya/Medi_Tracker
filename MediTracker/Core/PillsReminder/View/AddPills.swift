@@ -53,6 +53,7 @@ struct AddPills: View {
             
             MTButton(action: {}, title: "Save changes", hexCode: K.BrandColors.pink)
                 .padding()
+                .disabled(medicineName == "")
         }
         .padding(.bottom, 20)
         .ignoresSafeArea()
