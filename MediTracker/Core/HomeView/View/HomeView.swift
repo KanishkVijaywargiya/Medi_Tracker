@@ -16,6 +16,7 @@ struct HomeView: View {
     @State private var nameText: String = "" //name text in onReceive
     
     @StateObject var appointVM = AppointmentCoreDataVM() //appointment core data vm
+    @StateObject var medicineVM = PillsCoreDataVM()
     @ObservedObject var profileVM: ProfileViewModel //profile viewModel
     @AppStorage("mobile_num") private var mobile_num = "" //mobile num
     @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language //localize app storage
@@ -54,6 +55,17 @@ struct HomeView: View {
                     }
                     
                     medicationSection //medication card
+                    
+                    NavigationLink(
+                        destination: PillsView(pillsViewModel: medicineVM)) {
+                            Text("Medicine Reminder Screen")
+                                .font(.title2.bold())
+                                .foregroundColor(.primary)
+                                .padding()
+                                .background(Color(K.BrandColors.pastelOrange).gradient)
+                                .cornerRadius(22, corners: [.topLeft, .bottomRight])
+                                .padding(.leading)
+                        }
                     
                     dailyActivityGridCard //activity card
                 }

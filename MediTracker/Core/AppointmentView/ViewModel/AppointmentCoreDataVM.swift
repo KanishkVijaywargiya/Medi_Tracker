@@ -55,7 +55,6 @@ class AppointmentCoreDataVM: ObservableObject {
         let request = NSFetchRequest<AppointmentEntity>(entityName: "AppointmentEntity")
         do {
             appointmentEntities = try container.viewContext.fetch(request)
-            print("appointmentEntities", appointmentEntities)
             isLoading = false
         } catch let error {
             print("Error fetching. \(error.localizedDescription)")

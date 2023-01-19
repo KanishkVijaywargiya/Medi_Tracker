@@ -10,10 +10,12 @@ import SwiftUI
 struct AddPills: View {
     @Environment(\.dismiss) private var dismissMode
     @State private var medicineName: String = ""
-    @State private var selectMedicineForm = 0
-    @State private var howToUse = 0
+    @State private var selectMedicineForm: String = K.medicineForm[0]
+    @State private var howToUse: String = K.howToUse[0]
     @State private var startDate: Date = Date()
     @State private var endDate: Date = Date()
+    
+    @ObservedObject var pillsVM: PillsCoreDataVM
     
     var body: some View {
         VStack {
@@ -40,7 +42,7 @@ struct AddPills: View {
                         .background(Color(K.BrandColors.pastelBlue3).gradient)
                         .cornerRadius(30)
                         .padding()
-                        .offset(y: 380)
+                        .offset(y: 300)
                         .shadow(color: Color.black.opacity(0.3), radius: 5)
                     }
                 
@@ -51,9 +53,18 @@ struct AddPills: View {
             
             Spacer()
             
-            MTButton(action: {}, title: "Save changes", hexCode: K.BrandColors.pink)
-                .padding()
-                .disabled(medicineName == "")
+            MTButton(
+                action: {
+                    let pills = PillsModel(medicineName: medicineName, medicineForm: selectMedicineForm, intake: howToUse, startDate: startDate, endDate: endDate)
+                    
+                    pillsVM.addPills(pills)
+                    if !pillsVM.isLoading { dismissMode() }
+                },
+                title: "Save changes",
+                hexCode: K.BrandColors.pink
+            )
+            .padding()
+            .disabled(medicineName == "")
         }
         .padding(.bottom, 20)
         .ignoresSafeArea()
@@ -62,7 +73,7 @@ struct AddPills: View {
 
 struct AddPills_Previews: PreviewProvider {
     static var previews: some View {
-        AddPills()
+        AddPills(pillsVM: PillsCoreDataVM())
     }
 }
 
@@ -75,7 +86,7 @@ extension AddPills {
                 .padding(.top, 2)
         }
         .padding()
-        .padding([.top, .bottom], 10)
+        .padding([.top, .bottom], 5)
         .frame(maxWidth: .infinity)
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
@@ -88,14 +99,14 @@ extension AddPills {
             Text("Form of medicine")
             Spacer()
             Picker("Medicine Form", selection: $selectMedicineForm) {
-                ForEach(0..<K.medicineForm.count, id: \.self) {
-                    Text(K.medicineForm[$0]).tag($0)
+                ForEach(K.medicineForm, id: \.self) { item in
+                    Text(item)
                         .font(.headline).fontWeight(.semibold)
                 }
             }.accentColor(.black)
         }
         .padding()
-        .padding([.top, .bottom], 10)
+        .padding([.top, .bottom], 5)
         .frame(maxWidth: .infinity)
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
@@ -108,8 +119,8 @@ extension AddPills {
             Text("How to use")
             Spacer()
             Picker("How to use", selection: $howToUse) {
-                ForEach(0..<K.howToUse.count, id: \.self) {
-                    Text(K.howToUse[$0]).tag($0)
+                ForEach(K.howToUse, id: \.self) { item in
+                    Text(item)
                 }
             }
             .accentColor(.black)
@@ -136,7 +147,7 @@ extension AddPills {
                 }
         }
         .padding()
-        .padding([.top, .bottom], 10)
+        .padding([.top, .bottom], 5)
         .frame(maxWidth: .infinity, alignment: .leading)
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
@@ -158,7 +169,7 @@ extension AddPills {
                 }
         }
         .padding()
-        .padding([.top, .bottom], 10)
+        .padding([.top, .bottom], 5)
         .frame(maxWidth: .infinity, alignment: .leading)
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
@@ -166,3 +177,4 @@ extension AddPills {
         }
     }
 }
+

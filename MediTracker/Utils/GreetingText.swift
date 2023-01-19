@@ -51,17 +51,14 @@ func displayGreetingTextForPills() -> String {
 //used in pills view - change image
 func displayImageWRTTime() -> String {
     let currentGreeting = getGreetingText()
+    let eveningImages = ["evening", "night"]
     
     switch currentGreeting {
     case .morning: return "morning"
     case .afternoon: return "afternoon"
     case .evening:
-        let randomImage = arc4random_uniform(2)
-        if randomImage == 0 {
-            return "evening"
-        } else {
-            return "night"
-        }
+        let randomImage = eveningImages.randomElement() ?? "evening"
+        return randomImage
     }
 }
 

@@ -62,6 +62,8 @@
 		04CECAC32949D87B00A6E6F5 /* MTLineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC22949D87B00A6E6F5 /* MTLineText.swift */; };
 		04CECAC52949D93F00A6E6F5 /* MTSocialLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */; };
 		04CECAC82949E2C800A6E6F5 /* AwesomeToast in Frameworks */ = {isa = PBXBuildFile; productRef = 04CECAC72949E2C800A6E6F5 /* AwesomeToast */; };
+		04D20AE32979AACD00A2CB54 /* PillsCoreDataVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D20AE22979AACD00A2CB54 /* PillsCoreDataVM.swift */; };
+		04D20AE52979AAF200A2CB54 /* PillsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D20AE42979AAF200A2CB54 /* PillsModel.swift */; };
 		04D30B65297177FF00C658F0 /* KeyBoardClosing+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D30B64297177FF00C658F0 /* KeyBoardClosing+Extension.swift */; };
 		04D30B68297181B300C658F0 /* AppointmentCoreDataVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D30B67297181B300C658F0 /* AppointmentCoreDataVM.swift */; };
 		04D37BD82945F84700EEF926 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37BD72945F84700EEF926 /* Login.swift */; };
@@ -140,6 +142,8 @@
 		04C6CE59296EDE2C00FFA643 /* ActivityDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDescription.swift; sourceTree = "<group>"; };
 		04CECAC22949D87B00A6E6F5 /* MTLineText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLineText.swift; sourceTree = "<group>"; };
 		04CECAC42949D93F00A6E6F5 /* MTSocialLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTSocialLoginButton.swift; sourceTree = "<group>"; };
+		04D20AE22979AACD00A2CB54 /* PillsCoreDataVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsCoreDataVM.swift; sourceTree = "<group>"; };
+		04D20AE42979AAF200A2CB54 /* PillsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsModel.swift; sourceTree = "<group>"; };
 		04D30B64297177FF00C658F0 /* KeyBoardClosing+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyBoardClosing+Extension.swift"; sourceTree = "<group>"; };
 		04D30B67297181B300C658F0 /* AppointmentCoreDataVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCoreDataVM.swift; sourceTree = "<group>"; };
 		04D37BD72945F84700EEF926 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -436,6 +440,7 @@
 		04D20AE029799BD200A2CB54 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				04D20AE22979AACD00A2CB54 /* PillsCoreDataVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -443,6 +448,7 @@
 		04D20AE129799BE000A2CB54 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				04D20AE42979AAF200A2CB54 /* PillsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -641,6 +647,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D20AE52979AAF200A2CB54 /* PillsModel.swift in Sources */,
 				04D30B65297177FF00C658F0 /* KeyBoardClosing+Extension.swift in Sources */,
 				04DD544F2950DFC600372343 /* LanguageCard.swift in Sources */,
 				04DD544D2950DDDD00372343 /* LanguageSelection.swift in Sources */,
@@ -670,6 +677,7 @@
 				04C6CE5A296EDE2D00FFA643 /* ActivityDescription.swift in Sources */,
 				0401CEC42955DAFF00A8B543 /* MTAppointmentCard.swift in Sources */,
 				04A3365F2959C91C0070D745 /* ProfileContainer.xcdatamodeld in Sources */,
+				04D20AE32979AACD00A2CB54 /* PillsCoreDataVM.swift in Sources */,
 				043E7E8D2948E353005F4740 /* Country.swift in Sources */,
 				04C3570D29699C43001DB5BC /* AddAppointmentView.swift in Sources */,
 				04EE705E294B891100A64D10 /* SplashScreen.swift in Sources */,

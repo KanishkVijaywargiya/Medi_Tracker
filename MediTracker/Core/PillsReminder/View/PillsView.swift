@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PillsView: View {
     @State private var addPills: Bool = false //to open adding pills sheet
+    @ObservedObject var pillsViewModel: PillsCoreDataVM
     
     var body: some View {
         VStack (spacing: 40) {
@@ -18,20 +19,21 @@ struct PillsView: View {
             
             // medicine cards
             ScrollView {
-                ForEach(0..<5) { _ in
-                    medicineCard
+                ForEach(pillsViewModel.pillsEntity) { pills in
+                    medicineCard(pills)
                 }
             }
         }
         .fullScreenCover(isPresented: $addPills) {
-            AddPills()
+            AddPills(pillsVM: pillsViewModel)
         }
+        .navigationBarHidden(true)
     }
 }
  
 struct PillsView_Previews: PreviewProvider {
     static var previews: some View {
-        PillsView()
+        PillsView(pillsViewModel: PillsCoreDataVM())
     }
 }
 
@@ -79,7 +81,7 @@ extension PillsView {
         }
     }
     
-    private var medicineCard: some View {
+    private func medicineCard(_ pills: PillsEntity) -> some View {
         VStack {
             HStack (alignment: .top) {
                 Image(systemName: "pill")
@@ -89,9 +91,9 @@ extension PillsView {
                     .cornerRadius(22)
                 
                 VStack (alignment: .leading, spacing: 3) {
-                    Text("Vitamins")
+                    Text(pills.medicineName ?? "Vitamin C")
                         .font(.title3).fontWeight(.semibold)
-                    Text("1 capsule before breakfast".lowercased())
+                    Text("\(pills.medicineForm?.capitalized ?? "") \(pills.intake?.lowercased() ?? "")")
                         .font(.headline).fontWeight(.medium)
                         .foregroundColor(.secondary)
                         .lineLimit(2)
@@ -99,7 +101,7 @@ extension PillsView {
                 
                 Spacer()
                 
-                Text(Date().toString("hh:mm a"))
+                Text("\(pillsViewModel.convertTimeToDays(pills) > 1 ? "\(pillsViewModel.convertTimeToDays(pills)) days" : "\(pillsViewModel.convertTimeToDays(pills)) day")")
                     .font(.footnote).fontWeight(.medium)
                     .foregroundColor(.white)
                     .padding(.vertical, 5)
