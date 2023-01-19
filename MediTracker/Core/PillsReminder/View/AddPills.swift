@@ -157,7 +157,7 @@ extension AddPills {
     
     private var endDateText: some View {
         HStack (spacing: 12) {
-            Text("Finish: \(startDate.toString("EE dd MMMM"))").customFont(16, weight: .regular)
+            Text("Finish: \(endDate.toString("EE dd MMMM"))").customFont(16, weight: .regular)
             Spacer()
             // MARK: Custom Date Picker
             Image(systemName: K.SFSymbols.calendar)
