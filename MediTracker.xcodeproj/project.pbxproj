@@ -11,6 +11,8 @@
 		04076D8A296EE155002B0338 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04076D89296EE155002B0338 /* ActivityModel.swift */; };
 		04124F182949EC58002F57E3 /* AwesomeNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 04124F172949EC58002F57E3 /* AwesomeNetwork */; };
 		041F64A9295082B300B2DD1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 041F64AB295082B300B2DD1D /* Localizable.strings */; };
+		0429C0372979336E009364FF /* PillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429C0362979336E009364FF /* PillsView.swift */; };
+		0429C03A297967E1009364FF /* AddPills.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429C039297967E1009364FF /* AddPills.swift */; };
 		043CA8622960626000AEEFA9 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CA8612960626000AEEFA9 /* Double.swift */; };
 		043E7E8B2948AD25005F4740 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E7E8A2948AD25005F4740 /* ColorExtensions.swift */; };
 		043E7E8D2948E353005F4740 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E7E8C2948E353005F4740 /* Country.swift */; };
@@ -93,6 +95,8 @@
 		04076D89296EE155002B0338 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		041F64AA295082B300B2DD1D /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		041F64AC295082E300B2DD1D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0429C0362979336E009364FF /* PillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsView.swift; sourceTree = "<group>"; };
+		0429C039297967E1009364FF /* AddPills.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPills.swift; sourceTree = "<group>"; };
 		043CA8612960626000AEEFA9 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		043E7E8A2948AD25005F4740 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		043E7E8C2948E353005F4740 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
@@ -205,6 +209,23 @@
 				041F64AB295082B300B2DD1D /* Localizable.strings */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		0429C0352979334B009364FF /* PillsReminder */ = {
+			isa = PBXGroup;
+			children = (
+				0429C038297967C1009364FF /* View */,
+			);
+			path = PillsReminder;
+			sourceTree = "<group>";
+		};
+		0429C038297967C1009364FF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0429C0362979336E009364FF /* PillsView.swift */,
+				0429C039297967E1009364FF /* AddPills.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		043E7E892948AD00005F4740 /* Extensions */ = {
@@ -495,6 +516,7 @@
 		04F7AC232945E26300C6B479 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				0429C0352979334B009364FF /* PillsReminder */,
 				04EE7069294BB73900A64D10 /* Authentication */,
 				04C356FB2969608E001DB5BC /* AppointmentView */,
 				046A9A892955B753003CE426 /* HomeView */,
@@ -621,6 +643,7 @@
 				04CECAC52949D93F00A6E6F5 /* MTSocialLoginButton.swift in Sources */,
 				04D37BD82945F84700EEF926 /* Login.swift in Sources */,
 				FDE5DD9F294B5129007C4D32 /* HomeView.swift in Sources */,
+				0429C03A297967E1009364FF /* AddPills.swift in Sources */,
 				04F4CAE82955E2F300C6715A /* MTMedicationCard.swift in Sources */,
 				044BB5E529508AC900B48B79 /* Language.swift in Sources */,
 				043E7E902948E5E5005F4740 /* ListOfCountries.swift in Sources */,
@@ -639,6 +662,7 @@
 				04DD544B2950CDA900372343 /* LanguageSheet.swift in Sources */,
 				044BB5E729508BF500B48B79 /* Strings+Localisation.swift in Sources */,
 				046E85FA297185E10089885B /* MediTrackerContainer.xcdatamodeld in Sources */,
+				0429C0372979336E009364FF /* PillsView.swift in Sources */,
 				04D7696B2969CAE80078FC80 /* NavigationControllerExtension.swift in Sources */,
 				04A3365A2959AD200070D745 /* MTGeneralButton.swift in Sources */,
 				04C3570B29698348001DB5BC /* DoctorDepartment.swift in Sources */,

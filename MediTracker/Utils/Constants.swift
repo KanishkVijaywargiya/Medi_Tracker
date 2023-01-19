@@ -177,5 +177,7 @@ struct K {
     //general
     static let bloodType = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"]
     static let gender = ["Male", "Female", "Other"]
+    static let medicineForm = ["Tablets", "Capsules", "Syrups", "Inhalers", "Ointments", "Patches"]
+    static let howToUse = ["Before Breakfast", "After Breakfast", "Before Lunch", "After Lunch", "Before Dinner", "After Dinner", "Without eating"]
     
 }
