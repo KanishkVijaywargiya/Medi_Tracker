@@ -36,6 +36,7 @@
 		046E85FA297185E10089885B /* MediTrackerContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 046E85F8297185E10089885B /* MediTrackerContainer.xcdatamodeld */; };
 		046ED3142951AFA00067A5A1 /* ListOfCountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046ED3132951AFA00067A5A1 /* ListOfCountriesViewModel.swift */; };
 		0474781A29744CF30040CC37 /* GreetingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0474781929744CF30040CC37 /* GreetingText.swift */; };
+		047FC20C297C05AC00AC0AA1 /* BindingExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047FC20B297C05AC00AC0AA1 /* BindingExtensions.swift */; };
 		0481B37E295C93290036326E /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481B37D295C93290036326E /* ProfileModel.swift */; };
 		048BC4DC2953079200142AD9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048BC4DB2953079200142AD9 /* Constants.swift */; };
 		048FC5A3295602580016F566 /* ProfileImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FC5A2295602580016F566 /* ProfileImageStorage.swift */; };
@@ -117,6 +118,7 @@
 		046E85F9297185E10089885B /* MediTrackerContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MediTrackerContainer.xcdatamodel; sourceTree = "<group>"; };
 		046ED3132951AFA00067A5A1 /* ListOfCountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfCountriesViewModel.swift; sourceTree = "<group>"; };
 		0474781929744CF30040CC37 /* GreetingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingText.swift; sourceTree = "<group>"; };
+		047FC20B297C05AC00AC0AA1 /* BindingExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtensions.swift; sourceTree = "<group>"; };
 		0481B37D295C93290036326E /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		048BC4DB2953079200142AD9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		048FC5A2295602580016F566 /* ProfileImageStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageStorage.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				04C3570629697503001DB5BC /* CalendarExtension.swift */,
 				04D7696A2969CAE80078FC80 /* NavigationControllerExtension.swift */,
 				04D30B64297177FF00C658F0 /* KeyBoardClosing+Extension.swift */,
+				047FC20B297C05AC00AC0AA1 /* BindingExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -650,6 +653,7 @@
 				04D20AE52979AAF200A2CB54 /* PillsModel.swift in Sources */,
 				04D30B65297177FF00C658F0 /* KeyBoardClosing+Extension.swift in Sources */,
 				04DD544F2950DFC600372343 /* LanguageCard.swift in Sources */,
+				047FC20C297C05AC00AC0AA1 /* BindingExtensions.swift in Sources */,
 				04DD544D2950DDDD00372343 /* LanguageSelection.swift in Sources */,
 				046ED3142951AFA00067A5A1 /* ListOfCountriesViewModel.swift in Sources */,
 				04F7AC2A2945E40800C6B479 /* OTPViewModel.swift in Sources */,
@@ -880,7 +884,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.blacenovass.MediTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blacenovas.MediTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
@@ -925,7 +929,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.blacenovass.MediTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blacenovas.MediTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;

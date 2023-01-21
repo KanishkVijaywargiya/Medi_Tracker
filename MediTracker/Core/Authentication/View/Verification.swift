@@ -7,19 +7,20 @@
 
 import SwiftUI
 
-enum OTPField {
-    case field1
-    case field2
-    case field3
-    case field4
-    case field5
-    case field6
-}// MARK: focus state enum for otp text fields
+//TODO: CHECK
+//enum OTPField {
+//    case field1
+//    case field2
+//    case field3
+//    case field4
+//    case field5
+//    case field6
+//}// MARK: focus state enum for otp text fields
 
 struct Verification: View {
     @Environment(\.dismiss) private var dismissMode //use to close screen
     @EnvironmentObject var vm: OTPViewModel //otp view model
-    @FocusState var activeField: OTPField? // focus state for TextField
+    //    @FocusState var activeField: OTPField? // focus state for TextField
     
     @State private var timeRemaining = 20 //otp resend timer state
     @State private var showTimer: Bool = true //otp resend timer state
@@ -33,12 +34,14 @@ struct Verification: View {
     
     @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language //localization
     
+    @State private var otpText: String = "" //new
+    @FocusState private var isKeyboardShowing: Bool //new
+    
     var body: some View {
         VStack {
             title
             otpFields
-            
-            if !checkStates() { verifyOTPButton.padding(.top) }
+            verifyOTPButton
             
             if count == 2 { limitOTPText } else { resendButton }
             otherLoginMethods
@@ -46,9 +49,6 @@ struct Verification: View {
         .padding()
         .frame(maxHeight: .infinity, alignment: .top)
         .navigationTitle(K.NavigationTag.verification.localized(language_choosen))
-        .onChange(of: vm.otpFields) { newValue in
-            otpCondition(value: newValue)
-        }//otp condition
         .onReceive(timer) { _ in
             if timeRemaining > 1 {
                 timeRemaining -= 1
@@ -56,12 +56,10 @@ struct Verification: View {
                 showTimer = false
             }
         }//resend otp button timer
-        .onChange(of: vm.otpText) { newValue in
+        //TODO: CHECK
+        .onChange(of: otpText) { newValue in
             if newValue.count == 6 {
-                Task{
-                    await vm.verifyOTP(countryCode: countryCode)
-                    //await profileVM.fetchUserData()
-                }
+                vm.otpValue = newValue
             }
         }//verify otp
         .onChange(of: profileVM.checkDataExists) { _ in
@@ -69,6 +67,15 @@ struct Verification: View {
             profileVM.fetchUserData()
         }//check firestore data & fetch user
         .showToast(title: vm.verificationAlertTitle, isPresented: $vm.verificationAlert, color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), duration: 5, alignment: .top, toastType: .offsetToast, image: Image(K.AppImg.appLogo))
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                Button("Done") {
+                    vm.otpValue = otpText
+                    isKeyboardShowing.toggle()
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+            }
+        }
     }
 }
 
@@ -86,28 +93,6 @@ extension Verification {
         }.padding(.bottom, 40)
     }// MARK: title with user phone number
     
-    private var otpFields: some View {
-        HStack(spacing: 14) {
-            ForEach(0..<6, id: \.self) { item in
-                VStack(spacing: 8) {
-                    TextField("", text: $vm.otpFields[item])
-                        .keyboardType(.numberPad)
-                        .textContentType(.oneTimeCode)
-                        .multilineTextAlignment(.center)
-                        .focused($activeField, equals: activeStateForIndex(index: item))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(
-                                    activeField == activeStateForIndex(index: item) ? Color(K.BrandColors.pink) : Color.black.opacity(0.1), lineWidth: 1.9)
-                                .blendMode(.normal)
-                                .opacity(0.7)
-                                .frame(height: 40)
-                        )
-                }.frame(width: 40)
-            }
-        }
-    }// MARK: OTP Fields
-    
     private var limitOTPText: some View {
         Text(K.LocalizedKey.OTP_LIMIT.localized(language_choosen))
             .foregroundColor(.secondary)
@@ -118,7 +103,7 @@ extension Verification {
     private var verifyOTPButton: some View {
         ZStack(alignment: .center) {
             MTButton(action: {
-                Task{await vm.verifyOTP(countryCode: countryCode)}
+                vm.otpValue = otpText
             }, title: vm.isLoading ? "" : K.LocalizedKey.OTP_VERIFY.localized(language_choosen), hexCode: K.BrandColors.pink)
             if vm.isLoading {
                 VStack {
@@ -126,7 +111,9 @@ extension Verification {
                         .progressViewStyle(CircularProgressViewStyle(tint: .white))
                 }.frame(height: 52)
             }
-        }.padding(.top, 10)
+        }
+        .padding(.top, 10)
+        .disableWithOpacity(otpText.count < 6)
     }// MARK: Verify blue button
     
     private var resendButton: some View {
@@ -158,7 +145,6 @@ extension Verification {
                 .opacity(0.7)
                 .frame(height: 40)
         )
-        .padding(.top)
     }// MARK: Resend
     
     private var otherLoginMethods: some View {
@@ -170,60 +156,58 @@ extension Verification {
             }
         }
     }// MARK: Other login method text
-    
-    // MARK: Conditions for Custom OTP Field & limiting only one text
-    private func otpCondition(value: [String]) {
-        for index in 0..<6 {
-            if value[index].count == 6 {
-                DispatchQueue.main.async {
-                    vm.otpText = value[index]
-                    vm.otpFields[index] = ""
-                    
-                    //updating all text fields with value
-                    for item in vm.otpText.enumerated() {
-                        vm.otpFields[item.offset] = String(item.element)
-                    }
-                }
-                return
+}
+
+
+//new
+extension Verification {
+    private var otpFields: some View {
+        HStack (spacing: 0) {
+            ForEach(0..<6, id: \.self) { index in
+                OTPTextBox(index)
             }
-        }//checking if otp is pressed
-        
-        for index in 0..<5 {
-            if value[index].count == 1 && activeStateForIndex(index: index) == activeField {
-                activeField = activeStateForIndex(index: index + 1)
-            }
-        }//moving to next field if current field is filled
-        
-        for index in 1...5 {
-            if value[index].isEmpty && !value[index - 1].isEmpty {
-                activeField = activeStateForIndex(index: index - 1)
-            }
-        }//moving backward if current field is empty & previous is not
-        
-        for index in 0..<6 {
-            if value[index].count > 1 {
-                vm.otpFields[index] = String(value[index].last!)
-            }
-        }//limiting to only one text
+        }
+        .background {
+            TextField("", text: $otpText.limit(6)) //add limit
+                .keyboardType(.numberPad)
+                .textContentType(.oneTimeCode)
+            /// - hiding it out
+                .frame(width: 1, height: 1)
+                .opacity(0.001)
+                .blendMode(.screen)
+                .focused($isKeyboardShowing)
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            isKeyboardShowing.toggle()
+        }
+        .padding(.bottom, 20)
+        .padding(.top, 10)
     }
     
-    // MARK: Switch cases for handling active state for otpFields
-    private func activeStateForIndex(index: Int) -> OTPField {
-        switch index {
-        case 0: return .field1
-        case 1: return .field2
-        case 2: return .field3
-        case 3: return .field4
-        case 4: return .field5
-        default: return .field6
+    /// - OTP Text Boxes
+    @ViewBuilder
+    func OTPTextBox(_ index: Int) -> some View {
+        ZStack {
+            // Safe check
+            if otpText.count > index {
+                /// - Finding char at index
+                let startIndex = otpText.startIndex
+                let charIndex = otpText.index(startIndex, offsetBy: index)
+                let charToString = String(otpText[charIndex])
+                Text(charToString)
+            } else {
+                Text(" ")
+            }
         }
-    }
-    
-    // MARK: used to disable the verify OTP Button
-    private func checkStates() -> Bool {
-        for index in 0..<6 {
-            if vm.otpFields[index].isEmpty { return true }
+        .frame(width: 45, height: 45)
+        .background {
+            /// - Highlighting the current text box
+            let status = (isKeyboardShowing && otpText.count == index)
+            RoundedRectangle(cornerRadius: 6, style: .continuous)
+                .stroke(status ? Color(K.BrandColors.pink) : .gray, lineWidth: status ? 1 : 0.5)
+                .animation(.easeInOut(duration: 0.2), value: status)
         }
-        return false
+        .frame(maxWidth: .infinity)
     }
 }

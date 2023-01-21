@@ -11,6 +11,7 @@ enum Greeting {
     case morning
     case afternoon
     case evening
+    case night
 }
 
 private func getGreetingText() -> Greeting {
@@ -21,8 +22,10 @@ private func getGreetingText() -> Greeting {
         return .morning
     } else if hour < 17 {
         return .afternoon
-    } else {
+    } else if hour < 20 {
         return .evening
+    } else {
+        return .night
     }
 }
 
@@ -34,6 +37,7 @@ func displayGreeting() -> String {
     case .morning: return K.LocalizedKey.GOOD_MOR
     case .afternoon: return K.LocalizedKey.GOOD_AFTER
     case .evening: return K.LocalizedKey.GOOD_EVE
+    case .night: return K.LocalizedKey.GOOD_EVE
     }
 }
 
@@ -45,20 +49,19 @@ func displayGreetingTextForPills() -> String {
     case .morning: return "Morning"
     case .afternoon: return "Afternoon"
     case .evening: return "Evening"
+    case .night: return "Evening"
     }
 }
 
 //used in pills view - change image
 func displayImageWRTTime() -> String {
     let currentGreeting = getGreetingText()
-    let eveningImages = ["evening", "night"]
     
     switch currentGreeting {
     case .morning: return "morning"
     case .afternoon: return "afternoon"
-    case .evening:
-        let randomImage = eveningImages.randomElement() ?? "evening"
-        return randomImage
+    case .evening: return "evening"
+    case .night: return "night"
     }
 }
 

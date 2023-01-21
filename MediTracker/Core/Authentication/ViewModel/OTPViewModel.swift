@@ -15,7 +15,7 @@ class OTPViewModel: ObservableObject {
     @Published var countryCode: String = ""
     
     // MARK: Verification
-    @Published var otpText: String = ""
+    //    @Published var otpText: String = ""
     @Published var otpFields: [String] = Array(repeating: "", count: 6)
     @Published var verificationCode: String = ""
     
@@ -37,6 +37,15 @@ class OTPViewModel: ObservableObject {
     // MARK: app storage for mobile number
     @AppStorage("mobile_num") private var mobile_num = ""
     
+    //otp text
+    var otpValue: String = "" {
+        didSet {
+            if otpValue.count == 6 {
+                Task {await verifyOTP(otpText: otpValue)}
+            }
+        }
+    }
+    
     
     // MARK: Sending OTP
     func sendOTP(countryCode: String) async {
@@ -47,6 +56,7 @@ class OTPViewModel: ObservableObject {
                 self.isLoading = false
                 self.showAlert.toggle()
                 self.alertTitle = K.LocalizedKey.VALID_NUM.localized(self.language_choosen)
+                self.countryCode = ""
             }
         } else {
             do {
@@ -60,6 +70,7 @@ class OTPViewModel: ObservableObject {
                     self.isLoading = false
                     self.verificationCode = result
                     self.navigationTag = K.LocalizedKey.VERIFICATION
+                    self.countryCode = countryCode
                 }
             } catch {
                 DispatchQueue.main.async {[weak self] in
@@ -67,13 +78,14 @@ class OTPViewModel: ObservableObject {
                     self.isLoading = false
                     self.showAlert.toggle()
                     self.alertTitle = K.LocalizedKey.SOMETHING_WRONG.localized(self.language_choosen)
+                    self.countryCode = ""
                 }
             }
         }
     }
     
     // MARK: Verify OTP
-    func verifyOTP(countryCode: String) async {
+    private func verifyOTP(otpText: String) async {
         do {
             DispatchQueue.main.async {
                 self.isLoading = true
@@ -86,7 +98,7 @@ class OTPViewModel: ObservableObject {
                 guard let self = self else { return }
                 self.isLoading = false
                 self.log_status = true
-                self.mobile_num = "\(countryCode)-\(self.number)"
+                self.mobile_num = "\(self.countryCode)-\(self.number)"
             }
         } catch {
             DispatchQueue.main.async { [weak self] in
