@@ -12,8 +12,8 @@ struct AuthenticationView: View {
     @AppStorage("log_status") private var log_status = false
     
     @StateObject private var vm = ProfileViewModel()
-    @StateObject var appointVM = AppointmentCoreDataVM() //appointment CoreData
-    @StateObject var medicineVM = PillsCoreDataVM() //Pills CoreData
+    @StateObject private var appointVM = AppointmentCoreDataVM() //appointment CoreData
+    @StateObject private var medicineVM = PillsCoreDataVM() //Pills CoreData
     
     @State private var checkData: Bool = false
     
@@ -21,10 +21,9 @@ struct AuthenticationView: View {
         VStack {
             if log_status {
                 if UserDefaults.standard.UserIntroScreenShown || self.checkData {
-                    //HomeView(profileVM: vm).toolbar(.hidden)
                     BottomTabView(vm: vm, appointVM: appointVM, medicineVM: medicineVM)
                 } else {
-                    UserIntroScreen(vm: vm, appointVM: appointVM).toolbar(.hidden)
+                    UserIntroScreen(vm: vm, appointVM: appointVM).toolbar(.hidden, for: .navigationBar)
                 }
             } else {
                 Login()
