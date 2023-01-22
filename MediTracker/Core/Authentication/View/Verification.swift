@@ -7,16 +7,6 @@
 
 import SwiftUI
 
-//TODO: CHECK
-//enum OTPField {
-//    case field1
-//    case field2
-//    case field3
-//    case field4
-//    case field5
-//    case field6
-//}// MARK: focus state enum for otp text fields
-
 struct Verification: View {
     @Environment(\.dismiss) private var dismissMode //use to close screen
     @EnvironmentObject var vm: OTPViewModel //otp view model
@@ -56,7 +46,6 @@ struct Verification: View {
                 showTimer = false
             }
         }//resend otp button timer
-        //TODO: CHECK
         .onChange(of: otpText) { newValue in
             if newValue.count == 6 {
                 vm.otpValue = newValue
