@@ -70,6 +70,8 @@
 		04D37BD82945F84700EEF926 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37BD72945F84700EEF926 /* Login.swift */; };
 		04D5A7F42949CA9E00700097 /* MTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5A7F32949CA9E00700097 /* MTButton.swift */; };
 		04D65C9A2955E538009DFD71 /* MTActivityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D65C992955E538009DFD71 /* MTActivityCard.swift */; };
+		04D6CCFE297D4EA100899AC2 /* BottomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6CCFD297D4EA100899AC2 /* BottomTabView.swift */; };
+		04D6CD03297D604400899AC2 /* HealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6CD02297D604400899AC2 /* HealthView.swift */; };
 		04D7696B2969CAE80078FC80 /* NavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7696A2969CAE80078FC80 /* NavigationControllerExtension.swift */; };
 		04DC382B295A0011005F0710 /* CameraType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC382A295A0011005F0710 /* CameraType.swift */; };
 		04DD544B2950CDA900372343 /* LanguageSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD544A2950CDA900372343 /* LanguageSheet.swift */; };
@@ -151,6 +153,8 @@
 		04D37BD72945F84700EEF926 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		04D5A7F32949CA9E00700097 /* MTButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTButton.swift; sourceTree = "<group>"; };
 		04D65C992955E538009DFD71 /* MTActivityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTActivityCard.swift; sourceTree = "<group>"; };
+		04D6CCFD297D4EA100899AC2 /* BottomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabView.swift; sourceTree = "<group>"; };
+		04D6CD02297D604400899AC2 /* HealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthView.swift; sourceTree = "<group>"; };
 		04D7696A2969CAE80078FC80 /* NavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerExtension.swift; sourceTree = "<group>"; };
 		04D7F3F22945F1CC006C96E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		04DC382A295A0011005F0710 /* CameraType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraType.swift; sourceTree = "<group>"; };
@@ -464,6 +468,30 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		04D6CCFF297D600E00899AC2 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				04D6CD01297D601C00899AC2 /* View */,
+				04D6CD00297D601500899AC2 /* ViewModel */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
+		04D6CD00297D601500899AC2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		04D6CD01297D601C00899AC2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04D6CD02297D604400899AC2 /* HealthView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		04E8CBA92955E86E00A4FD5C /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
@@ -541,12 +569,14 @@
 		04F7AC232945E26300C6B479 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				04D6CCFF297D600E00899AC2 /* Health */,
 				0429C0352979334B009364FF /* PillsReminder */,
 				04EE7069294BB73900A64D10 /* Authentication */,
 				04C356FB2969608E001DB5BC /* AppointmentView */,
 				046A9A892955B753003CE426 /* HomeView */,
 				04E8CBA92955E86E00A4FD5C /* ProfileView */,
 				04EE705D294B891100A64D10 /* SplashScreen.swift */,
+				04D6CCFD297D4EA100899AC2 /* BottomTabView.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -651,6 +681,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04D20AE52979AAF200A2CB54 /* PillsModel.swift in Sources */,
+				04D6CD03297D604400899AC2 /* HealthView.swift in Sources */,
 				04D30B65297177FF00C658F0 /* KeyBoardClosing+Extension.swift in Sources */,
 				04DD544F2950DFC600372343 /* LanguageCard.swift in Sources */,
 				047FC20C297C05AC00AC0AA1 /* BindingExtensions.swift in Sources */,
@@ -695,6 +726,7 @@
 				04A3365A2959AD200070D745 /* MTGeneralButton.swift in Sources */,
 				04C3570B29698348001DB5BC /* DoctorDepartment.swift in Sources */,
 				048FC5A5295602A30016F566 /* ImagePicker.swift in Sources */,
+				04D6CCFE297D4EA100899AC2 /* BottomTabView.swift in Sources */,
 				048FC5A929560B460016F566 /* ProfileButton.swift in Sources */,
 				0457D43C295C663000145468 /* ImageUploader.swift in Sources */,
 				04A336632959CBA00070D745 /* ProfileViewModel.swift in Sources */,

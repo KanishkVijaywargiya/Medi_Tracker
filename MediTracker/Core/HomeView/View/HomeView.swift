@@ -15,8 +15,10 @@ struct HomeView: View {
     @State private var dob: Date = Date() //date of birth
     @State private var nameText: String = "" //name text in onReceive
     
-    @StateObject var appointVM = AppointmentCoreDataVM() //appointment core data vm
-    @StateObject var medicineVM = PillsCoreDataVM()
+    @State private var scrollOffset: CGFloat = 0 //statusbar background on scroll
+    
+    @ObservedObject var appointVM: AppointmentCoreDataVM //appointment CoreData
+    @ObservedObject var medicineVM: PillsCoreDataVM
     @ObservedObject var profileVM: ProfileViewModel //profile viewModel
     @AppStorage("mobile_num") private var mobile_num = "" //mobile num
     @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language //localize app storage
@@ -92,7 +94,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(profileVM: ProfileViewModel())
+        HomeView(appointVM: AppointmentCoreDataVM(), medicineVM: PillsCoreDataVM(), profileVM: ProfileViewModel())
     }
 }
 
@@ -104,6 +106,7 @@ extension HomeView {
                 Text(displayGreeting().localized(language_choosen))
                     .font(.title2.bold())
                     .foregroundColor(.secondary)
+                    .id(1) //used fo scrollToTop when tapped on bottom tab
                 Text(nameText).font(.title3.bold())
             }
             
