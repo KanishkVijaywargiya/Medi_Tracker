@@ -22,7 +22,7 @@ class PillsCoreDataVM: ObservableObject {
                 print("Error loading core data \(error.localizedDescription) ⚠️")
                 return
             } else {
-                print("Successfully loaded core data!✅")
+                print("Successfully loaded pills core data!✅")
             }
         }
         

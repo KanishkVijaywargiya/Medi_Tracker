@@ -24,7 +24,7 @@ struct AuthenticationView: View {
                     //HomeView(profileVM: vm).toolbar(.hidden)
                     BottomTabView(vm: vm, appointVM: appointVM, medicineVM: medicineVM)
                 } else {
-                    UserIntroScreen(vm: vm, appointVM: appointVM, medicineVM: medicineVM).toolbar(.hidden)
+                    UserIntroScreen(vm: vm, appointVM: appointVM).toolbar(.hidden)
                 }
             } else {
                 Login()

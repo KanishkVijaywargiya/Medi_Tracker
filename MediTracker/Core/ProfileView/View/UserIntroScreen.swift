@@ -29,7 +29,6 @@ struct UserIntroScreen: View {
     
     @ObservedObject var vm: ProfileViewModel // profile view model
     @ObservedObject var appointVM: AppointmentCoreDataVM //appointment CoreData
-    @ObservedObject var medicineVM: PillsCoreDataVM //Pills CoreData
     
     @AppStorage("mobile_num") private var mobile_num = ""// mobile num
     @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language //localize app storage
@@ -78,7 +77,7 @@ struct UserIntroScreen: View {
                 Text(K.LocalizedKey.WAT_OPEN.localized(language_choosen))
             }// options for camera or photo library
             .navigationDestination(for: Int.self) { _ in
-                HomeView(appointVM: appointVM, medicineVM: medicineVM, profileVM: vm)
+                HomeView(appointVM: appointVM, profileVM: vm)
             }
             .navigationBarHidden(true)
         }
@@ -93,7 +92,7 @@ struct UserIntroScreen: View {
 
 struct UserIntroScreen_Previews: PreviewProvider {
     static var previews: some View {
-        UserIntroScreen(vm: ProfileViewModel(), appointVM: AppointmentCoreDataVM(), medicineVM: PillsCoreDataVM())
+        UserIntroScreen(vm: ProfileViewModel(), appointVM: AppointmentCoreDataVM())
     }
 }
 

@@ -18,8 +18,8 @@ struct HomeView: View {
     @State private var scrollOffset: CGFloat = 0 //statusbar background on scroll
     
     @ObservedObject var appointVM: AppointmentCoreDataVM //appointment CoreData
-    @ObservedObject var medicineVM: PillsCoreDataVM
     @ObservedObject var profileVM: ProfileViewModel //profile viewModel
+    
     @AppStorage("mobile_num") private var mobile_num = "" //mobile num
     @AppStorage("language_choosen") private var language_choosen = LocalizationService.shared.language //localize app storage
     
@@ -58,17 +58,6 @@ struct HomeView: View {
                     
                     medicationSection //medication card
                     
-                    NavigationLink(
-                        destination: PillsView(pillsViewModel: medicineVM)) {
-                            Text("Medicine Reminder Screen")
-                                .font(.title2.bold())
-                                .foregroundColor(.primary)
-                                .padding()
-                                .background(Color(K.BrandColors.pastelOrange).gradient)
-                                .cornerRadius(22, corners: [.topLeft, .bottomRight])
-                                .padding(.leading)
-                        }
-                    
                     dailyActivityGridCard //activity card
                 }
             }
@@ -94,7 +83,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(appointVM: AppointmentCoreDataVM(), medicineVM: PillsCoreDataVM(), profileVM: ProfileViewModel())
+        HomeView(appointVM: AppointmentCoreDataVM(), profileVM: ProfileViewModel())
     }
 }
 
@@ -107,7 +96,7 @@ extension HomeView {
                     .font(.title2.bold())
                     .foregroundColor(.secondary)
                     .id(1) //used fo scrollToTop when tapped on bottom tab
-                Text(nameText).font(.title3.bold())
+                Text(nameText).font(.title3.bold()).foregroundColor(Color(K.BrandColors.pink))
             }
             
             Spacer()

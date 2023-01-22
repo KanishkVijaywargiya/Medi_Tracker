@@ -10,9 +10,6 @@ import SwiftUI
 struct BottomTabView: View {
     @State private var tabSelection = 1
     @State private var tappedTwice = false
-//    @State private var home = UUID()
-//    @State private var pills = UUID()
-//    @State private var health = UUID()
     
     @ObservedObject var vm: ProfileViewModel
     @ObservedObject var appointVM: AppointmentCoreDataVM //appointment CoreData
@@ -31,7 +28,7 @@ struct BottomTabView: View {
         
         return ScrollViewReader { proxy in
             TabView(selection: handler) {
-                HomeView(appointVM: appointVM, medicineVM: medicineVM, profileVM: vm)
+                HomeView(appointVM: appointVM, profileVM: vm)
                     .onChange(of: tappedTwice) { tapped in
                         if tapped {
                             withAnimation {

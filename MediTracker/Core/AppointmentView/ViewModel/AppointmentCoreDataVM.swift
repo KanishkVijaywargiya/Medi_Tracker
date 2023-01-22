@@ -22,7 +22,7 @@ class AppointmentCoreDataVM: ObservableObject {
                 print("Error loading core data \(error.localizedDescription) ⚠️")
                 return
             } else {
-                print("Successfully loaded core data!✅")
+                print("Successfully loaded appointment core data!✅")
             }
         }
         
