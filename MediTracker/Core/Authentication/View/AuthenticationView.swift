@@ -14,6 +14,7 @@ struct AuthenticationView: View {
     @StateObject private var vm = ProfileViewModel()
     @StateObject private var appointVM = AppointmentCoreDataVM() //appointment CoreData
     @StateObject private var medicineVM = PillsCoreDataVM() //Pills CoreData
+    @StateObject private var healthVM = HealthKitViewModel() //health view model
     
     @State private var checkData: Bool = false
     
@@ -22,6 +23,7 @@ struct AuthenticationView: View {
             if log_status {
                 if UserDefaults.standard.UserIntroScreenShown || self.checkData {
                     BottomTabView(vm: vm, appointVM: appointVM, medicineVM: medicineVM)
+                        .environmentObject(healthVM)
                 } else {
                     UserIntroScreen(vm: vm, appointVM: appointVM).toolbar(.hidden, for: .navigationBar)
                 }

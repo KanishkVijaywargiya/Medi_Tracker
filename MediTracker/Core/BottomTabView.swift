@@ -15,24 +15,24 @@ struct BottomTabView: View {
     @ObservedObject var appointVM: AppointmentCoreDataVM //appointment CoreData
     @ObservedObject var medicineVM: PillsCoreDataVM //Pills CoreData
     
-    var body: some View {
-        var handler: Binding<Int> { Binding(
-            get: { self.tabSelection },
-            set: {
-                if $0 == self.tabSelection {
-                    tappedTwice = true
-                }
-                self.tabSelection = $0
+    var handler: Binding<Int> { Binding(
+        get: { self.tabSelection },
+        set: {
+            if $0 == self.tabSelection {
+                tappedTwice = true
             }
-        )}
-        
-        return ScrollViewReader { proxy in
+            self.tabSelection = $0
+        }
+    )}
+    
+    var body: some View {
+        ScrollViewReader { proxy in
             TabView(selection: handler) {
                 HomeView(appointVM: appointVM, profileVM: vm)
                     .onChange(of: tappedTwice) { tapped in
                         if tapped {
                             withAnimation {
-                                proxy.scrollTo(1)
+                                proxy.scrollTo("HOME")
                             }
                             self.tappedTwice = false
                         }
@@ -45,7 +45,7 @@ struct BottomTabView: View {
                     .onChange(of: tappedTwice) { tapped in
                         if tapped {
                             withAnimation {
-                                proxy.scrollTo(2)
+                                proxy.scrollTo("PILLS")
                             }
                             self.tappedTwice = false
                         }
@@ -58,7 +58,7 @@ struct BottomTabView: View {
                     .onChange(of: tappedTwice) { tapped in
                         if tapped {
                             withAnimation {
-                                proxy.scrollTo(3)
+                                proxy.scrollTo("HEALTH")
                             }
                             self.tappedTwice = false
                         }

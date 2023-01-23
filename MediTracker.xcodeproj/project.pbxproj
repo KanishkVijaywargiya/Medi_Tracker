@@ -38,6 +38,8 @@
 		0474781A29744CF30040CC37 /* GreetingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0474781929744CF30040CC37 /* GreetingText.swift */; };
 		047FC20C297C05AC00AC0AA1 /* BindingExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047FC20B297C05AC00AC0AA1 /* BindingExtensions.swift */; };
 		0481B37E295C93290036326E /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481B37D295C93290036326E /* ProfileModel.swift */; };
+		048555DF297E99210015A3BE /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048555DE297E99210015A3BE /* HealthKitManager.swift */; };
+		048555E1297EA2D80015A3BE /* HealthKitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048555E0297EA2D80015A3BE /* HealthKitViewModel.swift */; };
 		048BC4DC2953079200142AD9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048BC4DB2953079200142AD9 /* Constants.swift */; };
 		048FC5A3295602580016F566 /* ProfileImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FC5A2295602580016F566 /* ProfileImageStorage.swift */; };
 		048FC5A5295602A30016F566 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FC5A4295602A30016F566 /* ImagePicker.swift */; };
@@ -122,6 +124,8 @@
 		0474781929744CF30040CC37 /* GreetingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingText.swift; sourceTree = "<group>"; };
 		047FC20B297C05AC00AC0AA1 /* BindingExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtensions.swift; sourceTree = "<group>"; };
 		0481B37D295C93290036326E /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		048555DE297E99210015A3BE /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		048555E0297EA2D80015A3BE /* HealthKitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitViewModel.swift; sourceTree = "<group>"; };
 		048BC4DB2953079200142AD9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		048FC5A2295602580016F566 /* ProfileImageStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageStorage.swift; sourceTree = "<group>"; };
 		048FC5A4295602A30016F566 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -480,6 +484,8 @@
 		04D6CD00297D601500899AC2 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				048555DE297E99210015A3BE /* HealthKitManager.swift */,
+				048555E0297EA2D80015A3BE /* HealthKitViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -713,6 +719,7 @@
 				0401CEC42955DAFF00A8B543 /* MTAppointmentCard.swift in Sources */,
 				04A3365F2959C91C0070D745 /* ProfileContainer.xcdatamodeld in Sources */,
 				04D20AE32979AACD00A2CB54 /* PillsCoreDataVM.swift in Sources */,
+				048555E1297EA2D80015A3BE /* HealthKitViewModel.swift in Sources */,
 				043E7E8D2948E353005F4740 /* Country.swift in Sources */,
 				04C3570D29699C43001DB5BC /* AddAppointmentView.swift in Sources */,
 				04EE705E294B891100A64D10 /* SplashScreen.swift in Sources */,
@@ -750,6 +757,7 @@
 				0457D43A295C65B900145468 /* FirebaseConstants.swift in Sources */,
 				048FC5A3295602580016F566 /* ProfileImageStorage.swift in Sources */,
 				04632E822951BFF900FAF966 /* CountryCard.swift in Sources */,
+				048555DF297E99210015A3BE /* HealthKitManager.swift in Sources */,
 				04D65C9A2955E538009DFD71 /* MTActivityCard.swift in Sources */,
 				043E7E8B2948AD25005F4740 /* ColorExtensions.swift in Sources */,
 				04A336652959E0EF0070D745 /* UserIntroScreen.swift in Sources */,
@@ -899,6 +907,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MediTracker/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow MediTracker to access camera";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "$(PRODUCT_NAME) wants to access your health data.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "$(PRODUCT_NAME) wants to write Health data based on usage.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "MediTracker wants to take image from your gallery.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -944,6 +954,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MediTracker/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow MediTracker to access camera";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "$(PRODUCT_NAME) wants to access your health data.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "$(PRODUCT_NAME) wants to write Health data based on usage.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "MediTracker wants to take image from your gallery.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;

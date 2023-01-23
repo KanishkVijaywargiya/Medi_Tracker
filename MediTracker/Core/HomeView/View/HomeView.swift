@@ -28,39 +28,15 @@ struct HomeView: View {
     ]
     
     var body: some View {
-        ZStack (alignment: .topLeading) {
-            ScrollView(showsIndicators: false) {
-                VStack (alignment: .leading, spacing: 20) {
-                    headerSection //header section
-                    
-                    NavigationLink(destination: CalendarView(profileVM: ProfileViewModel(), appointVM: appointVM)) {
-                        if appointVM.appointmentItem.count > 0 {
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack (spacing: 0) {
-                                    ForEach(appointVM.appointmentItem, id: \.id) { item in
-                                        MTAppointmentCard(
-                                            day: item.dateAdded?.toString(K.DateSymb.DAY) ?? "",
-                                            date: item.dateAdded?.toString(K.DateSymb.DATE) ?? "",
-                                            time: item.dateAdded?.toString(K.DateSymb.TIME) ?? "",
-                                            doctorName: item.doctorName ?? "",
-                                            department: item.departmentName ?? "",
-                                            check: true
-                                        )
-                                        .padding(.horizontal)
-                                    }
-                                }.frame(height: 230)
-                            }
-                        } else {
-                            MTAppointmentCard(check: false)
-                                .padding(.horizontal)
-                        }
-                    }
-                    
-                    medicationSection //medication card
-                    
-                    dailyActivityGridCard //activity card
-                }
-            }
+        ScrollView(showsIndicators: false) {
+            headerSection //header section
+                .id("HOME")
+            
+            appointmentSection //appointment card
+            
+            medicationSection //medication card
+            
+            dailyActivityGridCard //activity card
         }
         .fullScreenCover(isPresented: $showProfileView, content: {
             ProfileView().environmentObject(ProfileViewModel())
@@ -69,11 +45,9 @@ struct HomeView: View {
             LanguageSheet().presentationDetents([.medium])
         }//for lang. select
         .onReceive(profileVM.$userProfileData) { newValue in
-            //if (newValue) {
             nameText = newValue.username
             profileImage = newValue.image
             dob = newValue.dateOfBirth
-            //}
         }
         .onAppear { UIApplication.shared.applicationIconBadgeNumber = 0 }
         .onAppear {appointVM.filterLatestData()}
@@ -140,6 +114,31 @@ extension HomeView {
         .padding(.vertical, 10)
     }
     
+    private var appointmentSection: some View {
+        NavigationLink(destination: CalendarView(profileVM: ProfileViewModel(), appointVM: appointVM)) {
+            if appointVM.appointmentItem.count > 0 {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack (spacing: 0) {
+                        ForEach(appointVM.appointmentItem, id: \.id) { item in
+                            MTAppointmentCard(
+                                day: item.dateAdded?.toString(K.DateSymb.DAY) ?? "",
+                                date: item.dateAdded?.toString(K.DateSymb.DATE) ?? "",
+                                time: item.dateAdded?.toString(K.DateSymb.TIME) ?? "",
+                                doctorName: item.doctorName ?? "",
+                                department: item.departmentName ?? "",
+                                check: true
+                            )
+                            .padding(.horizontal)
+                        }
+                    }.frame(height: 230)
+                }
+            } else {
+                MTAppointmentCard(check: false)
+                    .padding(.horizontal)
+            }
+        }
+    }
+    
     private var medicationSection: some View {
         VStack (alignment: .leading, spacing: 20) {
             Text(K.LocalizedKey.MEDICA.localized(language_choosen))
@@ -171,7 +170,7 @@ extension HomeView {
                 .padding(.top, 20)
             
             LazyVGrid(columns: adaptiveColumns, spacing: 20) {
-                ForEach(1...5, id: \.self) { itme in
+                ForEach(1..<5) { itme in
                     MTActivityCard(title: "Steps", data: "3,456", iconName: "figure.step.training", chartBar: "chart.bar", color: Color(K.BrandColors.pastelPurple))
                 }
             }
