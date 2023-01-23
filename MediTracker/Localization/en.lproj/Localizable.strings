@@ -97,6 +97,6 @@
 
 // MARK: Item - MTAppointmentCard
 "MANAGE_CAL" = "Manage your Calendar";
-"NO_SCHEDULE" = "No Upcoming Schedules";
+"NO_SCHEDULE" = "No Upcoming Schedules for today";
 "YOUR_APPOINT" = "Your appointments";
 

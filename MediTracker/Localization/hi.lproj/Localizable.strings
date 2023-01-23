@@ -97,7 +97,7 @@
 
 // MARK: Item - MTAppointmentCard
 "MANAGE_CAL" = "अपना कैलेंडर प्रबंधित करें";
-"NO_SCHEDULE" = "कोई आगामी कार्यक्रम नहीं";
+"NO_SCHEDULE" = "आज के लिए कोई आगामी शेड्यूल नहीं है";
 "YOUR_APPOINT" = "आपकी नियुक्तियाँ";
 
 

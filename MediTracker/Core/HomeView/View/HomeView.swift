@@ -125,16 +125,18 @@ extension HomeView {
                                 date: item.dateAdded?.toString(K.DateSymb.DATE) ?? "",
                                 time: item.dateAdded?.toString(K.DateSymb.TIME) ?? "",
                                 doctorName: item.doctorName ?? "",
-                                department: item.departmentName ?? "",
-                                check: true
+                                department: item.departmentName ?? ""
                             )
+                            .frame(width: UIScreen.main.bounds.width - 30)
                             .padding(.horizontal)
                         }
                     }.frame(height: 230)
                 }
             } else {
-                MTAppointmentCard(check: false)
+                MTAppointmentCard()
                     .padding(.horizontal)
+                    .padding(.top, 20)
+                    .padding(.bottom, 20)
             }
         }
     }
